@@ -2,7 +2,7 @@
 
 Advanced acoustic intelligence platform using active sonic sensing for material analysis and structural health monitoring. Employs AI-powered pattern recognition to identify materials, detect structural anomalies, and create detailed environmental maps through resonance analysis. Features real-time processing, machine learning capabilities, and RESTful API for seamless integration. Built with Python, FastAPI, NumPy, and LibROSA. Ideal for construction, manufacturing, aerospace, and research applications requiring non-destructive testing. Open source with comprehensive documentation and developer guides. Revolutionizing material analysis through cutting-edge acoustic technology and intelligent pattern recognition systems.
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 - Python 3.8+
@@ -29,7 +29,7 @@ pip install -r requirements.txt
 python3 validate_system.py
 ```
 
-## 📖 Documentation
+##  Documentation
 
 Complete documentation is available at: https://autobotsolutions.github.io/SCRIBE-Sonic-Resonance-Intelligence-and-Behavioral-Exploration/
 
@@ -38,7 +38,7 @@ Complete documentation is available at: https://autobotsolutions.github.io/SCRIB
 - **[User Guide](https://autobotsolutions.github.io/SCRIBE-Sonic-Resonance-Intelligence-and-Behavioral-Exploration/user-guide.html)** - Getting started guide
 - **[Developer Guide](https://autobotsolutions.github.io/SCRIBE-Sonic-Resonance-Intelligence-and-Behavioral-Exploration/developer.html)** - Development documentation
 
-## 🛠️ Features
+##  Features
 
 - **Real-time Material Analysis**: Instant identification through acoustic signatures
 - **Structural Health Monitoring**: Non-destructive testing and anomaly detection
