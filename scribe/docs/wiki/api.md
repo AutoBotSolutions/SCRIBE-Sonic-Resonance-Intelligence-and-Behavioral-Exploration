@@ -1,10 +1,10 @@
 # SCRIBE API Documentation
 
-## 🌐 API Overview
+## API Overview
 
 The SCRIBE Resonance AI System provides a comprehensive REST API for external integration and programmatic access to all system capabilities.
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Starting the API Server
 ```bash
@@ -17,9 +17,9 @@ The API server will start on `http://localhost:8000`
 Visit `http://localhost:8000/docs` for interactive API documentation (Swagger UI)
 Visit `http://localhost:8000/redoc` for alternative documentation (ReDoc)
 
-## 📋 API Endpoints
+## API Endpoints
 
-### 🔍 System Information
+### System Information
 
 #### `GET /`
 Get basic API information and system status.
@@ -67,7 +67,7 @@ Get comprehensive system status.
 }
 ```
 
-### 🔬 Scan Operations
+### Scan Operations
 
 #### `POST /scan`
 Perform a resonance scan with specified parameters.
@@ -176,7 +176,7 @@ Get detailed information about a specific scan.
 }
 ```
 
-### 📚 Learning & Feedback
+### Learning & Feedback
 
 #### `POST /feedback`
 Submit user feedback for scan results.
@@ -254,7 +254,7 @@ Get adapted patterns from the learning system.
 }
 ```
 
-### 📊 Analytics & Metrics
+### Analytics & Metrics
 
 #### `POST /compare`
 Compare multiple scans.
@@ -312,11 +312,11 @@ Get system performance metrics.
 }
 ```
 
-## 🔐 Authentication
+## Authentication
 
 Currently, the SCRIBE API operates without authentication for development and testing purposes. Production deployments should implement appropriate authentication mechanisms.
 
-## 🚨 Error Handling
+## Error Handling
 
 ### Standard Error Response Format
 ```json
@@ -337,14 +337,14 @@ Currently, the SCRIBE API operates without authentication for development and te
 - `RESOURCE_UNAVAILABLE` - System resource not available
 - `NOT_FOUND` - Requested resource not found
 
-## 🔄 Rate Limiting
+## Rate Limiting
 
 The API implements rate limiting to ensure system stability:
 - **Scan operations**: 10 requests per minute
 - **Data retrieval**: 100 requests per minute
 - **Feedback submission**: 50 requests per minute
 
-## 📝 Request Examples
+## Request Examples
 
 ### Perform a Basic Scan
 ```bash
@@ -375,7 +375,7 @@ curl -X POST "http://localhost:8000/feedback" \
   }'
 ```
 
-## 🛠️ SDK Examples
+## SDK Examples
 
 ### Python Example
 ```python
@@ -415,14 +415,14 @@ const scanResult = await response.json();
 console.log(`Scan completed: ${scanResult.interpretation.confidence_scores.overall}`);
 ```
 
-## 📊 WebSocket Support (Planned)
+## WebSocket Support (Planned)
 
 Future versions will include WebSocket support for real-time updates:
 - Live scan progress
 - Real-time status updates
 - Streaming analytics data
 
-## 🔍 Testing the API
+## Testing the API
 
 ### Using curl
 ```bash
@@ -444,7 +444,7 @@ response = requests.get("http://localhost:8000/health")
 print(f"API Status: {response.json()['status']}")
 ```
 
-## 📚 Additional Resources
+## Additional Resources
 
 - [Interactive API Documentation](http://localhost:8000/docs)
 - [Component Documentation](../components/)

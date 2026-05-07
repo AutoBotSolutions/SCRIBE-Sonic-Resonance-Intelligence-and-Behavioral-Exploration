@@ -1,10 +1,10 @@
 # SCRIBE Community and Contribution Guide
 
-## 🤝 Community Overview
+## Community Overview
 
 Welcome to the SCRIBE community! This guide explains how to contribute to the SCRIBE Resonance AI System, participate in community discussions, and help shape the future of resonance intelligence technology.
 
-## 🌟 Community Values
+## Community Values
 
 ### Our Mission
 - **Open Collaboration**: Foster open-source development and knowledge sharing
@@ -20,7 +20,7 @@ Welcome to the SCRIBE community! This guide explains how to contribute to the SC
 - **Transparency**: Be open about intentions, conflicts of interest, and limitations
 - **Quality**: Strive for high-quality contributions and constructive feedback
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Join the Community
 
@@ -48,7 +48,7 @@ Welcome to the SCRIBE community! This guide explains how to contribute to the SC
 4. **Try the System**: Install SCRIBE and run basic scans
 5. **Share Feedback**: Report your experience and suggestions
 
-## 🛠️ Contribution Types
+## Contribution Types
 
 ### Code Contributions
 
@@ -89,7 +89,7 @@ Welcome to the SCRIBE community! This guide explains how to contribute to the SC
 - **Use Case Studies**: Real-world applications and results
 - **Benchmarking**: Performance comparisons and analysis
 
-## 📋 Contribution Process
+## Contribution Process
 
 ### 1. Planning Your Contribution
 
@@ -101,16 +101,16 @@ Welcome to the SCRIBE community! This guide explains how to contribute to the SC
 
 #### Choose Your Area
 ```
-📁 Areas of Contribution:
-├── 🐛 Bug Fixes
-├── ✨ New Features
-├── 📚 Documentation
-├── 🧪 Testing
-├── 🎨 Design/UX
-├── 🔧 Performance
-├── 🔒 Security
-├── 🌐 Internationalization
-└── 📊 Analytics/Monitoring
+Areas of Contribution:
+├── Bug Fixes
+├── New Features
+├── Documentation
+├── Testing
+├── Design/UX
+├── Performance
+├── Security
+├── Internationalization
+└── Analytics/Monitoring
 ```
 
 ### 2. Development Workflow
@@ -235,7 +235,7 @@ Brief description of changes and motivation.
 - **Maintainer Review**: Project maintainers approve final merge
 - **Merge**: Changes merged into main branch
 
-## 🎯 Contribution Areas
+## Contribution Areas
 
 ### Core System Development
 
@@ -340,12 +340,12 @@ Perform batch analysis of multiple scans.
 
 ### Step 2: Perform Targeted Scan
 ```
-🔍 SCRIBE> /scan --type=sine --frequency=440 --duration=3
+SCRIBE> /scan --type=sine --frequency=440 --duration=3
 ```
 
 ### Step 3: Analyze Results
 ```
-🔍 SCRIBE> What material properties did you detect?
+SCRIBE> What material properties did you detect?
 ```
 ```
 
@@ -459,7 +459,7 @@ class TestSystemIntegration:
 3. **Community Voting**: Finalists voted on by community
 4. **Announcement**: Winners announced at annual conference
 
-## 📚 Learning and Development
+## Learning and Development
 
 ### Skill Development
 
@@ -502,7 +502,7 @@ class TestSystemIntegration:
 - **Office Hours**: Q&A sessions with maintainers
 - **Code Reviews**: Learning through peer review process
 
-## 🌍 Global Community
+## Global Community
 
 ### International Chapters
 
@@ -532,7 +532,7 @@ class TestSystemIntegration:
 - **Reporting**: Safe channels for reporting issues
 - **Resolution**: Fair and transparent conflict resolution
 
-## 🔧 Tools and Resources
+## Tools and Resources
 
 ### Development Tools
 
@@ -564,7 +564,7 @@ class TestSystemIntegration:
 - **Mailing List**: Announcements and discussions
 - **Social Media**: Updates and news
 
-## 📞 Support and Help
+## Support and Help
 
 ### Getting Help
 
@@ -602,7 +602,7 @@ class TestSystemIntegration:
 
 ---
 
-## 🎉 Join Us Today!
+## Join Us Today!
 
 Ready to contribute to the future of resonance intelligence? Here's how to get started:
 

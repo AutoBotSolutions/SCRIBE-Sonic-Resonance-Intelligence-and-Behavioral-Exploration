@@ -1,6 +1,6 @@
 # SCRIBE FAQ and Best Practices
 
-## ❓ Frequently Asked Questions
+## Frequently Asked Questions
 
 ### General Questions
 
@@ -69,8 +69,8 @@ Then use the REST API endpoints documented in the API section.
 #### Q: How do I improve accuracy?
 **A:** Provide feedback on scan results:
 ```
-🔍 SCRIBE> /feedback material oak
-🔍 SCRIBE> /feedback rating 5
+SCRIBE> /feedback material oak
+SCRIBE> /feedback rating 5
 ```
 The system learns from corrections and improves over time.
 
@@ -169,30 +169,30 @@ docker run -p 8000:8000 scribe:latest
 #### Q: Can I redistribute SCRIBE?
 **A:** Yes, you can redistribute SCRIBE under the same MIT license terms.
 
-## 🎯 Best Practices
+## Best Practices
 
 ### System Setup
 
-#### ✅ DO: Use Virtual Environment
+#### DO: Use Virtual Environment
 ```bash
 python3 -m venv scribe_env
 source scribe_env/bin/activate
 ```
 
-#### ❌ DON'T: Install globally
+#### DON'T: Install globally
 Global installation can cause conflicts with other Python packages.
 
-#### ✅ DO: Validate Installation
+#### DO: Validate Installation
 ```bash
 python3 validate_system.py
 ```
 
-#### ❌ DON'T: Skip validation
+#### DON'T: Skip validation
 Always validate the installation before use.
 
 ### Configuration
 
-#### ✅ DO: Tune for Your Use Case
+#### DO: Tune for Your Use Case
 ```json
 {
   "audio": {
@@ -205,53 +205,53 @@ Always validate the installation before use.
 }
 ```
 
-#### ❌ DON'T: Use default settings for all scenarios
+#### DON'T: Use default settings for all scenarios
 Different use cases require different configurations.
 
-#### ✅ DO: Monitor Performance
+#### DO: Monitor Performance
 ```bash
 # Check system resources
 top
 htop
 ```
 
-#### ❌ DON'T: Ignore performance issues
+#### DON'T: Ignore performance issues
 Address performance problems early.
 
 ### Scan Operations
 
-#### ✅ DO: Use Appropriate Parameters
+#### DO: Use Appropriate Parameters
 ```bash
 # Material analysis
-🔍 SCRIBE> /scan --type=sine --frequency=440 --duration=2
+SCRIBE> /scan --type=sine --frequency=440 --duration=2
 
 # Room analysis
-🔍 SCRIBE> /scan --type=sweep --duration=5
+SCRIBE> /scan --type=sweep --duration=5
 ```
 
-#### ❌ DON'T: Use one-size-fits-all parameters
+#### DON'T: Use one-size-fits-all parameters
 Different targets require different parameters.
 
-#### ✅ DO: Provide Consistent Feedback
+#### DO: Provide Consistent Feedback
 ```bash
-🔍 SCRIBE> /feedback material oak
-🔍 SCRIBE> /feedback rating 5
+SCRIBE> /feedback material oak
+SCRIBE> /feedback rating 5
 ```
 
-#### ❌ DON'T: Skip feedback
+#### DON'T: Skip feedback
 Feedback improves system accuracy.
 
-#### ✅ DO: Minimize Background Noise
+#### DO: Minimize Background Noise
 - Close windows and doors
 - Turn off noisy equipment
 - Use consistent positioning
 
-#### ❌ DON'T: Scan in noisy environments
+#### DON'T: Scan in noisy environments
 Background noise reduces accuracy.
 
 ### API Usage
 
-#### ✅ DO: Implement Error Handling
+#### DO: Implement Error Handling
 ```python
 try:
     result = client.perform_scan(config)
@@ -259,10 +259,10 @@ except requests.RequestException as e:
     print(f"API error: {e}")
 ```
 
-#### ❌ DON'T: Assume API calls always succeed
+#### DON'T: Assume API calls always succeed
 Network issues can cause failures.
 
-#### ✅ DO: Use Rate Limiting
+#### DO: Use Rate Limiting
 ```python
 import time
 
@@ -272,10 +272,10 @@ def scan_with_delay(config):
     return result
 ```
 
-#### ❌ DON'T: Overload the API
+#### DON'T: Overload the API
 Excessive requests can cause performance issues.
 
-#### ✅ DO: Cache Results When Appropriate
+#### DO: Cache Results When Appropriate
 ```python
 from functools import lru_cache
 
@@ -285,12 +285,12 @@ def cached_scan(frequency, duration):
     return client.perform_scan(config)
 ```
 
-#### ❌ DON'T: Cache everything
+#### DON'T: Cache everything
 Some data should always be fresh.
 
 ### Production Deployment
 
-#### ✅ DO: Use HTTPS
+#### DO: Use HTTPS
 ```nginx
 server {
     listen 443 ssl;
@@ -299,10 +299,10 @@ server {
 }
 ```
 
-#### ❌ DON'T: Use HTTP in production
+#### DON'T: Use HTTP in production
 Unencrypted traffic is insecure.
 
-#### ✅ DO: Implement Monitoring
+#### DO: Implement Monitoring
 ```python
 # Health check endpoint
 @app.get("/health")
@@ -310,21 +310,21 @@ async def health():
     return {"status": "healthy"}
 ```
 
-#### ❌ DON'T: Deploy without monitoring
+#### DON'T: Deploy without monitoring
 You need to know when problems occur.
 
-#### ✅ DO: Use Environment Variables
+#### DO: Use Environment Variables
 ```bash
 export SCRIBE_API_KEY="your-secret-key"
 export SCRIBE_DB_PATH="/data/scribe.db"
 ```
 
-#### ❌ DON'T: Hardcode credentials
+#### DON'T: Hardcode credentials
 Credentials should never be in source code.
 
 ### Development
 
-#### ✅ DO: Follow Coding Standards
+#### DO: Follow Coding Standards
 ```python
 # Use type hints
 def perform_scan(config: ScanConfig) -> Dict[str, Any]:
@@ -337,10 +337,10 @@ class ScribeClient:
     pass
 ```
 
-#### ❌ DON'T: Ignore code quality
+#### DON'T: Ignore code quality
 Maintainable code is important.
 
-#### ✅ DO: Write Tests
+#### DO: Write Tests
 ```python
 import pytest
 
@@ -351,10 +351,10 @@ def test_scan_performance():
     assert 'interpretation' in result
 ```
 
-#### ❌ DON'T: Skip testing
+#### DON'T: Skip testing
 Tests prevent regressions.
 
-#### ✅ DO: Document Changes
+#### DO: Document Changes
 ```markdown
 ## Changes
 - Added new signal type 'chirp'
@@ -362,70 +362,70 @@ Tests prevent regressions.
 - Updated documentation
 ```
 
-#### ❌ DON'T: Make undocumented changes
+#### DON'T: Make undocumented changes
 Documentation helps other developers.
 
 ### Security
 
-#### ✅ DO: Use API Keys
+#### DO: Use API Keys
 ```python
 client = ScribeClient(api_key="secure-api-key")
 ```
 
-#### ❌ DON'T: Expose API without authentication
+#### DON'T: Expose API without authentication
 Unprotected APIs are security risks.
 
-#### ✅ DO: Validate Input
+#### DO: Validate Input
 ```python
 def validate_frequency(frequency):
     if not 20 <= frequency <= 20000:
         raise ValueError("Frequency out of range")
 ```
 
-#### ❌ DON'T: Trust user input
+#### DON'T: Trust user input
 Always validate external data.
 
-#### ✅ DO: Use HTTPS
+#### DO: Use HTTPS
 ```python
 # Use HTTPS URLs
 client = ScribeClient(base_url="https://scribe.example.com")
 ```
 
-#### ❌ DON'T: Use HTTP for sensitive data
+#### DON'T: Use HTTP for sensitive data
 HTTP traffic can be intercepted.
 
 ### Data Management
 
-#### ✅ DO: Backup Regularly
+#### DO: Backup Regularly
 ```bash
 # Backup database
 cp scribe_learning.db backup/scribe_$(date +%Y%m%d).db
 ```
 
-#### ❌ DON'T: Lose data
+#### DON'T: Lose data
 Regular backups prevent data loss.
 
-#### ✅ DO: Clean Old Data
+#### DO: Clean Old Data
 ```python
 # Clean old scan history
 if len(scan_history) > max_history:
     scan_history = scan_history[-max_history:]
 ```
 
-#### ❌ DON'T: Let data grow indefinitely
+#### DON'T: Let data grow indefinitely
 Unlimited growth causes performance issues.
 
-#### ✅ DO: Monitor Storage
+#### DO: Monitor Storage
 ```bash
 # Check disk usage
 df -h
 du -sh scribe_learning.db
 ```
 
-#### ❌ DON'T: Ignore storage limits
+#### DON'T: Ignore storage limits
 Running out of space causes failures.
 
-## 🔧 Advanced Tips
+## Advanced Tips
 
 ### Performance Optimization
 
@@ -522,31 +522,31 @@ def retry_call(func, max_attempts=3):
             time.sleep(2 ** attempt)
 ```
 
-## 📊 Common Scenarios
+## Common Scenarios
 
 ### Material Identification
 ```bash
 # Best practices for material analysis
-🔍 SCRIBE> /scan --type=sine --frequency=440 --duration=2
-🔍 SCRIBE> /scan --type=sine --frequency=880 --duration=2
-🔍 SCRIBE> Compare these scans
-🔍 SCRIBE> /feedback material oak
+SCRIBE> /scan --type=sine --frequency=440 --duration=2
+SCRIBE> /scan --type=sine --frequency=880 --duration=2
+SCRIBE> Compare these scans
+SCRIBE> /feedback material oak
 ```
 
 ### Room Acoustics
 ```bash
 # Best practices for room analysis
-🔍 SCRIBE> /scan --type=sweep --duration=5
-🔍 SCRIBE> How reverberant is this room?
-🔍 SCRIBE> What are the room modes?
+SCRIBE> /scan --type=sweep --duration=5
+SCRIBE> How reverberant is this room?
+SCRIBE> What are the room modes?
 ```
 
 ### Quality Control
 ```bash
 # Best practices for quality control
-🔍 SCRIBE> /scan --type=pulse --duration=1
-🔍 SCRIBE> Detect any anomalies
-🔍 SCRIBE> /feedback rating 5
+SCRIBE> /scan --type=pulse --duration=1
+SCRIBE> Detect any anomalies
+SCRIBE> /feedback rating 5
 ```
 
 ### Continuous Monitoring
@@ -567,7 +567,7 @@ async def monitor_continuously():
         await asyncio.sleep(60)  # Check every minute
 ```
 
-## 🚨 Troubleshooting Checklist
+## Troubleshooting Checklist
 
 ### Before Contacting Support
 - [ ] Check system status: `/status`

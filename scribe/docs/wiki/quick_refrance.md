@@ -1,6 +1,6 @@
 # SCRIBE Quick Reference
 
-## 🚀 Quick Commands
+## Quick Commands
 
 ### System Commands
 ```bash
@@ -19,11 +19,11 @@ python3 validate_system.py
 
 ### Chat Interface Commands
 ```
-🔍 SCRIBE> help              # Show help
-🔍 SCRIBE> /scan            # Perform scan
-🔍 SCRIBE> /status          # Check status
-🔍 SCRIBE> /history         # View history
-🔍 SCRIBE> What did you detect?  # Natural language
+SCRIBE> help              # Show help
+SCRIBE> /scan            # Perform scan
+SCRIBE> /status          # Check status
+SCRIBE> /history         # View history
+SCRIBE> What did you detect?  # Natural language
 ```
 
 ### API Endpoints
@@ -40,7 +40,7 @@ curl -X POST http://localhost:8000/scan \
 curl http://localhost:8000/status
 ```
 
-## 📁 Key Files
+## Key Files
 
 ### Main Files
 - `main.py` - Main entry point
@@ -63,7 +63,7 @@ curl http://localhost:8000/status
 - `src/chat/` - User interface
 - `src/api/` - REST API
 
-## 🔧 Common Tasks
+## Common Tasks
 
 ### Start System
 ```bash
@@ -77,7 +77,7 @@ curl http://localhost:8000/status
 ### Perform Scan
 ```bash
 # In chat interface
-🔍 SCRIBE> /scan
+SCRIBE> /scan
 
 # Via API
 curl -X POST http://localhost:8000/scan \
@@ -88,7 +88,7 @@ curl -X POST http://localhost:8000/scan \
 ### Check System Status
 ```bash
 # In chat interface
-🔍 SCRIBE> /status
+SCRIBE> /status
 
 # Via API
 curl http://localhost:8000/status
@@ -110,7 +110,7 @@ pkill -f "python3 main.py"
 ./start_interactive.sh
 ```
 
-## 📊 System Information
+## System Information
 
 ### Default Configuration
 - **Sample Rate**: 44100 Hz
@@ -134,7 +134,7 @@ pkill -f "python3 main.py"
 - **Health Endpoint**: http://localhost:8000/health
 - **Status Endpoint**: http://localhost:8000/status
 
-## 🔍 Scan Parameters
+## Scan Parameters
 
 ### Signal Types
 - `sine` - Pure tone
@@ -150,19 +150,19 @@ pkill -f "python3 main.py"
 ### Example Scans
 ```bash
 # Low frequency analysis
-🔍 SCRIBE> /scan --type=sine --frequency=100 --duration=3
+SCRIBE> /scan --type=sine --frequency=100 --duration=3
 
 # High frequency analysis
-🔍 SCRIBE> /scan --type=sine --frequency=8000 --duration=1
+SCRIBE> /scan --type=sine --frequency=8000 --duration=1
 
 # Frequency sweep
-🔍 SCRIBE> /scan --type=sweep --duration=5
+SCRIBE> /scan --type=sweep --duration=5
 
 # Custom amplitude
-🔍 SCRIBE> /scan --type=sine --frequency=440 --duration=2 --amplitude=0.8
+SCRIBE> /scan --type=sine --frequency=440 --duration=2 --amplitude=0.8
 ```
 
-## 📚 Documentation Links
+## Documentation Links
 
 ### Main Documentation
 - [Main Wiki Index](README.md)
@@ -181,7 +181,7 @@ pkill -f "python3 main.py"
 - [Main Project README](../README.md)
 - [System Documentation](../Scribe%20Resonance%20AI%20System.html)
 
-## 🚨 Common Issues
+## Common Issues
 
 ### PyAudio Not Available
 ```bash
@@ -214,30 +214,30 @@ pkill -f "python3 main.py"
 ./start_interactive.sh
 
 # Use shorter scans
-🔍 SCRIBE> /scan --duration=1
+SCRIBE> /scan --duration=1
 ```
 
-## 🎯 Tips and Tricks
+## Tips and Tricks
 
 ### Power User Commands
 ```bash
 # Quick scan and analysis
-🔍 SCRIBE> /scan && what did you detect?
+SCRIBE> /scan && what did you detect?
 
 # Environment comparison
-🔍 SCRIBE> /scan && compare to previous
+SCRIBE> /scan && compare to previous
 
 # Learning check
-🔍 SCRIBE> /feedback rating 5 && what have you learned?
+SCRIBE> /feedback rating 5 && what have you learned?
 ```
 
 ### Natural Language Examples
 ```
-🔍 SCRIBE> What material is this?
-🔍 SCRIBE> Is this environment stable?
-🔍 SCRIBE> How confident are you?
-🔍 SCRIBE> Compare to last scan
-🔍 SCRIBE> What changed recently?
+SCRIBE> What material is this?
+SCRIBE> Is this environment stable?
+SCRIBE> How confident are you?
+SCRIBE> Compare to last scan
+SCRIBE> What changed recently?
 ```
 
 ### Keyboard Shortcuts
@@ -245,7 +245,7 @@ pkill -f "python3 main.py"
 - **Ctrl+C**: Exit system
 - **Tab**: Command completion (if supported)
 
-## 📞 Getting Help
+## Getting Help
 
 ### Self-Service
 1. **Type `help`** in chat interface

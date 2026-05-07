@@ -1,10 +1,10 @@
 # SCRIBE Configuration Guide
 
-## ⚙️ Configuration Overview
+## Configuration Overview
 
 The SCRIBE system uses a comprehensive configuration system that allows fine-tuning of all aspects of the resonance analysis pipeline. This guide covers all configuration options, their effects, and best practices for different use cases.
 
-## 📁 Configuration Files
+## Configuration Files
 
 ### Primary Configuration
 - **`config.json`** - Main system configuration
@@ -22,7 +22,7 @@ default_config.py (system defaults)
 Component defaults (fallback values)
 ```
 
-## 🔧 Complete Configuration Reference
+## Complete Configuration Reference
 
 ### System Configuration
 ```json
@@ -242,7 +242,7 @@ Component defaults (fallback values)
 - **`session_timeout`** (integer): Session timeout in seconds
 - **`encrypt_database`** (boolean): Encrypt database
 
-## 🎯 Configuration Profiles
+## Configuration Profiles
 
 ### Development Profile
 ```json
@@ -335,7 +335,7 @@ Component defaults (fallback values)
 }
 ```
 
-## 🔧 Configuration Management
+## Configuration Management
 
 ### Loading Configuration
 ```python
@@ -469,7 +469,7 @@ if config.audio.sample_rate not in [22050, 44100, 48000, 96000]:
 }
 ```
 
-## 🔄 Dynamic Configuration
+## Dynamic Configuration
 
 ### Runtime Configuration Updates
 ```python
@@ -515,7 +515,7 @@ class ConfigManager:
             await asyncio.sleep(1)
 ```
 
-## 📊 Performance Tuning
+## Performance Tuning
 
 ### Audio Performance
 ```json
@@ -567,7 +567,7 @@ class ConfigManager:
 - Reduce `scan_timeout` for faster failure detection
 - Decrease `cleanup_interval` for more frequent cleanup
 
-## 🔍 Configuration Debugging
+## Configuration Debugging
 
 ### Configuration Diagnostics
 ```python
@@ -631,7 +631,7 @@ if errors:
 **Issue**: Too many concurrent scans overwhelm system
 **Fix**: Reduce concurrent scans or increase system resources
 
-## 📚 Configuration Best Practices
+## Configuration Best Practices
 
 ### Development Environment
 ```json
@@ -684,7 +684,7 @@ if errors:
 }
 ```
 
-## 🔧 Configuration Templates
+## Configuration Templates
 
 ### Basic Configuration Template
 ```json

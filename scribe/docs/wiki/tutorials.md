@@ -1,10 +1,10 @@
 # SCRIBE Tutorials and Examples
 
-## 📚 Tutorial Overview
+## Tutorial Overview
 
 This section provides comprehensive tutorials and practical examples for using the SCRIBE Resonance AI System. From basic getting started guides to advanced use cases, these tutorials will help you master resonance analysis.
 
-## 🎯 Getting Started Tutorials
+## Getting Started Tutorials
 
 ### Tutorial 1: First Resonance Scan
 **Objective**: Perform your first resonance analysis and understand the results
@@ -17,27 +17,27 @@ This section provides comprehensive tutorials and practical examples for using t
 
 #### Step 2: Basic Scan
 ```
-🔍 SCRIBE> /scan
+SCRIBE> /scan
 ```
 
 #### Step 3: Understand Results
 ```
-✅ Scan completed with 85% confidence
+Scan completed with 85% confidence
 
-🔍 Key Findings:
+Key Findings:
 • Resonance peak detected at 440Hz with moderate Q-factor
 • Environment shows stable acoustic properties
 • Material characteristics suggest wooden surface
 • No significant anomalies detected
 
-🪵 Material: Wood (90% confidence)
-🏠 Environment: Room (80% confidence)
-⚖️ State: Stable (85% confidence)
+Material: Wood (90% confidence)
+Environment: Room (80% confidence)
+State: Stable (85% confidence)
 ```
 
 #### Step 4: Natural Language Query
 ```
-🔍 SCRIBE> What did you detect?
+SCRIBE> What did you detect?
 ```
 
 ### Tutorial 2: Custom Signal Parameters
@@ -45,17 +45,17 @@ This section provides comprehensive tutorials and practical examples for using t
 
 #### Frequency-Specific Analysis
 ```
-🔍 SCRIBE> /scan --type=sine --frequency=1000 --duration=3
+SCRIBE> /scan --type=sine --frequency=1000 --duration=3
 ```
 
 #### Material Analysis Setup
 ```
-🔍 SCRIBE> /scan --type=sine --frequency=440 --duration=2 --amplitude=0.8
+SCRIBE> /scan --type=sine --frequency=440 --duration=2 --amplitude=0.8
 ```
 
 #### Broad Spectrum Analysis
 ```
-🔍 SCRIBE> /scan --type=sweep --duration=5
+SCRIBE> /scan --type=sweep --duration=5
 ```
 
 ### Tutorial 3: Feedback and Learning
@@ -63,21 +63,21 @@ This section provides comprehensive tutorials and practical examples for using t
 
 #### Provide Material Feedback
 ```
-🔍 SCRIBE> /scan
-🔍 SCRIBE> /feedback material oak
+SCRIBE> /scan
+SCRIBE> /feedback material oak
 ```
 
 #### Rate Scan Accuracy
 ```
-🔍 SCRIBE> /feedback rating 5
+SCRIBE> /feedback rating 5
 ```
 
 #### Check Learning Progress
 ```
-🔍 SCRIBE> What have you learned?
+SCRIBE> What have you learned?
 ```
 
-## 🔬 Advanced Tutorials
+## Advanced Tutorials
 
 ### Tutorial 4: Material Identification
 **Objective**: Accurately identify materials using resonance analysis
@@ -100,15 +100,15 @@ config = {
 
 #### Material Detection Scan
 ```
-🔍 SCRIBE> /scan --type=sine --frequency=440 --duration=2
-🔍 SCRIBE> What material is this?
+SCRIBE> /scan --type=sine --frequency=440 --duration=2
+SCRIBE> What material is this?
 ```
 
 #### Comparative Analysis
 ```
-🔍 SCRIBE> /scan --type=sine --frequency=440 --duration=2
-🔍 SCRIBE> /scan --type=sine --frequency=880 --duration=2
-🔍 SCRIBE> Compare these scans
+SCRIBE> /scan --type=sine --frequency=440 --duration=2
+SCRIBE> /scan --type=sine --frequency=880 --duration=2
+SCRIBE> Compare these scans
 ```
 
 ### Tutorial 5: Environmental Analysis
@@ -116,17 +116,17 @@ config = {
 
 #### Room Acoustic Profile
 ```
-🔍 SCRIBE> /scan --type=sweep --duration=5
-🔍 SCRIBE> How reverberant is this room?
-🔍 SCRIBE> What are the room modes?
+SCRIBE> /scan --type=sweep --duration=5
+SCRIBE> How reverberant is this room?
+SCRIBE> What are the room modes?
 ```
 
 #### Environmental Comparison
 ```
-🔍 SCRIBE> /scan --type=sweep --duration=3
+SCRIBE> /scan --type=sweep --duration=3
 # Move to different location
-🔍 SCRIBE> /scan --type=sweep --duration=3
-🔍 SCRIBE> Compare to previous scan
+SCRIBE> /scan --type=sweep --duration=3
+SCRIBE> Compare to previous scan
 ```
 
 ### Tutorial 6: Structural Analysis
@@ -134,20 +134,20 @@ config = {
 
 #### Structural Resonance Detection
 ```
-🔍 SCRIBE> /scan --type=pulse --duration=1
-🔍 SCRIBE> Are there any structural resonances?
-🔍 SCRIBE> Detect any anomalies
+SCRIBE> /scan --type=pulse --duration=1
+SCRIBE> Are there any structural resonances?
+SCRIBE> Detect any anomalies
 ```
 
 #### Time-Based Analysis
 ```
-🔍 SCRIBE> /scan --type=sine --frequency=100 --duration=3
+SCRIBE> /scan --type=sine --frequency=100 --duration=3
 # Wait 10 minutes
-🔍 SCRIBE> /scan --type=sine --frequency=100 --duration=3
-🔍 SCRIBE> What changed since the last scan?
+SCRIBE> /scan --type=sine --frequency=100 --duration=3
+SCRIBE> What changed since the last scan?
 ```
 
-## 💻 Programming Tutorials
+## Programming Tutorials
 
 ### Tutorial 7: Python API Integration
 **Objective**: Use SCRIBE programmatically with Python
@@ -259,7 +259,7 @@ class RealTimeMonitor:
                 
                 # Check for significant changes
                 if comparison['stability_score'] < 0.7:
-                    print(f"⚠️ Significant change detected! Stability: {comparison['stability_score']:.1%}")
+                    print(f"Significant change detected! Stability: {comparison['stability_score']:.1%}")
                     print(f"Changes: {len(comparison['changes'])}")
                 
                 await asyncio.sleep(self.interval)
@@ -274,7 +274,7 @@ await monitor.establish_baseline()
 await monitor.monitor_continuously()
 ```
 
-## 🎨 Use Case Examples
+## Use Case Examples
 
 ### Use Case 1: Musical Instrument Analysis
 **Objective**: Analyze musical instrument acoustics
@@ -440,7 +440,7 @@ for i in range(5):
     print(f"Sample {i+1}: {status}")
 ```
 
-## 🔧 Integration Examples
+## Integration Examples
 
 ### Integration with IoT Devices
 ```python
@@ -635,7 +635,7 @@ analytics.analyze_trends()
 print(analytics.generate_report())
 ```
 
-## 🎯 Best Practices
+## Best Practices
 
 ### Scan Optimization
 1. **Choose appropriate frequencies** for your target analysis

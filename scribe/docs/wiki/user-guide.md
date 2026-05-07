@@ -1,10 +1,10 @@
 # SCRIBE User Guide
 
-## 👋 Welcome to SCRIBE
+## Welcome to SCRIBE
 
 The SCRIBE (Sonic Resonance Intelligence and Behavioral Exploration) system is an advanced resonance intelligence platform that analyzes environments through acoustic signals. This guide will help you get started and make the most of SCRIBE's capabilities.
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Starting the System
 
@@ -28,48 +28,48 @@ The SCRIBE (Sonic Resonance Intelligence and Behavioral Exploration) system is a
 Once the system starts, you'll see the chat interface:
 
 ```
-🔍 SCRIBE> 
+SCRIBE> 
 ```
 
 Type `help` to see available commands, or simply ask:
 
 ```
-🔍 SCRIBE> What did you detect?
+SCRIBE> What did you detect?
 ```
 
 The system will perform a resonance scan and provide insights about the environment.
 
-## 💬 Chat Interface Commands
+## Chat Interface Commands
 
 ### Basic Commands
 
 #### `/scan` - Perform Resonance Analysis
 ```
-🔍 SCRIBE> /scan
+SCRIBE> /scan
 ```
 Performs a complete resonance scan with default parameters.
 
 #### `/scan --type=sine --frequency=440 --duration=2` - Custom Scan
 ```
-🔍 SCRIBE> /scan --type=sine --frequency=440 --duration=2
+SCRIBE> /scan --type=sine --frequency=440 --duration=2
 ```
 Performs a scan with custom parameters.
 
 #### `/status` - Check System Health
 ```
-🔍 SCRIBE> /status
+SCRIBE> /status
 ```
 Shows current system status and component health.
 
 #### `/help` - Show Available Commands
 ```
-🔍 SCRIBE> /help
+SCRIBE> /help
 ```
 Displays all available commands and usage examples.
 
 #### `/history` - View Scan History
 ```
-🔍 SCRIBE> /history
+SCRIBE> /history
 ```
 Shows recent scans and their results.
 
@@ -77,56 +77,56 @@ Shows recent scans and their results.
 
 #### `/feedback material wood` - Correct Material Identification
 ```
-🔍 SCRIBE> /feedback material wood
+SCRIBE> /feedback material wood
 ```
 Tells the system the correct material for the last scan.
 
 #### `/feedback rating 5` - Rate Scan Accuracy
 ```
-🔍 SCRIBE> /feedback rating 5
+SCRIBE> /feedback rating 5
 ```
 Rates the accuracy of the last scan (1-5 scale).
 
 #### `/feedback environment room` - Correct Environment Type
 ```
-🔍 SCRIBE> /feedback environment room
+SCRIBE> /feedback environment room
 ```
 Corrects the environment classification.
 
-## 🗣️ Natural Language Interaction
+## Natural Language Interaction
 
 SCRIBE understands natural language queries. Here are some examples:
 
 ### Environment Analysis
 ```
-🔍 SCRIBE> What did you detect?
-🔍 SCRIBE> Is this environment stable?
-🔍 SCRIBE> What materials are present?
-🔍 SCRIBE> Analyze the acoustic properties
+SCRIBE> What did you detect?
+SCRIBE> Is this environment stable?
+SCRIBE> What materials are present?
+SCRIBE> Analyze the acoustic properties
 ```
 
 ### Comparison Questions
 ```
-🔍 SCRIBE> Compare this scan to the previous one
-🔍 SCRIBE> What changed since the last scan?
-🔍 SCRIBE> How does this environment compare to a room?
+SCRIBE> Compare this scan to the previous one
+SCRIBE> What changed since the last scan?
+SCRIBE> How does this environment compare to a room?
 ```
 
 ### System Information
 ```
-🔍 SCRIBE> How confident are you in your analysis?
-🔍 SCRIBE> What frequency ranges did you analyze?
-🔍 SCRIBE> Show me the resonance peaks
+SCRIBE> How confident are you in your analysis?
+SCRIBE> What frequency ranges did you analyze?
+SCRIBE> Show me the resonance peaks
 ```
 
 ### Learning and Feedback
 ```
-🔍 SCRIBE> What have you learned from previous scans?
-🔍 SCRIBE> How accurate have your predictions been?
-🔍 SCRIBE> What patterns do you recognize?
+SCRIBE> What have you learned from previous scans?
+SCRIBE> How accurate have your predictions been?
+SCRIBE> What patterns do you recognize?
 ```
 
-## 📊 Understanding Scan Results
+## Understanding Scan Results
 
 ### Confidence Scores
 SCRIBE provides confidence scores for different aspects of analysis:
@@ -139,17 +139,17 @@ SCRIBE provides confidence scores for different aspects of analysis:
 
 ### Typical Insights
 ```
-✅ Scan completed with 85% confidence
+Scan completed with 85% confidence
 
-🔍 Key Findings:
+Key Findings:
 • Resonance peak detected at 440Hz with moderate Q-factor
 • Environment shows stable acoustic properties
 • Material characteristics suggest wooden surface
 • No significant anomalies detected
 
-🪵 Material: Wood (90% confidence)
-🏠 Environment: Room (80% confidence)
-⚖️ State: Stable (85% confidence)
+Material: Wood (90% confidence)
+Environment: Room (80% confidence)
+State: Stable (85% confidence)
 ```
 
 ### Feature Types
@@ -162,7 +162,7 @@ SCRIBE analyzes multiple acoustic features:
 - **Envelope**: Attack and decay characteristics
 - **Noise Profile**: Background noise characteristics
 
-## 🔧 Advanced Usage
+## Advanced Usage
 
 ### Custom Signal Parameters
 
@@ -180,13 +180,13 @@ SCRIBE analyzes multiple acoustic features:
 ### Example Custom Scans
 ```
 # Low frequency sweep
-🔍 SCRIBE> /scan --type=sweep --frequency=100 --duration=5
+SCRIBE> /scan --type=sweep --frequency=100 --duration=5
 
 # High frequency analysis
-🔍 SCRIBE> /scan --type=sine --frequency=8000 --duration=1
+SCRIBE> /scan --type=sine --frequency=8000 --duration=1
 
 # Harmonic stack
-🔍 SCRIBE> /scan --type=harmonic --frequency=440 --duration=3
+SCRIBE> /scan --type=harmonic --frequency=440 --duration=3
 ```
 
 ### Batch Operations
@@ -206,7 +206,7 @@ for freq in frequencies:
     print(f"Scan at {freq}Hz: {response.json()['interpretation']['confidence_scores']['overall']:.1%}")
 ```
 
-## 📚 Best Practices
+## Best Practices
 
 ### Getting Accurate Results
 
@@ -249,37 +249,37 @@ for freq in frequencies:
 - Environmental factors may be interfering
 - Recommend improving conditions and rescanning
 
-## 🎯 Use Cases
+## Use Cases
 
 ### Material Identification
 ```
-🔍 SCRIBE> /scan --type=sine --frequency=440 --duration=2
-🔍 SCRIBE> What material is this?
-🔍 SCRIBE> /feedback material oak if it's wood
+SCRIBE> /scan --type=sine --frequency=440 --duration=2
+SCRIBE> What material is this?
+SCRIBE> /feedback material oak if it's wood
 ```
 
 ### Room Acoustics
 ```
-🔍 SCRIBE> /scan --type=sweep --duration=5
-🔍 SCRIBE> How reverberant is this room?
-🔍 SCRIBE> What are the room modes?
+SCRIBE> /scan --type=sweep --duration=5
+SCRIBE> How reverberant is this room?
+SCRIBE> What are the room modes?
 ```
 
 ### Structural Analysis
 ```
-🔍 SCRIBE> /scan --type=pulse --duration=1
-🔍 SCRIBE> Are there any structural resonances?
-🔍 SCRIBE> Compare to previous scan
+SCRIBE> /scan --type=pulse --duration=1
+SCRIBE> Are there any structural resonances?
+SCRIBE> Compare to previous scan
 ```
 
 ### Environmental Monitoring
 ```
-🔍 SCRIBE> /scan --type=harmonic --duration=3
-🔍 SCRIBE> Has anything changed recently?
-🔍 SCRIBE> /feedback rating 5
+SCRIBE> /scan --type=harmonic --duration=3
+SCRIBE> Has anything changed recently?
+SCRIBE> /feedback rating 5
 ```
 
-## 🔍 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -327,25 +327,25 @@ The system learns from:
 - **Pattern Recognition**: Repeated signatures
 - **Adaptation**: Improves over time
 
-## 🔗 External Resources
+## External Resources
 
 - [API Documentation](../api/)
 - [Component Details](../components/)
 - [System Architecture](../architecture/)
 - [Troubleshooting Guide](../troubleshooting/)
 
-## 💡 Tips and Tricks
+## Tips and Tricks
 
 ### Power User Commands
 ```
 # Quick material check
-🔍 SCRIBE> /scan && what material is this?
+SCRIBE> /scan && what material is this?
 
 # Environment comparison
-🔍 SCRIBE> /scan --type=sweep && compare to last scan
+SCRIBE> /scan --type=sweep && compare to last scan
 
 # Learning check
-🔍 SCRIBE> /feedback rating 5 && what have you learned?
+SCRIBE> /feedback rating 5 && what have you learned?
 ```
 
 ### Keyboard Shortcuts

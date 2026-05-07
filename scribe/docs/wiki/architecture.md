@@ -1,12 +1,12 @@
 # SCRIBE System Architecture
 
-## 🏗️ Overview
+## Overview
 
 The SCRIBE Resonance AI System is built on a modular, event-driven architecture that enables real-time acoustic resonance analysis and intelligent interpretation. The system follows a layered design pattern with clear separation of concerns and well-defined interfaces between components.
 
-## 📐 Core Architecture
+## Core Architecture
 
-### 🎯 System Layers
+### System Layers
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -22,7 +22,7 @@ The SCRIBE Resonance AI System is built on a modular, event-driven architecture 
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### 🧠 Core Components
+### Core Components
 
 #### 1. **System Controller** (`src/core/system_controller.py`)
 - **Purpose**: Central orchestration and component coordination
@@ -82,7 +82,7 @@ The SCRIBE Resonance AI System is built on a modular, event-driven architecture 
   - Real-time responses
   - Context awareness
 
-## 🔄 Data Flow Architecture
+## Data Flow Architecture
 
 ### Scan Cycle Flow
 
@@ -106,7 +106,7 @@ System Controller
 └── Chat Interface (User Interaction)
 ```
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### Core Technologies
 - **Python 3.13**: Primary development language
@@ -134,7 +134,7 @@ System Controller
 - **SQLite**: Local data storage
 - **Custom analytics**: Performance tracking
 
-## 📊 Performance Architecture
+## Performance Architecture
 
 ### Real-Time Processing
 - **Target latency**: <1.2ms for signal processing
@@ -148,7 +148,7 @@ System Controller
 - **Resource pooling**: Efficient resource management
 - **Error isolation**: Component-level fault tolerance
 
-## 🔧 Configuration Architecture
+## Configuration Architecture
 
 ### Configuration Hierarchy
 ```
@@ -167,7 +167,7 @@ component configs (Component-specific)
 - **AI Configuration**: Confidence thresholds, model parameters
 - **System Limits**: Memory usage, processing timeouts
 
-## 🔄 Event-Driven Architecture
+## Event-Driven Architecture
 
 ### Event Types
 - **System Events**: Start/stop, status changes
@@ -180,7 +180,7 @@ component configs (Component-specific)
 User Input → Command Parser → Event Dispatcher → Component Handlers → Response Generation → User Output
 ```
 
-## 🛡️ Security Architecture
+## Security Architecture
 
 ### Data Protection
 - **Input validation**: Pydantic models
@@ -194,7 +194,7 @@ User Input → Command Parser → Event Dispatcher → Component Handlers → Re
 - **Graceful shutdown**: Clean resource cleanup
 - **State validation**: Consistency checks
 
-## 📈 Monitoring Architecture
+## Monitoring Architecture
 
 ### Metrics Collection
 - **System metrics**: CPU, memory, processing time

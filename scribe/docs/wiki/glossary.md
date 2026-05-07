@@ -1,10 +1,10 @@
 # SCRIBE Glossary and Terminology
 
-## 📚 Glossary Overview
+## Glossary Overview
 
 This comprehensive glossary defines all technical terms, concepts, and terminology used throughout the SCRIBE Resonance AI System. Understanding these terms will help you use the system more effectively and communicate precisely about resonance analysis.
 
-## 🎯 Core Concepts
+## Core Concepts
 
 ### SCRIBE
 **SCRIBE (Sonic Resonance Intelligence and Behavioral Exploration)**: An advanced AI system that uses acoustic resonance to analyze materials, environments, and structural properties through active signal emission and response analysis.
@@ -50,7 +50,7 @@ This comprehensive glossary defines all technical terms, concepts, and terminolo
 ### Q-Factor
 **Q-Factor (Quality Factor)**: A dimensionless parameter that describes the sharpness of resonance peaks. Higher Q-factors indicate sharper, more selective resonances.
 
-## 🤖 Artificial Intelligence
+## Artificial Intelligence
 
 ### Confidence Score
 **Confidence Score**: A value between 0.0 and 1.0 representing the system's confidence in its analysis results. Higher values indicate greater certainty.
@@ -79,7 +79,7 @@ This comprehensive glossary defines all technical terms, concepts, and terminolo
 ### Inference
 **Inference**: The process of using a trained model to make predictions or decisions. SCRIBE performs inference on acoustic data.
 
-## 🏗️ System Architecture
+## System Architecture
 
 ### Component
 **Component**: A modular part of the SCRIBE system with specific functionality. Examples: Emission Engine, Listening Module, Signal Processor.
@@ -105,7 +105,7 @@ This comprehensive glossary defines all technical terms, concepts, and terminolo
 ### Configuration
 **Configuration**: The settings and parameters that control system behavior. Stored in config.json and environment variables.
 
-## 📊 Data and Storage
+## Data and Storage
 
 ### Database
 **Database**: An organized collection of data. SCRIBE uses SQLite for local storage and supports PostgreSQL for production deployments.
@@ -131,7 +131,7 @@ This comprehensive glossary defines all technical terms, concepts, and terminolo
 ### Cache
 **Cache**: A temporary storage area that stores frequently accessed data for fast retrieval. SCRIBE caches scan results and interpretation patterns.
 
-## 🔒 Security and Authentication
+## Security and Authentication
 
 ### API Key
 **API Key**: A unique identifier used to authenticate requests to an API. SCRIBE uses API keys for secure API access.
@@ -157,7 +157,7 @@ This comprehensive glossary defines all technical terms, concepts, and terminolo
 ### Salt
 **Salt**: Random data added to a hash function to defend against rainbow table attacks. SCRIBE salts password hashes.
 
-## 🌐 Networking and APIs
+## Networking and APIs
 
 ### REST API
 **REST API**: An architectural style for designing networked applications. SCRIBE provides a complete REST API for programmatic access.
@@ -183,7 +183,7 @@ This comprehensive glossary defines all technical terms, concepts, and terminolo
 ### Payload
 **Payload**: The data carried by a request or response. SCRIBE API payloads contain scan configurations and results.
 
-## 📈 Performance and Monitoring
+## Performance and Monitoring
 
 ### Latency
 **Latency**: The delay between a user's action and the system's response. SCRIBE aims for sub-second latency for most operations.
@@ -261,7 +261,7 @@ This comprehensive glossary defines all technical terms, concepts, and terminolo
 ### Quality Assurance
 **Quality Assurance**: The process of ensuring that a product meets quality standards. SCRIBE follows QA best practices.
 
-## 📚 Documentation and Support
+## Documentation and Support
 
 ### API Documentation
 **API Documentation**: Detailed information about API endpoints, parameters, and responses. SCRIBE provides interactive API documentation.
@@ -287,7 +287,7 @@ This comprehensive glossary defines all technical terms, concepts, and terminolo
 ### Community
 **Community**: A group of users who share knowledge and help each other. SCRIBE fosters an active user community.
 
-## 🔧 Development and Tools
+## Development and Tools
 
 ### Version Control
 **Version Control**: A system that records changes to files over time. SCRIBE uses Git for version control.
@@ -313,7 +313,7 @@ This comprehensive glossary defines all technical terms, concepts, and terminolo
 ### Package
 **Package**: A container for related software modules. SCRIBE is distributed as a Python package.
 
-## 🎯 Domain-Specific Terms
+## Domain-Specific Terms
 
 ### Material Identification
 **Material Identification**: The process of determining the type of material (wood, metal, plastic, etc.) from its acoustic signature.

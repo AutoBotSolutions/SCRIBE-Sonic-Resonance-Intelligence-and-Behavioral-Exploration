@@ -1,10 +1,10 @@
 # SCRIBE System Components
 
-## 🔧 Component Overview
+## Component Overview
 
 The SCRIBE system consists of 7 core components, each with specific responsibilities and well-defined interfaces. This section provides detailed documentation for each component.
 
-## 📁 Component Structure
+## Component Structure
 
 ```
 src/
@@ -20,7 +20,7 @@ src/
 └── utils/                   # Utilities
 ```
 
-## 🧠 System Controller
+## System Controller
 
 ### File: `src/core/system_controller.py`
 
@@ -97,7 +97,7 @@ await system.stop()
 - Realistic response generation
 - Configurable noise and reflections
 
-## 🔍 Signal Processing Layer
+## Signal Processing Layer
 
 ### File: `src/processing/fft_analyzer.py`
 
@@ -124,7 +124,7 @@ await system.stop()
 - Harmonic content and ratios
 - Envelope characteristics
 
-## 🤖 AI Interpretation Engine
+## AI Interpretation Engine
 
 ### File: `src/ai/interpreter.py`
 
@@ -149,7 +149,7 @@ await system.stop()
 - Anomaly detection
 - Confidence scores
 
-## 📚 Feedback Loop System
+## Feedback Loop System
 
 ### File: `src/feedback/learning_system.py`
 
@@ -174,7 +174,7 @@ await system.stop()
 - Pattern adaptations
 - Performance metrics
 
-## 💬 Chat Interface
+## Chat Interface
 
 ### File: `src/chat/interface.py`
 
@@ -199,7 +199,7 @@ await system.stop()
 - "Compare this scan to previous"
 - "What changed?"
 
-## 🌐 REST API
+## REST API
 
 ### File: `src/api/main.py`
 
@@ -219,7 +219,7 @@ await system.stop()
 - Request validation
 - Error handling
 
-## 📊 Monitoring & Analytics
+## Monitoring & Analytics
 
 ### File: `src/monitoring/analytics.py`
 
@@ -238,7 +238,7 @@ await system.stop()
 - Resource usage
 - User interaction patterns
 
-## 🔧 Utilities
+## Utilities
 
 ### Configuration: `src/utils/config.py`
 **Purpose**: System configuration management
@@ -258,7 +258,7 @@ await system.stop()
 - Component-specific loggers
 - Error tracking
 
-## 🔄 Component Integration
+## Component Integration
 
 ### Data Flow
 ```
@@ -279,7 +279,7 @@ Emission Engine → Listening Module → Signal Processing → AI Interpreter �
 - **Feedback**: Depends on AI interpretation
 - **Interface**: Depends on all components
 
-## 🛠️ Component Development
+## Component Development
 
 ### Adding New Components
 1. Create component directory

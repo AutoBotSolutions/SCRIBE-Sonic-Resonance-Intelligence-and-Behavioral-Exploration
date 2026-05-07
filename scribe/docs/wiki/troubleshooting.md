@@ -1,10 +1,10 @@
 # SCRIBE Troubleshooting Guide
 
-## 🔧 Troubleshooting Overview
+## Troubleshooting Overview
 
 This guide helps you diagnose and resolve common issues with the SCRIBE Resonance AI System. Problems are categorized by severity and component for easier resolution.
 
-## 🚨 Quick Diagnosis
+## Quick Diagnosis
 
 ### System Status Check
 ```bash
@@ -23,7 +23,7 @@ python3 validate_system.py
 - **Memory errors**: Insufficient resources
 - **Network errors**: API or connectivity issues
 
-## 🔍 Common Issues and Solutions
+## Common Issues and Solutions
 
 ### Installation & Setup Issues
 
@@ -106,10 +106,10 @@ top
 htop
 
 # Reduce scan duration
-🔍 SCRIBE> /scan --duration=1
+SCRIBE> /scan --duration=1
 
 # Use simpler signal types
-🔍 SCRIBE> /scan --type=sine
+SCRIBE> /scan --type=sine
 ```
 
 #### Issue: High memory usage
@@ -122,7 +122,7 @@ pkill -f "python3 main.py"
 ./start_interactive.sh
 
 # Use shorter scan durations
-🔍 SCRIBE> /scan --duration=0.5
+SCRIBE> /scan --duration=0.5
 ```
 
 ### API Issues
@@ -177,7 +177,7 @@ rm scribe_learning.db
 pip install prometheus_client
 ```
 
-## 🛠️ Advanced Troubleshooting
+## Advanced Troubleshooting
 
 ### Debug Mode
 Enable debug mode for detailed logging:
@@ -238,7 +238,7 @@ pip install line-profiler
 python3 -m line_profiler main.py
 ```
 
-## 📊 Error Codes and Meanings
+## Error Codes and Meanings
 
 ### System Error Codes
 - **SCRIBE_001**: Configuration file not found
@@ -263,7 +263,7 @@ python3 -m line_profiler main.py
 - **AI_001**: Model not loaded
 - **AI_002**: Invalid feature data
 
-## 🔧 Recovery Procedures
+## Recovery Procedures
 
 ### System Recovery
 ```bash
@@ -288,7 +288,7 @@ rm config.json
 ./start_interactive.sh
 ```
 
-## 📞 Getting Help
+## Getting Help
 
 ### Self-Service Resources
 1. **Check logs**: `tail -f scribe.log`
@@ -353,7 +353,7 @@ echo "/help" | ./start_interactive.sh
 echo "/scan" | ./start_interactive.sh
 ```
 
-## 📈 Performance Optimization
+## Performance Optimization
 
 ### System Optimization
 ```bash
@@ -416,7 +416,7 @@ watch -n 5 'ps aux | grep python3'
 df -h
 ```
 
-## 📚 Additional Resources
+## Additional Resources
 
 ### Documentation Links
 - [System Architecture](../architecture/)

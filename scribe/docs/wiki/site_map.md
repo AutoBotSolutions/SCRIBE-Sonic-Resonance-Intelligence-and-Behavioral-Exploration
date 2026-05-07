@@ -1,6 +1,6 @@
 # SCRIBE Wiki Site Map
 
-## 📋 Complete Wiki Structure
+## Complete Wiki Structure
 
 ```
 docs/wiki/
@@ -44,7 +44,7 @@ docs/wiki/
 #### System Administrator Path
 1. [Main Wiki Index](README.md) → [Deployment Guide](deployment/README.md) → [Troubleshooting](troubleshooting/README.md)
 
-## 🔗 Cross-References
+## Cross-References
 
 ### Architecture Links
 - [Components](components/README.md) - Detailed component specs
@@ -81,7 +81,7 @@ docs/wiki/
 - [API Documentation](api/README.md) - API deployment
 - [Troubleshooting](troubleshooting/README.md) - Deployment issues
 
-## 📚 Content Categories
+## Content Categories
 
 ### Overview Documentation
 - [Main Wiki Index](README.md) - System overview and navigation
@@ -100,7 +100,7 @@ docs/wiki/
 - [Deployment Guide](deployment/README.md) - Deployment and operations
 - [Troubleshooting](troubleshooting/README.md) - Issue resolution
 
-## 🎯 Quick Access
+## Quick Access
 
 ### For Users
 - **Start Here**: [User Guide](user-guide/README.md)
@@ -122,7 +122,7 @@ docs/wiki/
 - **Endpoints**: [API → Endpoints](api/README.md#api-endpoints)
 - **Examples**: [API → Examples](api/README.md#request-examples)
 
-## 🔍 Search Guide
+## Search Guide
 
 ### Finding Information
 1. **Start at Main Index** - [README.md](README.md)
@@ -138,7 +138,7 @@ docs/wiki/
 - **"Deployment"** → [Deployment Guide](deployment/README.md)
 - **"Architecture"** → [System Architecture](architecture/README.md)
 
-## 📝 Maintenance Notes
+## Maintenance Notes
 
 ### Updating the Wiki
 1. Update relevant documentation files

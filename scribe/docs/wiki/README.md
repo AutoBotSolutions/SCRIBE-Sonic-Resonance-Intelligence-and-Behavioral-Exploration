@@ -1,47 +1,47 @@
 # SCRIBE Resonance AI System Wiki
 
-## 🧠 Overview
+## Overview
 
 The SCRIBE (Sonic Resonance Intelligence and Behavioral Exploration) system is an advanced resonance intelligence platform that uses acoustic signals to analyze and interpret environments, materials, and structural properties through active sensing and AI-powered pattern recognition.
 
-## 📚 Wiki Navigation
+## Wiki Navigation
 
-### 🏗️ [System Architecture](architecture/)
+### [System Architecture](architecture/)
 - Core system design and components
 - Data flow and integration patterns
 - Technology stack and dependencies
 
-### 🔧 [Components](components/)
+### [Components](components/)
 - Detailed component documentation
 - Module specifications and interfaces
 - Integration guidelines
 
-### 🌐 [API Documentation](api/)
+### [API Documentation](api/)
 - REST API endpoints and usage
 - Request/response formats
 - Authentication and error handling
 
-### 👤 [User Guide](user-guide/)
+### [User Guide](user-guide/)
 - Getting started tutorials
 - Command reference
 - Best practices and examples
 
-### 💻 [Developer Documentation](developer/)
+### [Developer Documentation](developer/)
 - Development setup and environment
 - Code contribution guidelines
 - Testing and debugging
 
-### 🔧 [Troubleshooting](troubleshooting/)
+### [Troubleshooting](troubleshooting/)
 - Common issues and solutions
 - Debugging guides
 - Performance optimization
 
-### 🚀 [Deployment](deployment/)
+### [Deployment](deployment/)
 - Installation and setup
 - Configuration management
 - Production deployment
 
-## 🎯 Quick Start
+## Quick Start
 
 ### For Users
 1. **Start the system**: `./start_interactive.sh`
@@ -53,22 +53,22 @@ The SCRIBE (Sonic Resonance Intelligence and Behavioral Exploration) system is a
 2. **Run tests**: `python3 validate_system.py`
 3. **Start API server**: `./start_api.sh`
 
-## 📊 System Status
+## System Status
 
-- ✅ **All components operational**
-- ✅ **7/7 validations passing**
-- ✅ **Mock audio system active**
-- ✅ **Chat interface ready**
-- ✅ **API endpoints available**
+- All components operational
+- 7/7 validations passing
+- Mock audio system active
+- Chat interface ready
+- API endpoints available
 
-## 🔗 Quick Links
+## Quick Links
 
 - [Main Project README](../README.md)
 - [System Documentation](../Scribe%20Resonance%20AI%20System.html)
 - [Long-Term Vision](../Long-Term%20Vision.html)
 - [API Documentation](http://localhost:8000/docs) (when API server is running)
 
-## 📝 Contributing
+## Contributing
 
 This wiki is maintained alongside the SCRIBE system. For contributions:
 
@@ -77,7 +77,7 @@ This wiki is maintained alongside the SCRIBE system. For contributions:
 3. Test all links and references
 4. Update the table of contents
 
-## 📞 Support
+## Support
 
 For questions or issues:
 
