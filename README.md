@@ -71,7 +71,7 @@ result = response.json()
 print(f"Material identified: {result['material']}")
 ```
 
-## 🔧 Configuration
+##  Configuration
 
 Edit `config.json` to customize:
 - Signal parameters
@@ -79,21 +79,21 @@ Edit `config.json` to customize:
 - API settings
 - Learning preferences
 
-## 🤝 Contributing
+##  Contributing
 
 We welcome contributions! Please see our [Contributing Guidelines](https://autobotsolutions.github.io/SCRIBE-Sonic-Resonance-Intelligence-and-Behavioral-Exploration/community.html) for details.
 
-## 📄 License
+##  License
 
 This project is licensed under the Commercial License - see the [LICENSE](LICENSE) file for details.
 
-## 📞 Contact
+##  Contact
 
 - **Issues**: [GitHub Issues](https://github.com/AutoBotSolutions/SCRIBE-Sonic-Resonance-Intelligence-and-Behavioral-Exploration/issues)
 - **Email**: autobotsolution@gmail.com
 - **Documentation**: https://autobotsolutions.github.io/SCRIBE-Sonic-Resonance-Intelligence-and-Behavioral-Exploration/
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - NumPy team for numerical computing
 - LibROSA for audio analysis
