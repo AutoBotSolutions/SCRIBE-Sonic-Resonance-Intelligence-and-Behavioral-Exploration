@@ -1,0 +1,3 @@
+"""
+SCRIBE Core System Components
+"""

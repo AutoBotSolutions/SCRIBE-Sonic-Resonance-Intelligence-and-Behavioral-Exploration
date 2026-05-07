@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SCRIBE Troubleshooting Guide - SCRIBE Resonance AI System Documentation</title>
+<style>
+
+    body {
+        margin: 0;
+        font-family: "Courier New", monospace;
+        background: radial-gradient(circle at center, #0a0f1f, #000000);
+        color: #00ffe1;
+        overflow-x: hidden;
+        min-height: 100vh;
+    }
+
+    header {
+        text-align: center;
+        padding: 40px;
+        border-bottom: 1px solid rgba(0,255,225,0.2);
+        position: relative;
+    }
+
+    h1 {
+        font-size: 48px;
+        letter-spacing: 4px;
+        text-shadow: 0 0 15px #00ffe1;
+        background: linear-gradient(45deg, #00ffe1, #7df9ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 0;
+    }
+
+    h2 {
+        color: #7df9ff;
+        margin-top: 40px;
+        font-size: 28px;
+        text-shadow: 0 0 5px #7df9ff;
+    }
+
+    h3 {
+        color: #00ff88;
+        margin-top: 30px;
+        font-size: 22px;
+    }
+
+    h4 {
+        color: #ffaa00;
+        margin-top: 20px;
+        font-size: 18px;
+    }
+
+    section {
+        padding: 40px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .panel {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 25px;
+        margin-top: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,255,225,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .panel:hover {
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+        transform: translateY(-2px);
+    }
+
+    .pulse {
+        animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 0.6; }
+        50% { opacity: 1; }
+        100% { opacity: 0.6; }
+    }
+
+    .highlight {
+        background: rgba(0, 255, 225, 0.1);
+        border-left: 4px solid #00ffe1;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+    }
+
+    .metric {
+        display: inline-block;
+        background: rgba(0, 255, 225, 0.15);
+        padding: 8px 15px;
+        margin: 5px;
+        border-radius: 20px;
+        font-size: 14px;
+        border: 1px solid rgba(0,255,225,0.3);
+    }
+
+    .success {
+        color: #00ff88;
+        font-weight: bold;
+    }
+
+    .warning {
+        color: #ffaa00;
+        font-weight: bold;
+    }
+
+    .critical {
+        color: #ff4444;
+        font-weight: bold;
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px;
+        border-top: 1px solid rgba(0,255,225,0.2);
+        font-size: 14px;
+        color: #888;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .timeline {
+        position: relative;
+        padding-left: 30px;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #00ffe1;
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 20px;
+        padding-left: 20px;
+    }
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -25px;
+        top: 5px;
+        width: 10px;
+        height: 10px;
+        background: #00ffe1;
+        border-radius: 50%;
+    }
+
+    .chart {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 20px;
+        background: rgba(0, 255, 225, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 10px 0;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #00ffe1, #7df9ff);
+        border-radius: 10px;
+        transition: width 1s ease;
+    }
+
+    .interactive {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: #00ffe1;
+        display: block;
+    }
+
+    .interactive:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(0,255,225,0.3);
+        color: #7df9ff;
+    }
+
+    .glow {
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #00ffe1, 0 0 20px #00ffe1; }
+        to { text-shadow: 0 0 20px #00ffe1, 0 0 30px #00ffe1; }
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(10, 15, 31, 0.95);
+        border-bottom: 1px solid rgba(0,255,225,0.2);
+        padding: 15px 30px;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+    }
+
+    .nav-menu ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-menu li {
+        margin: 0 15px;
+    }
+
+    .nav-menu a {
+        color: #00ffe1;
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .nav-menu a:hover {
+        color: #7df9ff;
+        background: rgba(0,255,225,0.1);
+        transform: translateY(-2px);
+    }
+
+    .doc-card {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 20px;
+        margin: 15px 0;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .doc-card:hover {
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+        transform: translateY(-3px);
+        border-color: rgba(0,255,225,0.4);
+    }
+
+    .doc-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #00ffe1, #7df9ff);
+    }
+
+    .doc-title {
+        font-size: 20px;
+        color: #7df9ff;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .doc-description {
+        color: #00ffe1;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+    .doc-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(0,255,225,0.1);
+    }
+
+    .doc-type {
+        background: rgba(0, 255, 225, 0.15);
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        color: #00ff88;
+    }
+
+    .doc-size {
+        font-size: 12px;
+        color: #888;
+    }
+
+    .hero-section {
+        text-align: center;
+        padding: 80px 40px;
+        background: linear-gradient(135deg, rgba(0,255,225,0.05), rgba(125,249,255,0.05));
+        border-radius: 20px;
+        margin: 40px 0;
+    }
+
+    .hero-title {
+        font-size: 36px;
+        color: #7df9ff;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px #7df9ff;
+    }
+
+    .hero-subtitle {
+        font-size: 18px;
+        color: #00ffe1;
+        margin-bottom: 30px;
+        opacity: 0.9;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background: linear-gradient(45deg, #00ffe1, #7df9ff);
+        color: #0a0f1f;
+        padding: 12px 30px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        margin: 10px;
+    }
+
+    .cta-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(0,255,225,0.5);
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin: 40px 0;
+    }
+
+    .stat-card {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+    }
+
+    .stat-number {
+        font-size: 32px;
+        font-weight: bold;
+        color: #00ff88;
+        margin-bottom: 10px;
+    }
+
+    .stat-label {
+        font-size: 14px;
+        color: #00ffe1;
+        opacity: 0.8;
+    }
+
+    main {
+        padding-top: 80px;
+    }
+
+</style>
+</head>
+<body>
+
+<nav class="nav-menu">
+
+    <ul>
+        <li><a href="directory.html">Directory</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="troubleshooting.html">Documentation</a></li>
+        <li><a href="api.html">Technical</a></li>
+        <li><a href="Investors-Thesis.html">Business</a></li>
+        <li><a href="community.html">About</a></li>
+        <li><a href="faq.html">Contact</a></li>
+    </ul>
+
+</nav>
+
+<main>
+<header>
+    <h1 class="glow">SCRIBE Troubleshooting Guide</h1>
+    <p class="pulse">SCRIBE Resonance AI System - Documentation</p>
+    <div class="metric success">Documentation</div>
+    <div class="metric success">Technical Reference</div>
+</header>
+
+<section>
+    <div class="panel">
+        <h1>SCRIBE Troubleshooting Guide</h1>
+<h2> Troubleshooting Overview</h2>
+<p>This guide helps you diagnose and resolve common issues with the SCRIBE Resonance AI System. Problems are categorized by severity and component for easier resolution.</p>
+<h2> Quick Diagnosis</h2>
+<h3>System Status Check</h3>
+<pre><code class="language-bash"># Check system validation
+python3 validate_system.py
+
+# Check system status
+./start_interactive.sh
+# Then type: /status
+</code></pre>
+<h3>Common Error Patterns</h3>
+<ul>
+<li><strong>Import errors</strong>: Missing dependencies or path issues</li>
+<li><strong>Audio errors</strong>: PyAudio or hardware problems</li>
+<li><strong>Permission errors</strong>: File access or device permissions</li>
+<li><strong>Memory errors</strong>: Insufficient resources</li>
+<li><strong>Network errors</strong>: API or connectivity issues</li>
+</ul>
+<h2> Common Issues and Solutions</h2>
+<h3>Installation &amp; Setup Issues</h3>
+<h4>Issue: &quot;ModuleNotFoundError: No module named 'pyaudio'&quot;</h4>
+<p><strong>Symptoms</strong>: System fails to start, audio components not working
+<strong>Causes</strong>: PyAudio not installed or system libraries missing
+<strong>Solutions</strong>:</p>
+<pre><code class="language-bash"># Option 1: Install PyAudio (may fail on some systems)
+pip install pyaudio
+
+# Option 2: Use mock audio (recommended for development)
+# System automatically falls back to mock audio
+
+# Option 3: Install system dependencies (Ubuntu/Debian)
+sudo apt-get install python3-pyaudio portaudio19-dev
+pip install pyaudio
+</code></pre>
+<h4>Issue: &quot;No module named 'numpy', 'scipy', 'fastapi'&quot;</h4>
+<p><strong>Symptoms</strong>: Import errors during startup
+<strong>Causes</strong>: Missing Python dependencies
+<strong>Solutions</strong>:</p>
+<pre><code class="language-bash"># Install all dependencies
+pip install numpy scipy fastapi uvicorn librosa soundfile
+
+# Or use deployment script
+./deploy.sh
+</code></pre>
+<h4>Issue: Virtual environment not found</h4>
+<p><strong>Symptoms</strong>: Command not found errors
+<strong>Causes</strong>: Virtual environment not created or activated
+<strong>Solutions</strong>:</p>
+<pre><code class="language-bash"># Create virtual environment
+python3 -m venv scribe_env
+
+# Activate it
+source scribe_env/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+</code></pre>
+<h3>Audio Component Issues</h3>
+<h4>Issue: Audio capture fails</h4>
+<p><strong>Symptoms</strong>: Scan errors, no audio data
+<strong>Causes</strong>: Hardware issues, permissions, device conflicts
+<strong>Solutions</strong>:</p>
+<pre><code class="language-bash"># Check audio devices
+python3 -c &quot;import pyaudio; p = pyaudio.PyAudio(); [print(i, p.get_device_info_by_index(i)['name']) for i in range(p.get_device_count())]&quot;
+
+# Use mock audio (automatic fallback)
+# System will automatically use mock audio if real audio fails
+</code></pre>
+<h4>Issue: &quot;operands could not be broadcast together&quot;</h4>
+<p><strong>Symptoms</strong>: Signal processing errors
+<strong>Causes</strong>: Array shape mismatches in FFT processing
+<strong>Solutions</strong>:</p>
+<pre><code class="language-bash"># This is usually fixed in the current version
+# If encountered, restart the system:
+./start_interactive.sh
+</code></pre>
+<h3>Performance Issues</h3>
+<h4>Issue: Slow scan processing</h4>
+<p><strong>Symptoms</strong>: Scans taking &gt;10 seconds
+<strong>Causes</strong>: Insufficient CPU, large audio buffers, processing bottlenecks
+<strong>Solutions</strong>:</p>
+<pre><code class="language-bash"># Check system resources
+top
+htop
+
+# Reduce scan duration
+ SCRIBE&gt; /scan --duration=1
+
+# Use simpler signal types
+ SCRIBE&gt; /scan --type=sine
+</code></pre>
+<h4>Issue: High memory usage</h4>
+<p><strong>Symptoms</strong>: System becoming slow, memory warnings
+<strong>Causes</strong>: Large audio buffers, memory leaks
+<strong>Solutions</strong>:</p>
+<pre><code class="language-bash"># Restart system to clear memory
+pkill -f &quot;python3 main.py&quot;
+./start_interactive.sh
+
+# Use shorter scan durations
+ SCRIBE&gt; /scan --duration=0.5
+</code></pre>
+<h3>API Issues</h3>
+<h4>Issue: API server not starting</h4>
+<p><strong>Symptoms</strong>: Connection refused, server not responding
+<strong>Causes</strong>: Port conflicts, missing dependencies, configuration errors
+<strong>Solutions</strong>:</p>
+<pre><code class="language-bash"># Check if port is in use
+lsof -i :8000
+
+# Kill existing process
+pkill -f &quot;uvicorn&quot;
+
+# Start API server
+./start_api.sh
+</code></pre>
+<h4>Issue: &quot;No module named 'fastapi'&quot;</h4>
+<p><strong>Symptoms</strong>: API import errors
+<strong>Causes</strong>: Missing web framework dependencies
+<strong>Solutions</strong>:</p>
+<pre><code class="language-bash"># Install web dependencies
+pip install fastapi uvicorn
+
+# Or install all dependencies
+./deploy.sh
+</code></pre>
+<h3>Database Issues</h3>
+<h4>Issue: Database locked or corrupted</h4>
+<p><strong>Symptoms</strong>: Feedback not saving, learning not working
+<strong>Causes</strong>: File permissions, concurrent access, corruption
+<strong>Solutions</strong>:</p>
+<pre><code class="language-bash"># Remove and recreate database
+rm scribe_learning.db
+./start_interactive.sh
+</code></pre>
+<h3>Monitoring Issues</h3>
+<h4>Issue: &quot;No module named 'prometheus_client'&quot;</h4>
+<p><strong>Symptoms</strong>: Monitoring not working, metrics errors
+<strong>Causes</strong>: Missing monitoring dependencies
+<strong>Solutions</strong>:</p>
+<pre><code class="language-bash"># Install monitoring dependencies
+pip install prometheus_client
+</code></pre>
+<h2>️ Advanced Troubleshooting</h2>
+<h3>Debug Mode</h3>
+<p>Enable debug mode for detailed logging:</p>
+<pre><code class="language-bash"># Edit config.json
+{
+  &quot;debug_mode&quot;: true
+}
+
+# Or set environment variable
+export SCRIBE_DEBUG=true
+./start_interactive.sh
+</code></pre>
+<h3>Log Analysis</h3>
+<p>Check log files for error patterns:</p>
+<pre><code class="language-bash"># View system logs
+tail -f scribe.log
+
+# View error logs
+tail -f scribe_errors.log
+
+# Search for specific errors
+grep &quot;ERROR&quot; scribe.log
+</code></pre>
+<h3>Component Isolation</h3>
+<p>Test individual components:</p>
+<pre><code class="language-bash"># Test configuration
+python3 -c &quot;from utils.config import Config; print(Config().audio.sample_rate)&quot;
+
+# Test audio components
+python3 -c &quot;from emitter.mock_audio import MockResonanceEmissionEngine; print('Mock audio working')&quot;
+
+# Test signal processing
+python3 -c &quot;from processing.fft_analyzer import SignalProcessingLayer; print('Processing working')&quot;
+</code></pre>
+<h3>Memory Profiling</h3>
+<p>Identify memory usage issues:</p>
+<pre><code class="language-bash"># Install profiling tools
+pip install memory-profiler
+
+# Profile memory usage
+python3 -m memory_profiler main.py
+</code></pre>
+<h3>Performance Profiling</h3>
+<p>Identify performance bottlenecks:</p>
+<pre><code class="language-bash"># Install profiling tools
+pip install line-profiler
+
+# Profile performance
+python3 -m line_profiler main.py
+</code></pre>
+<h2> Error Codes and Meanings</h2>
+<h3>System Error Codes</h3>
+<ul>
+<li><strong>SCRIBE_001</strong>: Configuration file not found</li>
+<li><strong>SCRIBE_002</strong>: Audio initialization failed</li>
+<li><strong>SCRIBE_003</strong>: Signal processing error</li>
+<li><strong>SCRIBE_004</strong>: AI interpretation failed</li>
+<li><strong>SCRIBE_005</strong>: Database error</li>
+</ul>
+<h3>API Error Codes</h3>
+<ul>
+<li><strong>API_400</strong>: Bad request (invalid parameters)</li>
+<li><strong>API_401</strong>: Unauthorized (authentication required)</li>
+<li><strong>API_404</strong>: Not found (resource doesn't exist)</li>
+<li><strong>API_429</strong>: Rate limit exceeded</li>
+<li><strong>API_500</strong>: Internal server error</li>
+</ul>
+<h3>Component Error Codes</h3>
+<ul>
+<li><strong>AUDIO_001</strong>: Device not found</li>
+<li><strong>AUDIO_002</strong>: Permission denied</li>
+<li><strong>AUDIO_003</strong>: Sample rate mismatch</li>
+<li><strong>PROCESSING_001</strong>: FFT computation failed</li>
+<li><strong>PROCESSING_002</strong>: Invalid audio data</li>
+<li><strong>AI_001</strong>: Model not loaded</li>
+<li><strong>AI_002</strong>: Invalid feature data</li>
+</ul>
+<h2> Recovery Procedures</h2>
+<h3>System Recovery</h3>
+<pre><code class="language-bash"># Complete system reset
+pkill -f &quot;python3 main.py&quot;
+rm -rf scribe_env/
+./deploy.sh
+</code></pre>
+<h3>Database Recovery</h3>
+<pre><code class="language-bash"># Backup and recreate database
+cp scribe_learning.db scribe_learning.db.backup
+rm scribe_learning.db
+./start_interactive.sh
+</code></pre>
+<h3>Configuration Recovery</h3>
+<pre><code class="language-bash"># Reset to default configuration
+rm config.json
+./start_interactive.sh
+</code></pre>
+<h2> Getting Help</h2>
+<h3>Self-Service Resources</h3>
+<ol>
+<li><strong>Check logs</strong>: <code>tail -f scribe.log</code></li>
+<li><strong>Run validation</strong>: <code>python3 validate_system.py</code></li>
+<li><strong>Check status</strong>: Use <code>/status</code> command</li>
+<li><strong>Review documentation</strong>: Check relevant wiki sections</li>
+</ol>
+<h3>Community Support</h3>
+<ul>
+<li>Check GitHub issues for similar problems</li>
+<li>Review discussion forums</li>
+<li>Search existing troubleshooting cases</li>
+</ul>
+<h3>Escalation</h3>
+<p>If issues persist after trying all solutions:</p>
+<ol>
+<li>Document the exact error message</li>
+<li>Provide system information (OS, Python version, dependencies)</li>
+<li>Include steps to reproduce the issue</li>
+<li>Share relevant log files</li>
+</ol>
+<h2> Testing Solutions</h2>
+<h3>Test Individual Components</h3>
+<pre><code class="language-bash"># Test core imports
+python3 -c &quot;
+from core.system_controller import ScribeSystemController
+from utils.config import Config
+print('Core imports working')
+&quot;
+
+# Test audio components
+python3 -c &quot;
+from emitter.mock_audio import MockResonanceEmissionEngine
+from listener.mock_capture import MockMicroListeningModule
+print('Audio components working')
+&quot;
+
+# Test signal processing
+python3 -c &quot;
+from processing.fft_analyzer import SignalProcessingLayer
+print('Signal processing working')
+&quot;
+</code></pre>
+<h3>Test API Endpoints</h3>
+<pre><code class="language-bash"># Test health endpoint
+curl http://localhost:8000/health
+
+# Test scan endpoint
+curl -X POST http://localhost:8000/scan \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;signal_type&quot;: &quot;sine&quot;, &quot;frequency&quot;: 440, &quot;duration&quot;: 2}'
+</code></pre>
+<h3>Test Chat Interface</h3>
+<pre><code class="language-bash"># Test basic commands
+echo &quot;/help&quot; | ./start_interactive.sh
+
+# Test scan functionality
+echo &quot;/scan&quot; | ./start_interactive.sh
+</code></pre>
+<h2> Performance Optimization</h2>
+<h3>System Optimization</h3>
+<pre><code class="language-bash"># Reduce audio buffer size
+# Edit config.json:
+{
+  &quot;audio&quot;: {
+    &quot;chunk_size&quot;: 512
+  }
+}
+
+# Optimize processing parameters
+{
+  &quot;processing&quot;: {
+    &quot;window_size&quot;: 1024,
+    &quot;hop_length&quot;: 256
+  }
+}
+</code></pre>
+<h3>Memory Optimization</h3>
+<pre><code class="language-bash"># Reduce scan history
+# Edit config.json:
+{
+  &quot;system&quot;: {
+    &quot;max_history&quot;: 50
+  }
+}
+
+# Enable garbage collection
+import gc
+gc.collect()
+</code></pre>
+<h2> Future Issues and Prevention</h2>
+<h3>Known Limitations</h3>
+<ul>
+<li><strong>PyAudio dependencies</strong>: May fail on some systems (use mock audio)</li>
+<li><strong>Real-time processing</strong>: Limited by CPU performance</li>
+<li><strong>Memory usage</strong>: Large audio buffers consume memory</li>
+<li><strong>Database size</strong>: Can grow large over time</li>
+</ul>
+<h3>Preventive Measures</h3>
+<ol>
+<li><strong>Regular validation</strong>: Run <code>validate_system.py</code> weekly</li>
+<li><strong>Log monitoring</strong>: Check error logs regularly</li>
+<li><strong>Performance monitoring</strong>: Track scan times and memory usage</li>
+<li><strong>Backup configuration</strong>: Save working config.json</li>
+<li><strong>Update dependencies</strong>: Keep packages current</li>
+</ol>
+<h3>Monitoring Setup</h3>
+<pre><code class="language-bash"># Set up log rotation
+logrotate -f logrotate.conf
+
+# Monitor system resources
+watch -n 5 'ps aux | grep python3'
+
+# Check disk space
+df -h
+</code></pre>
+<h2> Additional Resources</h2>
+<h3>Documentation Links</h3>
+<ul>
+<li><a href="architecture.html">System Architecture</a></li>
+<li><a href="components.html">Component Documentation</a></li>
+<li><a href="api.html">API Documentation</a></li>
+<li><a href="user-guide.html">User Guide</a></li>
+<li><a href="developer.html">Developer Guide</a></li>
+</ul>
+<h3>External Resources</h3>
+<ul>
+<li><a href="https://docs.python.org/3/">Python Documentation</a></li>
+<li><a href="https://numpy.org/doc/stable/user/troubleshooting.html">NumPy Troubleshooting</a></li>
+<li><a href="https://librosa.org/doc/">LibROSA Documentation</a></li>
+<li><a href="https://fastapi.tiangolo.com/tutorial/dependencies/">FastAPI Troubleshooting</a></li>
+</ul>
+<hr />
+<p><strong>Last Updated</strong>: 2026-05-06<br />
+<strong>Troubleshooting Guide Version</strong>: 1.0.0<br />
+<strong>Status</strong>: Production Ready</p>
+
+    </div>
+</section>
+
+</main>
+
+<footer>
+
+    <div class="float">
+        <h3>SCRIBE Resonance AI System</h3>
+        <p>Advanced Acoustic Intelligence Platform</p>
+        <p>© 2026 Robert Trenaman | Software Customs (Auto Bot Solution) | All Rights Reserved</p>
+        <p>autobotsolution@gmail.com | Flushing, MI</p>
+    </div>
+    <div class="rotate">
+        <p class="pulse">Official Documentation Portal</p>
+    </div>
+
+</footer>
+</body>
+</html>

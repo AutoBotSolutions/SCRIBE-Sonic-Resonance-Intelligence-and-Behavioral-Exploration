@@ -1,0 +1,49 @@
+# SCRIBE Resonance AI System Dependencies
+
+# Core scientific computing
+numpy>=1.24.0
+scipy>=1.10.0
+
+# Audio processing
+pyaudio>=0.2.11
+soundfile>=0.12.1
+librosa>=0.10.0
+
+# Machine Learning
+scikit-learn>=1.3.0
+tensorflow>=2.13.0
+torch>=2.0.0
+
+# Signal processing
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Web framework for API
+fastapi>=0.100.0
+uvicorn>=0.22.0
+pydantic>=2.0.0
+
+# Database
+sqlalchemy>=2.0.0
+alembic>=1.11.0
+
+# Configuration management
+pydantic-settings>=2.0.0
+python-dotenv>=1.0.0
+
+# Monitoring and logging
+structlog>=23.1.0
+prometheus-client>=0.17.0
+
+# Async support
+aiofiles>=23.1.0
+asyncio-mqtt>=0.13.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+
+# Development tools
+black>=23.7.0
+flake8>=6.0.0
+mypy>=1.5.0

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Documentation Index - SCRIBE Resonance AI System</title>
+<style>
+    body {
+        margin: 0;
+        font-family: "Courier New", monospace;
+        background: radial-gradient(circle at center, #0a0f1f, #000000);
+        color: #00ffe1;
+        overflow-x: hidden;
+        min-height: 100vh;
+    }
+
+    header {
+        text-align: center;
+        padding: 40px;
+        border-bottom: 1px solid rgba(0,255,225,0.2);
+        position: relative;
+    }
+
+    h1 {
+        font-size: 48px;
+        letter-spacing: 4px;
+        text-shadow: 0 0 15px #00ffe1;
+        background: linear-gradient(45deg, #00ffe1, #7df9ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 0;
+    }
+
+    h2 {
+        color: #7df9ff;
+        margin-top: 40px;
+        font-size: 28px;
+        text-shadow: 0 0 5px #7df9ff;
+    }
+
+    section {
+        padding: 40px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .panel {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 25px;
+        margin-top: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,255,225,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .panel:hover {
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+        transform: translateY(-2px);
+    }
+
+    .doc-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .doc-card {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 20px;
+        margin: 15px 0;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .doc-card:hover {
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+        transform: translateY(-3px);
+        border-color: rgba(0,255,225,0.4);
+    }
+
+    .doc-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #00ffe1, #7df9ff);
+    }
+
+    .doc-title {
+        font-size: 20px;
+        color: #7df9ff;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .doc-link {
+        color: #00ffe1;
+        text-decoration: none;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        display: block;
+        margin-top: 10px;
+    }
+
+    .doc-link:hover {
+        color: #7df9ff;
+        transform: scale(1.05);
+        text-shadow: 0 0 10px #00ffe1;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(10, 15, 31, 0.95);
+        border-bottom: 1px solid rgba(0,255,225,0.2);
+        padding: 15px 30px;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+    }
+
+    .nav-menu ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-menu li {
+        margin: 0 15px;
+    }
+
+    .nav-menu a {
+        color: #00ffe1;
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .nav-menu a:hover {
+        color: #7df9ff;
+        background: rgba(0,255,225,0.1);
+        transform: translateY(-2px);
+    }
+
+    main {
+        padding-top: 80px;
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px;
+        border-top: 1px solid rgba(0,255,225,0.2);
+        font-size: 14px;
+        color: #888;
+    }
+
+    .pulse {
+        animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 0.6; }
+        50% { opacity: 1; }
+        100% { opacity: 0.6; }
+    }
+
+    .glow {
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #00ffe1, 0 0 20px #00ffe1; }
+        to { text-shadow: 0 0 20px #00ffe1, 0 0 30px #00ffe1; }
+    }
+</style>
+</head>
+<body>
+
+<nav class="nav-menu">
+    <ul>
+        <li><a href="directory.html">Directory</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="README.html">Documentation</a></li>
+        <li><a href="api.html">Technical</a></li>
+        <li><a href="Investors-Thesis.html">Business</a></li>
+        <li><a href="community.html">About</a></li>
+        <li><a href="faq.html">Contact</a></li>
+    </ul>
+</nav>
+
+<main>
+<header>
+    <h1 class="glow">SCRIBE Documentation Portal</h1>
+    <p class="pulse">Complete HTML Documentation Library</p>
+</header>
+
+<section id="home">
+    <div class="panel">
+        <h2>Documentation Library</h2>
+        <p>Welcome to the complete HTML documentation portal for SCRIBE Resonance AI System. All markdown files have been converted to HTML with the official site theme.</p>
+        
+        <div class="doc-grid">
+            <div class="doc-card">
+                <div class="doc-title">Main Wiki</div>
+                <a href="README.html" class="doc-link">View README →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">Complete Index</div>
+                <a href="index.html" class="doc-link">Browse Index →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">Quick Reference</div>
+                <a href="quick_refrance.html" class="doc-link">Quick Reference →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">Architecture</div>
+                <a href="architecture.html" class="doc-link">System Architecture →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">Components</div>
+                <a href="components.html" class="doc-link">Components →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">API</div>
+                <a href="api.html" class="doc-link">API Documentation →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">User Guide</div>
+                <a href="user-guide.html" class="doc-link">User Guide →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">Developer</div>
+                <a href="developer.html" class="doc-link">Developer Guide →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">Deployment</div>
+                <a href="deployment.html" class="doc-link">Deployment Guide →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">Security</div>
+                <a href="security.html" class="doc-link">Security Guide →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">Performance</div>
+                <a href="performance.html" class="doc-link">Performance →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">Integrations</div>
+                <a href="integrations.html" class="doc-link">Integrations →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">Tutorials</div>
+                <a href="tutorials.html" class="doc-link">Tutorials →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">FAQ</div>
+                <a href="faq.html" class="doc-link">FAQ →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">Changelog</div>
+                <a href="changelog.html" class="doc-link">Changelog →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">Glossary</div>
+                <a href="glossary.html" class="doc-link">Glossary →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">Community</div>
+                <a href="community.html" class="doc-link">Community →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">Site Map</div>
+                <a href="site_map.html" class="doc-link">Site Map →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">Troubleshooting</div>
+                <a href="troubleshooting.html" class="doc-link">Troubleshooting →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">Configuration</div>
+                <a href="configuration.html" class="doc-link">Configuration →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">Developer Thesis</div>
+                <a href="Developer-Thesis.html" class="doc-link">Developer Thesis →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">Investor Thesis</div>
+                <a href="Investors-Thesis.html" class="doc-link">Investor Thesis →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">Long-Term Vision</div>
+                <a href="Long-Term Vision.html" class="doc-link">Long-Term Vision →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div>
+        <h3>SCRIBE Resonance AI System</h3>
+        <p>Advanced Acoustic Intelligence Platform</p>
+        <p>© 2026 Robert Trenaman | Software Customs (Auto Bot Solution) | All Rights Reserved</p>
+        <p>autobotsolution@gmail.com | Flushing, MI</p>
+    </div>
+    <div>
+        <p class="pulse">Official Documentation Portal - HTML Version</p>
+    </div>
+</footer>
+
+</body>
+</html>

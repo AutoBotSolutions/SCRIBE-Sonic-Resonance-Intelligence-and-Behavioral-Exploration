@@ -1,0 +1,3 @@
+"""
+SCRIBE Audio Capture Components
+"""

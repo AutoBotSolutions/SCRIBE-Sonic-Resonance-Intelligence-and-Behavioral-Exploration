@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SCRIBE Security and Compliance Guide - SCRIBE Resonance AI System Documentation</title>
+<style>
+
+    body {
+        margin: 0;
+        font-family: "Courier New", monospace;
+        background: radial-gradient(circle at center, #0a0f1f, #000000);
+        color: #00ffe1;
+        overflow-x: hidden;
+        min-height: 100vh;
+    }
+
+    header {
+        text-align: center;
+        padding: 40px;
+        border-bottom: 1px solid rgba(0,255,225,0.2);
+        position: relative;
+    }
+
+    h1 {
+        font-size: 48px;
+        letter-spacing: 4px;
+        text-shadow: 0 0 15px #00ffe1;
+        background: linear-gradient(45deg, #00ffe1, #7df9ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 0;
+    }
+
+    h2 {
+        color: #7df9ff;
+        margin-top: 40px;
+        font-size: 28px;
+        text-shadow: 0 0 5px #7df9ff;
+    }
+
+    h3 {
+        color: #00ff88;
+        margin-top: 30px;
+        font-size: 22px;
+    }
+
+    h4 {
+        color: #ffaa00;
+        margin-top: 20px;
+        font-size: 18px;
+    }
+
+    section {
+        padding: 40px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .panel {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 25px;
+        margin-top: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,255,225,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .panel:hover {
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+        transform: translateY(-2px);
+    }
+
+    .pulse {
+        animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 0.6; }
+        50% { opacity: 1; }
+        100% { opacity: 0.6; }
+    }
+
+    .highlight {
+        background: rgba(0, 255, 225, 0.1);
+        border-left: 4px solid #00ffe1;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+    }
+
+    .metric {
+        display: inline-block;
+        background: rgba(0, 255, 225, 0.15);
+        padding: 8px 15px;
+        margin: 5px;
+        border-radius: 20px;
+        font-size: 14px;
+        border: 1px solid rgba(0,255,225,0.3);
+    }
+
+    .success {
+        color: #00ff88;
+        font-weight: bold;
+    }
+
+    .warning {
+        color: #ffaa00;
+        font-weight: bold;
+    }
+
+    .critical {
+        color: #ff4444;
+        font-weight: bold;
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px;
+        border-top: 1px solid rgba(0,255,225,0.2);
+        font-size: 14px;
+        color: #888;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .timeline {
+        position: relative;
+        padding-left: 30px;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #00ffe1;
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 20px;
+        padding-left: 20px;
+    }
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -25px;
+        top: 5px;
+        width: 10px;
+        height: 10px;
+        background: #00ffe1;
+        border-radius: 50%;
+    }
+
+    .chart {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 20px;
+        background: rgba(0, 255, 225, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 10px 0;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #00ffe1, #7df9ff);
+        border-radius: 10px;
+        transition: width 1s ease;
+    }
+
+    .interactive {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: #00ffe1;
+        display: block;
+    }
+
+    .interactive:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(0,255,225,0.3);
+        color: #7df9ff;
+    }
+
+    .glow {
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #00ffe1, 0 0 20px #00ffe1; }
+        to { text-shadow: 0 0 20px #00ffe1, 0 0 30px #00ffe1; }
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(10, 15, 31, 0.95);
+        border-bottom: 1px solid rgba(0,255,225,0.2);
+        padding: 15px 30px;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+    }
+
+    .nav-menu ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-menu li {
+        margin: 0 15px;
+    }
+
+    .nav-menu a {
+        color: #00ffe1;
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .nav-menu a:hover {
+        color: #7df9ff;
+        background: rgba(0,255,225,0.1);
+        transform: translateY(-2px);
+    }
+
+    .doc-card {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 20px;
+        margin: 15px 0;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .doc-card:hover {
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+        transform: translateY(-3px);
+        border-color: rgba(0,255,225,0.4);
+    }
+
+    .doc-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #00ffe1, #7df9ff);
+    }
+
+    .doc-title {
+        font-size: 20px;
+        color: #7df9ff;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .doc-description {
+        color: #00ffe1;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+    .doc-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(0,255,225,0.1);
+    }
+
+    .doc-type {
+        background: rgba(0, 255, 225, 0.15);
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        color: #00ff88;
+    }
+
+    .doc-size {
+        font-size: 12px;
+        color: #888;
+    }
+
+    .hero-section {
+        text-align: center;
+        padding: 80px 40px;
+        background: linear-gradient(135deg, rgba(0,255,225,0.05), rgba(125,249,255,0.05));
+        border-radius: 20px;
+        margin: 40px 0;
+    }
+
+    .hero-title {
+        font-size: 36px;
+        color: #7df9ff;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px #7df9ff;
+    }
+
+    .hero-subtitle {
+        font-size: 18px;
+        color: #00ffe1;
+        margin-bottom: 30px;
+        opacity: 0.9;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background: linear-gradient(45deg, #00ffe1, #7df9ff);
+        color: #0a0f1f;
+        padding: 12px 30px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        margin: 10px;
+    }
+
+    .cta-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(0,255,225,0.5);
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin: 40px 0;
+    }
+
+    .stat-card {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+    }
+
+    .stat-number {
+        font-size: 32px;
+        font-weight: bold;
+        color: #00ff88;
+        margin-bottom: 10px;
+    }
+
+    .stat-label {
+        font-size: 14px;
+        color: #00ffe1;
+        opacity: 0.8;
+    }
+
+    main {
+        padding-top: 80px;
+    }
+
+</style>
+</head>
+<body>
+
+<nav class="nav-menu">
+
+    <ul>
+        <li><a href="directory.html">Directory</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="security.html">Documentation</a></li>
+        <li><a href="api.html">Technical</a></li>
+        <li><a href="Investors-Thesis.html">Business</a></li>
+        <li><a href="community.html">About</a></li>
+        <li><a href="faq.html">Contact</a></li>
+    </ul>
+
+</nav>
+
+<main>
+<header>
+    <h1 class="glow">SCRIBE Security and Compliance Guide</h1>
+    <p class="pulse">SCRIBE Resonance AI System - Documentation</p>
+    <div class="metric success">Documentation</div>
+    <div class="metric success">Technical Reference</div>
+</header>
+
+<section>
+    <div class="panel">
+        <h1>SCRIBE Security and Compliance Guide</h1>
+<h2> Security Overview</h2>
+<p>This guide covers all aspects of security for the SCRIBE Resonance AI System, including authentication, authorization, data protection, and compliance requirements. SCRIBE is designed with security as a fundamental principle.</p>
+<h2>️ Security Architecture</h2>
+<h3>Security Layers</h3>
+<pre><code>┌┐
+│                    Application Security Layer                  │
+├┤
+│                    API Security Layer                         │
+├┤
+│                    Data Security Layer                         │
+├┤
+│                    Network Security Layer                       │
+├┤
+│                    System Security Layer                       │
+└┘
+</code></pre>
+<h3>Security Components</h3>
+<ul>
+<li><strong>Authentication</strong>: Verify user identity</li>
+<li><strong>Authorization</strong>: Control access to resources</li>
+<li><strong>Encryption</strong>: Protect data at rest and in transit</li>
+<li><strong>Auditing</strong>: Track security events</li>
+<li><strong>Monitoring</strong>: Detect security threats</li>
+<li><strong>Compliance</strong>: Meet regulatory requirements</li>
+</ul>
+<h2> Authentication and Authorization</h2>
+<h3>API Authentication</h3>
+<pre><code class="language-json">{
+  &quot;security&quot;: {
+    &quot;api_key_required&quot;: true,
+    &quot;api_key&quot;: &quot;your-secret-key-here&quot;,
+    &quot;api_key_rotation_days&quot;: 90,
+    &quot;session_timeout&quot;: 3600,
+    &quot;max_login_attempts&quot;: 5,
+    &quot;lockout_duration&quot;: 900
+  }
+}
+</code></pre>
+<h4>API Key Management</h4>
+<pre><code class="language-python">import hashlib
+import secrets
+from datetime import datetime, timedelta
+from typing import Dict, Optional
+
+class APIKeyManager:
+    def __init__(self):
+        self.api_keys = {}
+        self.key_usage = {}
+    
+    def generate_api_key(self, user_id: str, permissions: list) -&gt; str:
+        &quot;&quot;&quot;Generate a new API key&quot;&quot;&quot;
+        # Generate random key
+        key = secrets.token_urlsafe(32)
+        
+        # Hash key for storage
+        key_hash = hashlib.sha256(key.encode()).hexdigest()
+        
+        # Store key metadata
+        self.api_keys[key_hash] = {
+            'user_id': user_id,
+            'permissions': permissions,
+            'created_at': datetime.now(),
+            'expires_at': datetime.now() + timedelta(days=90),
+            'last_used': None,
+            'usage_count': 0
+        }
+        
+        return key
+    
+    def validate_api_key(self, api_key: str) -&gt; Optional[Dict]:
+        &quot;&quot;&quot;Validate API key and return metadata&quot;&quot;&quot;
+        key_hash = hashlib.sha256(api_key.encode()).hexdigest()
+        
+        if key_hash not in self.api_keys:
+            return None
+        
+        key_data = self.api_keys[key_hash]
+        
+        # Check expiration
+        if datetime.now() &gt; key_data['expires_at']:
+            return None
+        
+        # Update usage
+        key_data['last_used'] = datetime.now()
+        key_data['usage_count'] += 1
+        
+        return key_data
+    
+    def revoke_api_key(self, api_key: str) -&gt; bool:
+        &quot;&quot;&quot;Revoke an API key&quot;&quot;&quot;
+        key_hash = hashlib.sha256(api_key.encode()).hexdigest()
+        
+        if key_hash in self.api_keys:
+            del self.api_keys[key_hash]
+            return True
+        
+        return False
+</code></pre>
+<h4>JWT Authentication</h4>
+<pre><code class="language-python">import jwt
+import bcrypt
+from datetime import datetime, timedelta
+
+class JWTAuthenticator:
+    def __init__(self, secret_key: str):
+        self.secret_key = secret_key
+        self.algorithm = 'HS256'
+        self.token_expiry = timedelta(hours=24)
+    
+    def hash_password(self, password: str) -&gt; str:
+        &quot;&quot;&quot;Hash password using bcrypt&quot;&quot;&quot;
+        salt = bcrypt.gensalt()
+        return bcrypt.hashpw(password.encode(), salt).decode()
+    
+    def verify_password(self, password: str, hashed: str) -&gt; bool:
+        &quot;&quot;&quot;Verify password against hash&quot;&quot;&quot;
+        return bcrypt.checkpw(password.encode(), hashed.encode())
+    
+    def generate_token(self, user_id: str, permissions: list) -&gt; str:
+        &quot;&quot;&quot;Generate JWT token&quot;&quot;&quot;
+        payload = {
+            'user_id': user_id,
+            'permissions': permissions,
+            'exp': datetime.utcnow() + self.token_expiry,
+            'iat': datetime.utcnow()
+        }
+        
+        return jwt.encode(payload, self.secret_key, algorithm=self.algorithm)
+    
+    def verify_token(self, token: str) -&gt; Optional[Dict]:
+        &quot;&quot;&quot;Verify JWT token&quot;&quot;&quot;
+        try:
+            payload = jwt.decode(token, self.secret_key, algorithms=[self.algorithm])
+            return payload
+        except jwt.ExpiredSignatureError:
+            return None
+        except jwt.InvalidTokenError:
+            return None
+</code></pre>
+<h3>Role-Based Access Control (RBAC)</h3>
+<pre><code class="language-python">from enum import Enum
+from typing import Set, List
+
+class Permission(Enum):
+    READ_SCANS = &quot;read_scans&quot;
+    WRITE_SCANS = &quot;write_scans&quot;
+    DELETE_SCANS = &quot;delete_scans&quot;
+    READ_CONFIG = &quot;read_config&quot;
+    WRITE_CONFIG = &quot;write_config&quot;
+    ADMIN = &quot;admin&quot;
+
+class Role:
+    def __init__(self, name: str, permissions: Set[Permission]):
+        self.name = name
+        self.permissions = permissions
+
+# Define roles
+ROLES = {
+    'viewer': Role('viewer', {Permission.READ_SCANS}),
+    'operator': Role('operator', {
+        Permission.READ_SCANS, 
+        Permission.WRITE_SCANS,
+        Permission.READ_CONFIG
+    }),
+    'admin': Role('admin', set(Permission))
+}
+
+class RBAC:
+    def __init__(self):
+        self.user_roles = {}
+    
+    def assign_role(self, user_id: str, role_name: str):
+        &quot;&quot;&quot;Assign role to user&quot;&quot;&quot;
+        if role_name not in ROLES:
+            raise ValueError(f&quot;Role {role_name} not found&quot;)
+        
+        self.user_roles[user_id] = ROLES[role_name]
+    
+    def has_permission(self, user_id: str, permission: Permission) -&gt; bool:
+        &quot;&quot;&quot;Check if user has permission&quot;&quot;&quot;
+        if user_id not in self.user_roles:
+            return False
+        
+        return permission in self.user_roles[user_id].permissions
+    
+    def get_user_permissions(self, user_id: str) -&gt; Set[Permission]:
+        &quot;&quot;&quot;Get all permissions for user&quot;&quot;&quot;
+        if user_id not in self.user_roles:
+            return set()
+        
+        return self.user_roles[user_id].permissions
+</code></pre>
+<h2> Data Security</h2>
+<h3>Encryption at Rest</h3>
+<pre><code class="language-python">from cryptography.fernet import Fernet
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+import base64
+import os
+
+class DataEncryption:
+    def __init__(self, password: str):
+        # Generate key from password
+        salt = os.urandom(16)
+        kdf = PBKDF2HMAC(
+            algorithm=hashes.SHA256(),
+            length=32,
+            salt=salt,
+            iterations=100000,
+        )
+        key = base64.urlsafe_b64encode(kdf.derive(password.encode()))
+        
+        self.cipher = Fernet(key)
+        self.salt = salt
+    
+    def encrypt_data(self, data: str) -&gt; str:
+        &quot;&quot;&quot;Encrypt data&quot;&quot;&quot;
+        encrypted_data = self.cipher.encrypt(data.encode())
+        return base64.urlsafe_b64encode(encrypted_data).decode()
+    
+    def decrypt_data(self, encrypted_data: str) -&gt; str:
+        &quot;&quot;&quot;Decrypt data&quot;&quot;&quot;
+        encrypted_bytes = base64.urlsafe_b64decode(encrypted_data.encode())
+        decrypted_data = self.cipher.decrypt(encrypted_bytes)
+        return decrypted_data.decode()
+    
+    def encrypt_file(self, file_path: str, output_path: str):
+        &quot;&quot;&quot;Encrypt file&quot;&quot;&quot;
+        with open(file_path, 'rb') as f:
+            file_data = f.read()
+        
+        encrypted_data = self.cipher.encrypt(file_data)
+        
+        with open(output_path, 'wb') as f:
+            f.write(encrypted_data)
+    
+    def decrypt_file(self, encrypted_path: str, output_path: str):
+        &quot;&quot;&quot;Decrypt file&quot;&quot;&quot;
+        with open(encrypted_path, 'rb') as f:
+            encrypted_data = f.read()
+        
+        decrypted_data = self.cipher.decrypt(encrypted_data)
+        
+        with open(output_path, 'wb') as f:
+            f.write(decrypted_data)
+</code></pre>
+<h3>Database Security</h3>
+<pre><code class="language-python">import sqlite3
+import hashlib
+from contextlib import contextmanager
+
+class SecureDatabase:
+    def __init__(self, db_path: str, encryption_key: str):
+        self.db_path = db_path
+        self.encryption = DataEncryption(encryption_key)
+        self._secure_database()
+    
+    def _secure_database(self):
+        &quot;&quot;&quot;Secure database configuration&quot;&quot;&quot;
+        with sqlite3.connect(self.db_path) as conn:
+            # Enable foreign keys
+            conn.execute(&quot;PRAGMA foreign_keys=ON&quot;)
+            
+            # Set secure permissions
+            conn.execute(&quot;PRAGMA journal_mode=WAL&quot;)
+            conn.execute(&quot;PRAGMA synchronous=FULL&quot;)
+            conn.execute(&quot;PRAGMA cache_size=1000&quot;)
+            
+            # Create secure tables
+            conn.execute(&quot;&quot;&quot;
+                CREATE TABLE IF NOT EXISTS secure_scans (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    scan_data TEXT,  -- Encrypted scan data
+                    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    user_id TEXT,
+                    checksum TEXT
+                )
+            &quot;&quot;&quot;)
+            
+            conn.commit()
+    
+    @contextmanager
+    def get_connection(self):
+        &quot;&quot;&quot;Get secure database connection&quot;&quot;&quot;
+        conn = sqlite3.connect(self.db_path)
+        conn.row_factory = sqlite3.Row
+        try:
+            yield conn
+        finally:
+            conn.close()
+    
+    def store_scan_result(self, scan_data: dict, user_id: str):
+        &quot;&quot;&quot;Store encrypted scan result&quot;&quot;&quot;
+        # Serialize and encrypt data
+        import json
+        data_json = json.dumps(scan_data)
+        encrypted_data = self.encryption.encrypt_data(data_json)
+        
+        # Calculate checksum
+        checksum = hashlib.sha256(data_json.encode()).hexdigest()
+        
+        with self.get_connection() as conn:
+            conn.execute(
+                &quot;INSERT INTO secure_scans (scan_data, user_id, checksum) VALUES (?, ?, ?)&quot;,
+                (encrypted_data, user_id, checksum)
+            )
+            conn.commit()
+    
+    def retrieve_scan_result(self, scan_id: int, user_id: str) -&gt; dict:
+        &quot;&quot;&quot;Retrieve and decrypt scan result&quot;&quot;&quot;
+        with self.get_connection() as conn:
+            cursor = conn.execute(
+                &quot;SELECT scan_data, checksum FROM secure_scans WHERE id = ? AND user_id = ?&quot;,
+                (scan_id, user_id)
+            )
+            row = cursor.fetchone()
+            
+            if not row:
+                raise ValueError(&quot;Scan not found or access denied&quot;)
+            
+            # Decrypt data
+            decrypted_data = self.encryption.decrypt_data(row['scan_data'])
+            scan_data = json.loads(decrypted_data)
+            
+            # Verify checksum
+            checksum = hashlib.sha256(decrypted_data.encode()).hexdigest()
+            if checksum != row['checksum']:
+                raise ValueError(&quot;Data integrity check failed&quot;)
+            
+            return scan_data
+</code></pre>
+<h3>SSL/TLS Configuration</h3>
+<pre><code class="language-python">from fastapi import FastAPI
+from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
+from fastapi.middleware.trustedhost import TrustedHostMiddleware
+import ssl
+
+app = FastAPI()
+
+# Add security middleware
+app.add_middleware(HTTPSRedirectMiddleware)
+app.add_middleware(
+    TrustedHostMiddleware, 
+    allowed_hosts=[&quot;yourdomain.com&quot;, &quot;*.yourdomain.com&quot;]
+)
+
+# SSL Configuration
+ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+ssl_context.load_cert_chain(certfile=&quot;cert.pem&quot;, keyfile=&quot;key.pem&quot;)
+ssl_context.load_verify_locations(cafile=&quot;ca.pem&quot;)
+ssl_context.verify_mode = ssl.CERT_REQUIRED
+
+@app.on_event(&quot;startup&quot;)
+async def startup_event():
+    &quot;&quot;&quot;Configure SSL on startup&quot;&quot;&quot;
+    import uvicorn
+    
+    config = uvicorn.Config(
+        app=&quot;main:app&quot;,
+        host=&quot;0.0.0.0&quot;,
+        port=443,
+        ssl=ssl_context,
+        reload=False
+    )
+</code></pre>
+<h2> Network Security</h2>
+<h3>Firewall Configuration</h3>
+<pre><code class="language-bash"># UFW Firewall Rules
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+# Allow SSH
+sudo ufw allow 22/tcp
+
+# Allow HTTPS
+sudo ufw allow 443/tcp
+
+# Allow HTTP (redirect to HTTPS)
+sudo ufw allow 80/tcp
+
+# Allow API (internal only)
+sudo ufw allow from 10.0.0.0/8 to any port 8000
+sudo ufw allow from 192.168.0.0/16 to any port 8000
+
+# Enable firewall
+sudo ufw enable
+</code></pre>
+<h3>Nginx Security Configuration</h3>
+<pre><code class="language-nginx">server {
+    listen 80;
+    server_name yourdomain.com;
+    return 301 https://$server_name$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name yourdomain.com;
+    
+    # SSL Configuration
+    ssl_certificate /path/to/cert.pem;
+    ssl_certificate_key /path/to/key.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512;
+    ssl_prefer_server_ciphers off;
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 10m;
+    
+    # Security Headers
+    add_header X-Frame-Options DENY;
+    add_header X-Content-Type-Options nosniff;
+    add_header X-XSS-Protection &quot;1; mode=block&quot;;
+    add_header Strict-Transport-Security &quot;max-age=31536000; includeSubDomains&quot;;
+    add_header Content-Security-Policy &quot;default-src 'self'&quot;;
+    
+    # Rate Limiting
+    limit_req_zone $binary_remote_addr zone=api:10m rate=10r/s;
+    limit_req zone=api burst=20 nodelay;
+    
+    location / {
+        limit_req zone=api;
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+</code></pre>
+<h3>DDoS Protection</h3>
+<pre><code class="language-python">from fastapi import Request, HTTPException
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
+
+# Rate limiter
+limiter = Limiter(key_func=get_remote_address)
+
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+@app.post(&quot;/scan&quot;)
+@limiter.limit(&quot;10/minute&quot;)
+async def scan_endpoint(request: Request):
+    &quot;&quot;&quot;Scan endpoint with rate limiting&quot;&quot;&quot;
+    # Implementation here
+    pass
+
+# Advanced DDoS protection
+class DDoSProtection:
+    def __init__(self):
+        self.request_counts = {}
+        self.blocked_ips = {}
+    
+    def check_request(self, ip: str) -&gt; bool:
+        &quot;&quot;&quot;Check if request should be allowed&quot;&quot;&quot;
+        current_time = time.time()
+        
+        # Check if IP is blocked
+        if ip in self.blocked_ips:
+            if current_time &lt; self.blocked_ips[ip]:
+                return False
+            else:
+                del self.blocked_ips[ip]
+        
+        # Count requests in last minute
+        if ip not in self.request_counts:
+            self.request_counts[ip] = []
+        
+        # Remove old requests
+        self.request_counts[ip] = [
+            req_time for req_time in self.request_counts[ip]
+            if current_time - req_time &lt; 60
+        ]
+        
+        # Check rate limit
+        if len(self.request_counts[ip]) &gt; 100:  # 100 requests per minute
+            # Block IP for 1 hour
+            self.blocked_ips[ip] = current_time + 3600
+            return False
+        
+        self.request_counts[ip].append(current_time)
+        return True
+</code></pre>
+<h2> Security Monitoring</h2>
+<h3>Intrusion Detection</h3>
+<pre><code class="language-python">import logging
+from datetime import datetime
+from typing import Dict, List
+
+class SecurityMonitor:
+    def __init__(self):
+        self.logger = logging.getLogger(&quot;security&quot;)
+        self.security_events = []
+        self.alert_thresholds = {
+            'failed_logins': 5,
+            'suspicious_requests': 10,
+            'unauthorized_access': 1
+        }
+    
+    def log_security_event(self, event_type: str, details: Dict):
+        &quot;&quot;&quot;Log security event&quot;&quot;&quot;
+        event = {
+            'timestamp': datetime.now(),
+            'type': event_type,
+            'details': details
+        }
+        
+        self.security_events.append(event)
+        
+        # Check for alerts
+        self.check_alerts(event_type)
+        
+        # Log event
+        self.logger.warning(f&quot;Security event: {event_type} - {details}&quot;)
+    
+    def check_alerts(self, event_type: str):
+        &quot;&quot;&quot;Check if event should trigger alert&quot;&quot;&quot;
+        recent_events = [
+            event for event in self.security_events
+            if event['type'] == event_type and
+            (datetime.now() - event['timestamp']).total_seconds() &lt; 300  # 5 minutes
+        ]
+        
+        threshold = self.alert_thresholds.get(event_type, 10)
+        
+        if len(recent_events) &gt;= threshold:
+            self.send_alert(event_type, len(recent_events))
+    
+    def send_alert(self, event_type: str, count: int):
+        &quot;&quot;&quot;Send security alert&quot;&quot;&quot;
+        alert_message = f&quot;Security Alert: {count} {event_type} events in 5 minutes&quot;
+        
+        # Send to monitoring system
+        print(f&quot;ALERT: {alert_message}&quot;)
+        
+        # Could integrate with external alerting systems
+        # - Email notifications
+        # - Slack alerts
+        # - SMS notifications
+        # - PagerDuty
+</code></pre>
+<h3>Audit Logging</h3>
+<pre><code class="language-python">import json
+from datetime import datetime
+
+class AuditLogger:
+    def __init__(self, log_file: str = &quot;audit.log&quot;):
+        self.log_file = log_file
+    
+    def log_action(self, user_id: str, action: str, resource: str, details: Dict = None):
+        &quot;&quot;&quot;Log user action for audit&quot;&quot;&quot;
+        audit_entry = {
+            'timestamp': datetime.now().isoformat(),
+            'user_id': user_id,
+            'action': action,
+            'resource': resource,
+            'details': details or {},
+            'ip_address': self._get_client_ip()
+        }
+        
+        # Write to audit log
+        with open(self.log_file, 'a') as f:
+            f.write(json.dumps(audit_entry) + '\n')
+    
+    def _get_client_ip(self) -&gt; str:
+        &quot;&quot;&quot;Get client IP address&quot;&quot;&quot;
+        # Implementation depends on your framework
+        return &quot;127.0.0.1&quot;
+    
+    def get_audit_trail(self, user_id: str = None, start_time: datetime = None) -&gt; List[Dict]:
+        &quot;&quot;&quot;Get audit trail&quot;&quot;&quot;
+        audit_entries = []
+        
+        with open(self.log_file, 'r') as f:
+            for line in f:
+                try:
+                    entry = json.loads(line.strip())
+                    
+                    # Filter by user_id if specified
+                    if user_id and entry.get('user_id') != user_id:
+                        continue
+                    
+                    # Filter by start_time if specified
+                    if start_time:
+                        entry_time = datetime.fromisoformat(entry['timestamp'])
+                        if entry_time &lt; start_time:
+                            continue
+                    
+                    audit_entries.append(entry)
+                    
+                except json.JSONDecodeError:
+                    continue
+        
+        return audit_entries
+</code></pre>
+<h2> Compliance Requirements</h2>
+<h3>GDPR Compliance</h3>
+<pre><code class="language-python">from datetime import datetime, timedelta
+
+class GDPRCompliance:
+    def __init__(self):
+        self.data_subject_requests = []
+    
+    def consent_required(self) -&gt; bool:
+        &quot;&quot;&quot;Check if consent is required for data processing&quot;&quot;&quot;
+        return True
+    
+    def record_consent(self, user_id: str, consent_data: Dict):
+        &quot;&quot;&quot;Record user consent&quot;&quot;&quot;
+        consent_entry = {
+            'user_id': user_id,
+            'timestamp': datetime.now(),
+            'consent_given': consent_data['consent'],
+            'purpose': consent_data['purpose'],
+            'retention_period': consent_data.get('retention_period', 365)
+        }
+        
+        # Store consent record
+        self._store_consent(consent_entry)
+    
+    def right_to_be_forgotten(self, user_id: str):
+        &quot;&quot;&quot;Delete all user data (right to be forgotten)&quot;&quot;&quot;
+        # Delete from database
+        self._delete_user_data(user_id)
+        
+        # Delete from logs (if necessary)
+        self._anonymize_logs(user_id)
+        
+        # Record deletion request
+        self._record_deletion_request(user_id)
+    
+    def data_portability(self, user_id: str) -&gt; Dict:
+        &quot;&quot;&quot;Export user data (right to data portability)&quot;&quot;&quot;
+        user_data = {
+            'personal_data': self._get_personal_data(user_id),
+            'scan_history': self._get_scan_history(user_id),
+            'preferences': self._get_user_preferences(user_id),
+            'consent_records': self._get_consent_records(user_id)
+        }
+        
+        return user_data
+    
+    def retain_data_policy(self, data_type: str) -&gt; int:
+        &quot;&quot;&quot;Get data retention policy in days&quot;&quot;&quot;
+        policies = {
+            'scan_data': 365,      # 1 year
+            'user_preferences': 1825,  # 5 years
+            'audit_logs': 2555,      # 7 years
+            'consent_records': 2555  # 7 years
+        }
+        
+        return policies.get(data_type, 365)
+</code></pre>
+<h3>SOC 2 Compliance</h3>
+<pre><code class="language-python">class SOC2Compliance:
+    def __init__(self):
+        self.security_controls = {
+            'access_control': self._validate_access_control,
+            'encryption': self._validate_encryption,
+            'audit_logging': self._validate_audit_logging,
+            'incident_response': self._validate_incident_response,
+            'vulnerability_management': self._validate_vulnerability_management
+        }
+    
+    def validate_compliance(self) -&gt; Dict[str, bool]:
+        &quot;&quot;&quot;Validate SOC 2 compliance&quot;&quot;&quot;
+        results = {}
+        
+        for control_name, validator in self.security_controls.items():
+            try:
+                results[control_name] = validator()
+            except Exception as e:
+                results[control_name] = False
+                logging.error(f&quot;Compliance validation failed for {control_name}: {e}&quot;)
+        
+        return results
+    
+    def _validate_access_control(self) -&gt; bool:
+        &quot;&quot;&quot;Validate access control implementation&quot;&quot;&quot;
+        # Check if RBAC is implemented
+        # Check if authentication is required
+        # Check if session management is secure
+        return True  # Implementation specific
+    
+    def _validate_encryption(self) -&gt; bool:
+        &quot;&quot;&quot;Validate encryption implementation&quot;&quot;&quot;
+        # Check if data at rest is encrypted
+        # Check if data in transit is encrypted
+        # Check if key management is secure
+        return True  # Implementation specific
+    
+    def _validate_audit_logging(self) -&gt; bool:
+        &quot;&quot;&quot;Validate audit logging implementation&quot;&quot;&quot;
+        # Check if all actions are logged
+        # Check if logs are tamper-evident
+        # Check if log retention policy is enforced
+        return True  # Implementation specific
+</code></pre>
+<h2> Incident Response</h2>
+<h3>Security Incident Response Plan</h3>
+<pre><code class="language-python">from enum import Enum
+from datetime import datetime
+
+class IncidentSeverity(Enum):
+    LOW = &quot;low&quot;
+    MEDIUM = &quot;medium&quot;
+    HIGH = &quot;high&quot;
+    CRITICAL = &quot;critical&quot;
+
+class SecurityIncident:
+    def __init__(self, incident_id: str, severity: IncidentSeverity, description: str):
+        self.incident_id = incident_id
+        self.severity = severity
+        self.description = description
+        self.created_at = datetime.now()
+        self.status = &quot;open&quot;
+        self.actions_taken = []
+    
+    def add_action(self, action: str):
+        &quot;&quot;&quot;Add action taken&quot;&quot;&quot;
+        self.actions_taken.append({
+            'action': action,
+            'timestamp': datetime.now()
+        })
+    
+    def resolve(self):
+        &quot;&quot;&quot;Resolve incident&quot;&quot;&quot;
+        self.status = &quot;resolved&quot;
+        self.resolved_at = datetime.now()
+
+class IncidentResponse:
+    def __init__(self):
+        self.incidents = []
+        self.escalation_thresholds = {
+            IncidentSeverity.LOW: 24,      # 24 hours
+            IncidentSeverity.MEDIUM: 8,     # 8 hours
+            IncidentSeverity.HIGH: 2,       # 2 hours
+            IncidentSeverity.CRITICAL: 0.5  # 30 minutes
+        }
+    
+    def create_incident(self, severity: IncidentSeverity, description: str) -&gt; SecurityIncident:
+        &quot;&quot;&quot;Create new security incident&quot;&quot;&quot;
+        incident_id = f&quot;INC-{datetime.now().strftime('%Y%m%d')}-{len(self.incidents) + 1:04d}&quot;
+        incident = SecurityIncident(incident_id, severity, description)
+        
+        self.incidents.append(incident)
+        
+        # Check for escalation
+        self._check_escalation(incident)
+        
+        return incident
+    
+    def _check_escalation(self, incident: SecurityIncident):
+        &quot;&quot;&quot;Check if incident should be escalated&quot;&quot;&quot;
+        threshold = self.escalation_thresholds[incident.severity]
+        
+        if threshold &gt; 0:
+            # Schedule escalation check
+            import threading
+            threading.Timer(threshold * 3600, self._escalate_incident, args=[incident]).start()
+    
+    def _escalate_incident(self, incident: SecurityIncident):
+        &quot;&quot;&quot;Escalate incident if not resolved&quot;&quot;&quot;
+        if incident.status == &quot;open&quot;:
+            incident.add_action(&quot;Escalated due to timeout&quot;)
+            self._notify_stakeholders(incident)
+    
+    def _notify_stakeholders(self, incident: SecurityIncident):
+        &quot;&quot;&quot;Notify stakeholders about incident&quot;&quot;&quot;
+        notification = f&quot;&quot;&quot;
+        Security Incident Escalation
+        
+        Incident ID: {incident.incident_id}
+        Severity: {incident.severity.value}
+        Description: {incident.description}
+        Created: {incident.created_at}
+        Actions Taken: {len(incident.actions_taken)}
+        &quot;&quot;&quot;
+        
+        # Send notification based on severity
+        if incident.severity in [IncidentSeverity.HIGH, IncidentSeverity.CRITICAL]:
+            # Immediate notification
+            self._send_immediate_notification(notification)
+        else:
+            # Email notification
+            self._send_email_notification(notification)
+</code></pre>
+<h2> Security Configuration</h2>
+<h3>Complete Security Configuration</h3>
+<pre><code class="language-json">{
+  &quot;security&quot;: {
+    &quot;authentication&quot;: {
+      &quot;api_key_required&quot;: true,
+      &quot;jwt_enabled&quot;: true,
+      &quot;session_timeout&quot;: 3600,
+      &quot;max_login_attempts&quot;: 5,
+      &quot;lockout_duration&quot;: 900,
+      &quot;password_policy&quot;: {
+        &quot;min_length&quot;: 12,
+        &quot;require_uppercase&quot;: true,
+        &quot;require_lowercase&quot;: true,
+        &quot;require_numbers&quot;: true,
+        &quot;require_symbols&quot;: true
+      }
+    },
+    &quot;authorization&quot;: {
+      &quot;rbac_enabled&quot;: true,
+      &quot;default_role&quot;: &quot;viewer&quot;,
+      &quot;role_hierarchy&quot;: [&quot;viewer&quot;, &quot;operator&quot;, &quot;admin&quot;]
+    },
+    &quot;encryption&quot;: {
+      &quot;data_at_rest&quot;: true,
+      &quot;data_in_transit&quot;: true,
+      &quot;algorithm&quot;: &quot;AES-256-GCM&quot;,
+      &quot;key_rotation_days&quot;: 90
+    },
+    &quot;network&quot;: {
+      &quot;ssl_required&quot;: true,
+      &quot;tls_version&quot;: &quot;1.3&quot;,
+      &quot;allowed_ciphers&quot;: [
+        &quot;TLS_AES_256_GCM_SHA384&quot;,
+        &quot;TLS_CHACHA20_POLY1305_SHA256&quot;,
+        &quot;TLS_AES_128_GCM_SHA256&quot;
+      ],
+      &quot;rate_limiting&quot;: {
+        &quot;enabled&quot;: true,
+        &quot;requests_per_minute&quot;: 100,
+        &quot;burst_size&quot;: 20
+      }
+    },
+    &quot;monitoring&quot;: {
+      &quot;audit_logging&quot;: true,
+      &quot;security_events&quot;: true,
+      &quot;intrusion_detection&quot;: true,
+      &quot;alert_thresholds&quot;: {
+        &quot;failed_logins&quot;: 5,
+        &quot;suspicious_requests&quot;: 10,
+        &quot;unauthorized_access&quot;: 1
+      }
+    },
+    &quot;compliance&quot;: {
+      &quot;gdpr_enabled&quot;: true,
+      &quot;data_retention_days&quot;: 365,
+      &quot;right_to_be_forgotten&quot;: true,
+      &quot;data_portability&quot;: true,
+      &quot;audit_retention_days&quot;: 2555
+    }
+  }
+}
+</code></pre>
+<h2> Security Best Practices</h2>
+<h3>Development Security</h3>
+<ul>
+<li>Use parameterized queries to prevent SQL injection</li>
+<li>Validate all input data</li>
+<li>Implement proper error handling</li>
+<li>Use secure coding practices</li>
+<li>Regular security testing</li>
+</ul>
+<h3>Operational Security</h3>
+<ul>
+<li>Regular security audits</li>
+<li>Penetration testing</li>
+<li>Vulnerability scanning</li>
+<li>Security monitoring</li>
+<li>Incident response planning</li>
+</ul>
+<h3>Data Protection</h3>
+<ul>
+<li>Encrypt sensitive data</li>
+<li>Implement access controls</li>
+<li>Regular data backups</li>
+<li>Secure disposal of data</li>
+<li>Privacy by design</li>
+</ul>
+<hr />
+<p><strong>Last Updated</strong>: 2026-05-06<br />
+<strong>Security Guide Version</strong>: 1.0.0<br />
+<strong>Status</strong>: Production Ready</p>
+
+    </div>
+</section>
+
+</main>
+
+<footer>
+
+    <div class="float">
+        <h3>SCRIBE Resonance AI System</h3>
+        <p>Advanced Acoustic Intelligence Platform</p>
+        <p>© 2026 Robert Trenaman | Software Customs (Auto Bot Solution) | All Rights Reserved</p>
+        <p>autobotsolution@gmail.com | Flushing, MI</p>
+    </div>
+    <div class="rotate">
+        <p class="pulse">Official Documentation Portal</p>
+    </div>
+
+</footer>
+</body>
+</html>

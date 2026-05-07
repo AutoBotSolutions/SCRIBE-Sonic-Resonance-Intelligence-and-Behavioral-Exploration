@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SCRIBE Wiki Site Map - SCRIBE Resonance AI System Documentation</title>
+<style>
+
+    body {
+        margin: 0;
+        font-family: "Courier New", monospace;
+        background: radial-gradient(circle at center, #0a0f1f, #000000);
+        color: #00ffe1;
+        overflow-x: hidden;
+        min-height: 100vh;
+    }
+
+    header {
+        text-align: center;
+        padding: 40px;
+        border-bottom: 1px solid rgba(0,255,225,0.2);
+        position: relative;
+    }
+
+    h1 {
+        font-size: 48px;
+        letter-spacing: 4px;
+        text-shadow: 0 0 15px #00ffe1;
+        background: linear-gradient(45deg, #00ffe1, #7df9ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 0;
+    }
+
+    h2 {
+        color: #7df9ff;
+        margin-top: 40px;
+        font-size: 28px;
+        text-shadow: 0 0 5px #7df9ff;
+    }
+
+    h3 {
+        color: #00ff88;
+        margin-top: 30px;
+        font-size: 22px;
+    }
+
+    h4 {
+        color: #ffaa00;
+        margin-top: 20px;
+        font-size: 18px;
+    }
+
+    section {
+        padding: 40px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .panel {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 25px;
+        margin-top: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,255,225,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .panel:hover {
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+        transform: translateY(-2px);
+    }
+
+    .pulse {
+        animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 0.6; }
+        50% { opacity: 1; }
+        100% { opacity: 0.6; }
+    }
+
+    .highlight {
+        background: rgba(0, 255, 225, 0.1);
+        border-left: 4px solid #00ffe1;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+    }
+
+    .metric {
+        display: inline-block;
+        background: rgba(0, 255, 225, 0.15);
+        padding: 8px 15px;
+        margin: 5px;
+        border-radius: 20px;
+        font-size: 14px;
+        border: 1px solid rgba(0,255,225,0.3);
+    }
+
+    .success {
+        color: #00ff88;
+        font-weight: bold;
+    }
+
+    .warning {
+        color: #ffaa00;
+        font-weight: bold;
+    }
+
+    .critical {
+        color: #ff4444;
+        font-weight: bold;
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px;
+        border-top: 1px solid rgba(0,255,225,0.2);
+        font-size: 14px;
+        color: #888;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .timeline {
+        position: relative;
+        padding-left: 30px;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #00ffe1;
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 20px;
+        padding-left: 20px;
+    }
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -25px;
+        top: 5px;
+        width: 10px;
+        height: 10px;
+        background: #00ffe1;
+        border-radius: 50%;
+    }
+
+    .chart {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 20px;
+        background: rgba(0, 255, 225, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 10px 0;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #00ffe1, #7df9ff);
+        border-radius: 10px;
+        transition: width 1s ease;
+    }
+
+    .interactive {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: #00ffe1;
+        display: block;
+    }
+
+    .interactive:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(0,255,225,0.3);
+        color: #7df9ff;
+    }
+
+    .glow {
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #00ffe1, 0 0 20px #00ffe1; }
+        to { text-shadow: 0 0 20px #00ffe1, 0 0 30px #00ffe1; }
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(10, 15, 31, 0.95);
+        border-bottom: 1px solid rgba(0,255,225,0.2);
+        padding: 15px 30px;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+    }
+
+    .nav-menu ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-menu li {
+        margin: 0 15px;
+    }
+
+    .nav-menu a {
+        color: #00ffe1;
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .nav-menu a:hover {
+        color: #7df9ff;
+        background: rgba(0,255,225,0.1);
+        transform: translateY(-2px);
+    }
+
+    .doc-card {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 20px;
+        margin: 15px 0;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .doc-card:hover {
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+        transform: translateY(-3px);
+        border-color: rgba(0,255,225,0.4);
+    }
+
+    .doc-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #00ffe1, #7df9ff);
+    }
+
+    .doc-title {
+        font-size: 20px;
+        color: #7df9ff;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .doc-description {
+        color: #00ffe1;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+    .doc-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(0,255,225,0.1);
+    }
+
+    .doc-type {
+        background: rgba(0, 255, 225, 0.15);
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        color: #00ff88;
+    }
+
+    .doc-size {
+        font-size: 12px;
+        color: #888;
+    }
+
+    .hero-section {
+        text-align: center;
+        padding: 80px 40px;
+        background: linear-gradient(135deg, rgba(0,255,225,0.05), rgba(125,249,255,0.05));
+        border-radius: 20px;
+        margin: 40px 0;
+    }
+
+    .hero-title {
+        font-size: 36px;
+        color: #7df9ff;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px #7df9ff;
+    }
+
+    .hero-subtitle {
+        font-size: 18px;
+        color: #00ffe1;
+        margin-bottom: 30px;
+        opacity: 0.9;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background: linear-gradient(45deg, #00ffe1, #7df9ff);
+        color: #0a0f1f;
+        padding: 12px 30px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        margin: 10px;
+    }
+
+    .cta-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(0,255,225,0.5);
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin: 40px 0;
+    }
+
+    .stat-card {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+    }
+
+    .stat-number {
+        font-size: 32px;
+        font-weight: bold;
+        color: #00ff88;
+        margin-bottom: 10px;
+    }
+
+    .stat-label {
+        font-size: 14px;
+        color: #00ffe1;
+        opacity: 0.8;
+    }
+
+    main {
+        padding-top: 80px;
+    }
+
+</style>
+</head>
+<body>
+
+<nav class="nav-menu">
+
+    <ul>
+        <li><a href="directory.html">Directory</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="site_map.html">Documentation</a></li>
+        <li><a href="api.html">Technical</a></li>
+        <li><a href="Investors-Thesis.html">Business</a></li>
+        <li><a href="community.html">About</a></li>
+        <li><a href="faq.html">Contact</a></li>
+    </ul>
+
+</nav>
+
+<main>
+<header>
+    <h1 class="glow">SCRIBE Wiki Site Map</h1>
+    <p class="pulse">SCRIBE Resonance AI System - Documentation</p>
+    <div class="metric success">Documentation</div>
+    <div class="metric success">Technical Reference</div>
+</header>
+
+<section>
+    <div class="panel">
+        <h1>SCRIBE Wiki Site Map</h1>
+<h2> Complete Wiki Structure</h2>
+<pre><code>docs/wiki/
+├ README.html                    # Main wiki index
+├ SITE_MAP.html                  # This file - complete site map
+├ architecture/
+│   └ README.html                # System architecture documentation
+├ components/
+│   └ README.html                # Component documentation
+├ api/
+│   └ README.html                # API documentation
+├ user-guide/
+│   └ README.html                # User guide
+├ developer/
+│   └ README.html                # Developer documentation
+├ troubleshooting/
+│   └ README.html                # Troubleshooting guide
+└ deployment/
+    └ README.html                # Deployment guide
+</code></pre>
+<h2>️ Navigation Flow</h2>
+<h3>Main Entry Points</h3>
+<ol>
+<li><strong><a href="README.html">Main Wiki Index</a></strong> - Primary entry point</li>
+<li><strong><a href="README.html">System Architecture</a></strong> - Technical overview</li>
+<li><strong><a href="README.html">User Guide</a></strong> - Getting started guide</li>
+<li><strong><a href="README.html">API Documentation</a></strong> - API reference</li>
+</ol>
+<h3>User Journey Paths</h3>
+<h4>New User Path</h4>
+<ol>
+<li><a href="README.html">Main Wiki Index</a> → <a href="README.html">User Guide</a> → <a href="README.html">Troubleshooting</a></li>
+</ol>
+<h4>Developer Path</h4>
+<ol>
+<li><a href="README.html">Main Wiki Index</a> → <a href="README.html">Developer Documentation</a> → <a href="README.html">System Architecture</a></li>
+</ol>
+<h4>API User Path</h4>
+<ol>
+<li><a href="README.html">Main Wiki Index</a> → <a href="README.html">API Documentation</a> → <a href="README.html">Deployment Guide</a></li>
+</ol>
+<h4>System Administrator Path</h4>
+<ol>
+<li><a href="README.html">Main Wiki Index</a> → <a href="README.html">Deployment Guide</a> → <a href="README.html">Troubleshooting</a></li>
+</ol>
+<h2> Cross-References</h2>
+<h3>Architecture Links</h3>
+<ul>
+<li><a href="README.html">Components</a> - Detailed component specs</li>
+<li><a href="README.html">API</a> - API endpoints and data flow</li>
+<li><a href="README.html">Deployment</a> - Production architecture</li>
+</ul>
+<h3>Component Links</h3>
+<ul>
+<li><a href="README.html">Architecture</a> - Component integration</li>
+<li><a href="README.html">Developer Guide</a> - Component development</li>
+<li><a href="README.html">Troubleshooting</a> - Component issues</li>
+</ul>
+<h3>API Links</h3>
+<ul>
+<li><a href="README.html">Architecture</a> - API architecture</li>
+<li><a href="README.html">Developer Guide</a> - API development</li>
+<li><a href="README.html">Deployment</a> - API deployment</li>
+</ul>
+<h3>User Guide Links</h3>
+<ul>
+<li><a href="README.html">Troubleshooting</a> - Common issues</li>
+<li><a href="README.html">API Documentation</a> - Programmatic access</li>
+<li><a href="README.html">Components</a> - Understanding system parts</li>
+</ul>
+<h3>Developer Links</h3>
+<ul>
+<li><a href="README.html">Architecture</a> - System design</li>
+<li><a href="README.html">Components</a> - Component specs</li>
+<li><a href="README.html">API Documentation</a> - API development</li>
+</ul>
+<h3>Troubleshooting Links</h3>
+<ul>
+<li><a href="README.html">User Guide</a> - User solutions</li>
+<li><a href="README.html">Components</a> - Component-specific fixes</li>
+<li><a href="README.html">Deployment</a> - Production issues</li>
+</ul>
+<h3>Deployment Links</h3>
+<ul>
+<li><a href="README.html">Architecture</a> - Production architecture</li>
+<li><a href="README.html">API Documentation</a> - API deployment</li>
+<li><a href="README.html">Troubleshooting</a> - Deployment issues</li>
+</ul>
+<h2> Content Categories</h2>
+<h3>Overview Documentation</h3>
+<ul>
+<li><a href="README.html">Main Wiki Index</a> - System overview and navigation</li>
+<li><a href="README.html">System Architecture</a> - Technical overview</li>
+</ul>
+<h3>User Documentation</h3>
+<ul>
+<li><a href="README.html">User Guide</a> - Getting started and usage</li>
+<li><a href="README.html">Troubleshooting</a> - Problem solving</li>
+</ul>
+<h3>Technical Documentation</h3>
+<ul>
+<li><a href="README.html">Components</a> - Component specifications</li>
+<li><a href="README.html">API Documentation</a> - API reference</li>
+<li><a href="README.html">Developer Documentation</a> - Development guide</li>
+</ul>
+<h3>Operations Documentation</h3>
+<ul>
+<li><a href="README.html">Deployment Guide</a> - Deployment and operations</li>
+<li><a href="README.html">Troubleshooting</a> - Issue resolution</li>
+</ul>
+<h2> Quick Access</h2>
+<h3>For Users</h3>
+<ul>
+<li><strong>Start Here</strong>: <a href="README.html">User Guide</a></li>
+<li><strong>Commands</strong>: <a href="user-guide.html">User Guide → Commands</a></li>
+<li><strong>Issues</strong>: <a href="README.html">Troubleshooting</a></li>
+</ul>
+<h3>For Developers</h3>
+<ul>
+<li><strong>Start Here</strong>: <a href="README.html">Developer Documentation</a></li>
+<li><strong>Architecture</strong>: <a href="README.html">System Architecture</a></li>
+<li><strong>Components</strong>: <a href="README.html">Component Documentation</a></li>
+</ul>
+<h3>For System Administrators</h3>
+<ul>
+<li><strong>Start Here</strong>: <a href="README.html">Deployment Guide</a></li>
+<li><strong>Production</strong>: <a href="deployment.html">Deployment → Production Setup</a></li>
+<li><strong>Issues</strong>: <a href="README.html">Troubleshooting</a></li>
+</ul>
+<h3>For API Users</h3>
+<ul>
+<li><strong>Start Here</strong>: <a href="README.html">API Documentation</a></li>
+<li><strong>Endpoints</strong>: <a href="api.html">API → Endpoints</a></li>
+<li><strong>Examples</strong>: <a href="api.html">API → Examples</a></li>
+</ul>
+<h2> Search Guide</h2>
+<h3>Finding Information</h3>
+<ol>
+<li><strong>Start at Main Index</strong> - <a href="README.html">README.html</a></li>
+<li><strong>Use Site Map</strong> - This file for complete overview</li>
+<li><strong>Follow User Journey</strong> - Choose appropriate path above</li>
+<li><strong>Cross-Reference</strong> - Use links in each document</li>
+</ol>
+<h3>Common Searches</h3>
+<ul>
+<li><strong>&quot;How to start&quot;</strong> → <a href="user-guide.html">User Guide</a></li>
+<li><strong>&quot;API endpoints&quot;</strong> → <a href="api.html">API Documentation</a></li>
+<li><strong>&quot;Component details&quot;</strong> → <a href="README.html">Component Documentation</a></li>
+<li><strong>&quot;Troubleshooting&quot;</strong> → <a href="README.html">Troubleshooting Guide</a></li>
+<li><strong>&quot;Deployment&quot;</strong> → <a href="README.html">Deployment Guide</a></li>
+<li><strong>&quot;Architecture&quot;</strong> → <a href="README.html">System Architecture</a></li>
+</ul>
+<h2> Maintenance Notes</h2>
+<h3>Updating the Wiki</h3>
+<ol>
+<li>Update relevant documentation files</li>
+<li>Update cross-references in linked documents</li>
+<li>Update this site map if structure changes</li>
+<li>Test all links and navigation paths</li>
+</ol>
+<h3>Link Validation</h3>
+<ul>
+<li>All internal links use relative paths</li>
+<li>External links open in new tabs</li>
+<li>Cross-references are maintained in each document</li>
+<li>Navigation flows are tested regularly</li>
+</ul>
+<h3>Version Control</h3>
+<ul>
+<li>All documentation is version controlled</li>
+<li>Major updates include version information</li>
+<li>Breaking changes are clearly marked</li>
+<li>Archive versions are maintained for reference</li>
+</ul>
+<hr />
+<p><strong>Last Updated</strong>: 2026-05-06<br />
+<strong>Site Map Version</strong>: 1.0.0<br />
+<strong>Total Pages</strong>: 8 main pages + 1 index</p>
+
+    </div>
+</section>
+
+</main>
+
+<footer>
+
+    <div class="float">
+        <h3>SCRIBE Resonance AI System</h3>
+        <p>Advanced Acoustic Intelligence Platform</p>
+        <p>© 2026 Robert Trenaman | Software Customs (Auto Bot Solution) | All Rights Reserved</p>
+        <p>autobotsolution@gmail.com | Flushing, MI</p>
+    </div>
+    <div class="rotate">
+        <p class="pulse">Official Documentation Portal</p>
+    </div>
+
+</footer>
+</body>
+</html>

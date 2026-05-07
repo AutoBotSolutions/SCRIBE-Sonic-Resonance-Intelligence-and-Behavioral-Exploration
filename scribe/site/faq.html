@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SCRIBE FAQ and Best Practices - SCRIBE Resonance AI System Documentation</title>
+<style>
+
+    body {
+        margin: 0;
+        font-family: "Courier New", monospace;
+        background: radial-gradient(circle at center, #0a0f1f, #000000);
+        color: #00ffe1;
+        overflow-x: hidden;
+        min-height: 100vh;
+    }
+
+    header {
+        text-align: center;
+        padding: 40px;
+        border-bottom: 1px solid rgba(0,255,225,0.2);
+        position: relative;
+    }
+
+    h1 {
+        font-size: 48px;
+        letter-spacing: 4px;
+        text-shadow: 0 0 15px #00ffe1;
+        background: linear-gradient(45deg, #00ffe1, #7df9ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 0;
+    }
+
+    h2 {
+        color: #7df9ff;
+        margin-top: 40px;
+        font-size: 28px;
+        text-shadow: 0 0 5px #7df9ff;
+    }
+
+    h3 {
+        color: #00ff88;
+        margin-top: 30px;
+        font-size: 22px;
+    }
+
+    h4 {
+        color: #ffaa00;
+        margin-top: 20px;
+        font-size: 18px;
+    }
+
+    section {
+        padding: 40px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .panel {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 25px;
+        margin-top: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,255,225,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .panel:hover {
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+        transform: translateY(-2px);
+    }
+
+    .pulse {
+        animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 0.6; }
+        50% { opacity: 1; }
+        100% { opacity: 0.6; }
+    }
+
+    .highlight {
+        background: rgba(0, 255, 225, 0.1);
+        border-left: 4px solid #00ffe1;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+    }
+
+    .metric {
+        display: inline-block;
+        background: rgba(0, 255, 225, 0.15);
+        padding: 8px 15px;
+        margin: 5px;
+        border-radius: 20px;
+        font-size: 14px;
+        border: 1px solid rgba(0,255,225,0.3);
+    }
+
+    .success {
+        color: #00ff88;
+        font-weight: bold;
+    }
+
+    .warning {
+        color: #ffaa00;
+        font-weight: bold;
+    }
+
+    .critical {
+        color: #ff4444;
+        font-weight: bold;
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px;
+        border-top: 1px solid rgba(0,255,225,0.2);
+        font-size: 14px;
+        color: #888;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .timeline {
+        position: relative;
+        padding-left: 30px;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #00ffe1;
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 20px;
+        padding-left: 20px;
+    }
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -25px;
+        top: 5px;
+        width: 10px;
+        height: 10px;
+        background: #00ffe1;
+        border-radius: 50%;
+    }
+
+    .chart {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 20px;
+        background: rgba(0, 255, 225, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 10px 0;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #00ffe1, #7df9ff);
+        border-radius: 10px;
+        transition: width 1s ease;
+    }
+
+    .interactive {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: #00ffe1;
+        display: block;
+    }
+
+    .interactive:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(0,255,225,0.3);
+        color: #7df9ff;
+    }
+
+    .glow {
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #00ffe1, 0 0 20px #00ffe1; }
+        to { text-shadow: 0 0 20px #00ffe1, 0 0 30px #00ffe1; }
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(10, 15, 31, 0.95);
+        border-bottom: 1px solid rgba(0,255,225,0.2);
+        padding: 15px 30px;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+    }
+
+    .nav-menu ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-menu li {
+        margin: 0 15px;
+    }
+
+    .nav-menu a {
+        color: #00ffe1;
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .nav-menu a:hover {
+        color: #7df9ff;
+        background: rgba(0,255,225,0.1);
+        transform: translateY(-2px);
+    }
+
+    .doc-card {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 20px;
+        margin: 15px 0;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .doc-card:hover {
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+        transform: translateY(-3px);
+        border-color: rgba(0,255,225,0.4);
+    }
+
+    .doc-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #00ffe1, #7df9ff);
+    }
+
+    .doc-title {
+        font-size: 20px;
+        color: #7df9ff;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .doc-description {
+        color: #00ffe1;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+    .doc-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(0,255,225,0.1);
+    }
+
+    .doc-type {
+        background: rgba(0, 255, 225, 0.15);
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        color: #00ff88;
+    }
+
+    .doc-size {
+        font-size: 12px;
+        color: #888;
+    }
+
+    .hero-section {
+        text-align: center;
+        padding: 80px 40px;
+        background: linear-gradient(135deg, rgba(0,255,225,0.05), rgba(125,249,255,0.05));
+        border-radius: 20px;
+        margin: 40px 0;
+    }
+
+    .hero-title {
+        font-size: 36px;
+        color: #7df9ff;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px #7df9ff;
+    }
+
+    .hero-subtitle {
+        font-size: 18px;
+        color: #00ffe1;
+        margin-bottom: 30px;
+        opacity: 0.9;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background: linear-gradient(45deg, #00ffe1, #7df9ff);
+        color: #0a0f1f;
+        padding: 12px 30px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        margin: 10px;
+    }
+
+    .cta-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(0,255,225,0.5);
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin: 40px 0;
+    }
+
+    .stat-card {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+    }
+
+    .stat-number {
+        font-size: 32px;
+        font-weight: bold;
+        color: #00ff88;
+        margin-bottom: 10px;
+    }
+
+    .stat-label {
+        font-size: 14px;
+        color: #00ffe1;
+        opacity: 0.8;
+    }
+
+    main {
+        padding-top: 80px;
+    }
+
+</style>
+</head>
+<body>
+
+<nav class="nav-menu">
+
+    <ul>
+        <li><a href="directory.html">Directory</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="faq.html">Documentation</a></li>
+        <li><a href="api.html">Technical</a></li>
+        <li><a href="Investors-Thesis.html">Business</a></li>
+        <li><a href="community.html">About</a></li>
+        <li><a href="faq.html">Contact</a></li>
+    </ul>
+
+</nav>
+
+<main>
+<header>
+    <h1 class="glow">SCRIBE FAQ and Best Practices</h1>
+    <p class="pulse">SCRIBE Resonance AI System - Documentation</p>
+    <div class="metric success">Documentation</div>
+    <div class="metric success">Technical Reference</div>
+</header>
+
+<section>
+    <div class="panel">
+        <h1>SCRIBE FAQ and Best Practices</h1>
+<h2>❓ Frequently Asked Questions</h2>
+<h3>General Questions</h3>
+<h4>Q: What is SCRIBE?</h4>
+<p><strong>A:</strong> SCRIBE (Sonic Resonance Intelligence and Behavioral Exploration) is an advanced resonance intelligence platform that uses acoustic signals to analyze and interpret environments, materials, and structural properties through active sensing and AI-powered pattern recognition.</p>
+<h4>Q: How does SCRIBE work?</h4>
+<p><strong>A:</strong> SCRIBE emits controlled acoustic signals, captures the environmental response, processes the signals using FFT and other techniques, interprets the patterns using AI, and provides insights about materials, environments, and structural properties.</p>
+<h4>Q: What can SCRIBE detect?</h4>
+<p><strong>A:</strong> SCRIBE can detect:</p>
+<ul>
+<li>Material types (wood, metal, plastic, glass, etc.)</li>
+<li>Environmental characteristics (room size, reverberation, etc.)</li>
+<li>Structural properties (resonances, anomalies, etc.)</li>
+<li>Acoustic properties (frequency response, harmonics, etc.)</li>
+</ul>
+<h4>Q: How accurate is SCRIBE?</h4>
+<p><strong>A:</strong> Accuracy varies by environment and conditions, but typically ranges from 70-90% confidence for well-controlled environments. The system learns and improves over time with user feedback.</p>
+<h3>Installation and Setup</h3>
+<h4>Q: What are the system requirements?</h4>
+<p><strong>A:</strong> Minimum requirements:</p>
+<ul>
+<li>Python 3.13+</li>
+<li>2GB RAM</li>
+<li>1GB disk space</li>
+<li>Audio hardware (optional, mock audio available)</li>
+</ul>
+<h4>Q: Do I need special audio hardware?</h4>
+<p><strong>A:</strong> No. SCRIBE includes a mock audio system for development and testing. For production use, real audio hardware is recommended but not required.</p>
+<h4>Q: How do I install SCRIBE?</h4>
+<p><strong>A:</strong> Run the deployment script:</p>
+<pre><code class="language-bash">./deploy.sh
+</code></pre>
+<p>This will set up the virtual environment, install dependencies, and validate the installation.</p>
+<h4>Q: Can I run SCRIBE on Windows/Mac/Linux?</h4>
+<p><strong>A:</strong> Yes, SCRIBE is cross-platform compatible. The installation script works on all major operating systems.</p>
+<h3>Usage and Operation</h3>
+<h4>Q: How do I start using SCRIBE?</h4>
+<p><strong>A:</strong> Use the interactive mode:</p>
+<pre><code class="language-bash">./start_interactive.sh
+</code></pre>
+<p>Then type commands like <code>/scan</code> or ask natural language questions.</p>
+<h4>Q: What commands are available?</h4>
+<p><strong>A:</strong> Common commands:</p>
+<ul>
+<li><code>/scan</code> - Perform resonance scan</li>
+<li><code>/status</code> - Check system health</li>
+<li><code>/help</code> - Show available commands</li>
+<li><code>/history</code> - View scan history</li>
+<li><code>/feedback</code> - Provide corrections</li>
+</ul>
+<h4>Q: Can I use SCRIBE programmatically?</h4>
+<p><strong>A:</strong> Yes. Start the API server:</p>
+<pre><code class="language-bash">./start_api.sh
+</code></pre>
+<p>Then use the REST API endpoints documented in the API section.</p>
+<h4>Q: How do I improve accuracy?</h4>
+<p><strong>A:</strong> Provide feedback on scan results:</p>
+<pre><code> SCRIBE&gt; /feedback material oak
+ SCRIBE&gt; /feedback rating 5
+</code></pre>
+<p>The system learns from corrections and improves over time.</p>
+<h3>Technical Questions</h3>
+<h4>Q: What audio formats does SCRIBE support?</h4>
+<p><strong>A:</strong> SCRIBE supports:</p>
+<ul>
+<li>Sample rates: 22050, 44100, 48000, 96000 Hz</li>
+<li>Channels: Mono (1) or Stereo (2)</li>
+<li>Formats: 16-bit, 32-bit, and 32-bit float</li>
+</ul>
+<h4>Q: What signal types can SCRIBE generate?</h4>
+<p><strong>A:</strong> SCRIBE can generate:</p>
+<ul>
+<li>Sine waves (single frequency)</li>
+<li>Frequency sweeps (20Hz - 20kHz)</li>
+<li>Pulse bursts</li>
+<li>Harmonic stacks</li>
+</ul>
+<h4>Q: How long does a scan take?</h4>
+<p><strong>A:</strong> Typical scan duration:</p>
+<ul>
+<li>Signal generation: 0.1-0.5 seconds</li>
+<li>Audio capture: 1-5 seconds (configurable)</li>
+<li>Processing: 0.5-2 seconds</li>
+<li>Total: 2-8 seconds</li>
+</ul>
+<h4>Q: Can SCRIBE run in real-time?</h4>
+<p><strong>A:</strong> Yes, SCRIBE can perform real-time analysis with appropriate configuration. Use the performance optimization settings for real-time operation.</p>
+<h3>Troubleshooting</h3>
+<h4>Q: SCRIBE says &quot;No module named 'pyaudio'&quot;</h4>
+<p><strong>A:</strong> PyAudio is optional. SCRIBE will automatically use mock audio if PyAudio is not available. For real audio, install PyAudio:</p>
+<pre><code class="language-bash">pip install pyaudio
+</code></pre>
+<h4>Q: Scans have low confidence scores</h4>
+<p><strong>A:</strong> Common causes and solutions:</p>
+<ul>
+<li>Background noise: Minimize environmental noise</li>
+<li>Poor positioning: Keep microphone/sensor consistent</li>
+<li>Wrong parameters: Adjust frequency and duration for your target</li>
+<li>Hardware issues: Check audio device connections</li>
+</ul>
+<h4>Q: API server won't start</h4>
+<p><strong>A:</strong> Check for:</p>
+<ul>
+<li>Port conflicts: <code>lsof -i :8000</code></li>
+<li>Missing dependencies: <code>pip install fastapi uvicorn</code></li>
+<li>Permission issues: Use appropriate user permissions</li>
+</ul>
+<h4>Q: Memory usage is high</h4>
+<p><strong>A:</strong> Solutions:</p>
+<ul>
+<li>Reduce scan history: Set <code>max_history</code> in config</li>
+<li>Use smaller buffers: Reduce <code>chunk_size</code> and <code>buffer_size</code></li>
+<li>Restart system: Clear accumulated memory</li>
+</ul>
+<h3>Integration Questions</h3>
+<h4>Q: Can I integrate SCRIBE with my existing system?</h4>
+<p><strong>A:</strong> Yes. SCRIBE provides:</p>
+<ul>
+<li>REST API for HTTP integration</li>
+<li>WebSocket for real-time communication</li>
+<li>Database access for direct data integration</li>
+<li>Message queue support for asynchronous processing</li>
+</ul>
+<h4>Q: How do I authenticate API calls?</h4>
+<p><strong>A:</strong> Use API key authentication:</p>
+<pre><code class="language-python">client = ScribeClient(api_key=&quot;your-api-key&quot;)
+</code></pre>
+<p>Configure API keys in the security settings.</p>
+<h4>Q: Can SCRIBE run in Docker?</h4>
+<p><strong>A:</strong> Yes. A Dockerfile is provided:</p>
+<pre><code class="language-bash">docker build -t scribe:latest .
+docker run -p 8000:8000 scribe:latest
+</code></pre>
+<h4>Q: How do I monitor SCRIBE performance?</h4>
+<p><strong>A:</strong> Use the built-in monitoring:</p>
+<ul>
+<li>Prometheus metrics on port 8001</li>
+<li>Performance tracking in logs</li>
+<li>Health check endpoint: <code>/health</code></li>
+</ul>
+<h3>Licensing and Commercial Use</h3>
+<h4>Q: Is SCRIBE open source?</h4>
+<p><strong>A:</strong> Yes, SCRIBE is released under the MIT license. See the LICENSE file for details.</p>
+<h4>Q: Can I use SCRIBE commercially?</h4>
+<p><strong>A:</strong> Yes, the MIT license permits commercial use. Please retain the copyright notice.</p>
+<h4>Q: Are there any usage restrictions?</h4>
+<p><strong>A:</strong> No, there are no usage restrictions. However, please ensure compliance with local regulations regarding acoustic emissions.</p>
+<h4>Q: Can I redistribute SCRIBE?</h4>
+<p><strong>A:</strong> Yes, you can redistribute SCRIBE under the same MIT license terms.</p>
+<h2> Best Practices</h2>
+<h3>System Setup</h3>
+<h4>✅ DO: Use Virtual Environment</h4>
+<pre><code class="language-bash">python3 -m venv scribe_env
+source scribe_env/bin/activate
+</code></pre>
+<h4>❌ DON'T: Install globally</h4>
+<p>Global installation can cause conflicts with other Python packages.</p>
+<h4>✅ DO: Validate Installation</h4>
+<pre><code class="language-bash">python3 validate_system.py
+</code></pre>
+<h4>❌ DON'T: Skip validation</h4>
+<p>Always validate the installation before use.</p>
+<h3>Configuration</h3>
+<h4>✅ DO: Tune for Your Use Case</h4>
+<pre><code class="language-json">{
+  &quot;audio&quot;: {
+    &quot;sample_rate&quot;: 44100,
+    &quot;use_real_audio&quot;: true
+  },
+  &quot;processing&quot;: {
+    &quot;window_size&quot;: 2048
+  }
+}
+</code></pre>
+<h4>❌ DON'T: Use default settings for all scenarios</h4>
+<p>Different use cases require different configurations.</p>
+<h4>✅ DO: Monitor Performance</h4>
+<pre><code class="language-bash"># Check system resources
+top
+htop
+</code></pre>
+<h4>❌ DON'T: Ignore performance issues</h4>
+<p>Address performance problems early.</p>
+<h3>Scan Operations</h3>
+<h4>✅ DO: Use Appropriate Parameters</h4>
+<pre><code class="language-bash"># Material analysis
+ SCRIBE&gt; /scan --type=sine --frequency=440 --duration=2
+
+# Room analysis
+ SCRIBE&gt; /scan --type=sweep --duration=5
+</code></pre>
+<h4>❌ DON'T: Use one-size-fits-all parameters</h4>
+<p>Different targets require different parameters.</p>
+<h4>✅ DO: Provide Consistent Feedback</h4>
+<pre><code class="language-bash"> SCRIBE&gt; /feedback material oak
+ SCRIBE&gt; /feedback rating 5
+</code></pre>
+<h4>❌ DON'T: Skip feedback</h4>
+<p>Feedback improves system accuracy.</p>
+<h4>✅ DO: Minimize Background Noise</h4>
+<ul>
+<li>Close windows and doors</li>
+<li>Turn off noisy equipment</li>
+<li>Use consistent positioning</li>
+</ul>
+<h4>❌ DON'T: Scan in noisy environments</h4>
+<p>Background noise reduces accuracy.</p>
+<h3>API Usage</h3>
+<h4>✅ DO: Implement Error Handling</h4>
+<pre><code class="language-python">try:
+    result = client.perform_scan(config)
+except requests.RequestException as e:
+    print(f&quot;API error: {e}&quot;)
+</code></pre>
+<h4>❌ DON'T: Assume API calls always succeed</h4>
+<p>Network issues can cause failures.</p>
+<h4>✅ DO: Use Rate Limiting</h4>
+<pre><code class="language-python">import time
+
+def scan_with_delay(config):
+    result = client.perform_scan(config)
+    time.sleep(1)  # Rate limiting
+    return result
+</code></pre>
+<h4>❌ DON'T: Overload the API</h4>
+<p>Excessive requests can cause performance issues.</p>
+<h4>✅ DO: Cache Results When Appropriate</h4>
+<pre><code class="language-python">from functools import lru_cache
+
+@lru_cache(maxsize=100)
+def cached_scan(frequency, duration):
+    config = ScanConfig(frequency=frequency, duration=duration)
+    return client.perform_scan(config)
+</code></pre>
+<h4>❌ DON'T: Cache everything</h4>
+<p>Some data should always be fresh.</p>
+<h3>Production Deployment</h3>
+<h4>✅ DO: Use HTTPS</h4>
+<pre><code class="language-nginx">server {
+    listen 443 ssl;
+    ssl_certificate /path/to/cert.pem;
+    ssl_certificate_key /path/to/key.pem;
+}
+</code></pre>
+<h4>❌ DON'T: Use HTTP in production</h4>
+<p>Unencrypted traffic is insecure.</p>
+<h4>✅ DO: Implement Monitoring</h4>
+<pre><code class="language-python"># Health check endpoint
+@app.get(&quot;/health&quot;)
+async def health():
+    return {&quot;status&quot;: &quot;healthy&quot;}
+</code></pre>
+<h4>❌ DON'T: Deploy without monitoring</h4>
+<p>You need to know when problems occur.</p>
+<h4>✅ DO: Use Environment Variables</h4>
+<pre><code class="language-bash">export SCRIBE_API_KEY=&quot;your-secret-key&quot;
+export SCRIBE_DB_PATH=&quot;/data/scribe.db&quot;
+</code></pre>
+<h4>❌ DON'T: Hardcode credentials</h4>
+<p>Credentials should never be in source code.</p>
+<h3>Development</h3>
+<h4>✅ DO: Follow Coding Standards</h4>
+<pre><code class="language-python"># Use type hints
+def perform_scan(config: ScanConfig) -&gt; Dict[str, Any]:
+    &quot;&quot;&quot;Perform a resonance scan.&quot;&quot;&quot;
+    pass
+
+# Use docstrings
+class ScribeClient:
+    &quot;&quot;&quot;Client for SCRIBE API.&quot;&quot;&quot;
+    pass
+</code></pre>
+<h4>❌ DON'T: Ignore code quality</h4>
+<p>Maintainable code is important.</p>
+<h4>✅ DO: Write Tests</h4>
+<pre><code class="language-python">import pytest
+
+def test_scan_performance():
+    client = ScribeClient()
+    config = ScanConfig(frequency=440, duration=1.0)
+    result = client.perform_scan(config)
+    assert 'interpretation' in result
+</code></pre>
+<h4>❌ DON'T: Skip testing</h4>
+<p>Tests prevent regressions.</p>
+<h4>✅ DO: Document Changes</h4>
+<pre><code class="language-markdown">## Changes
+- Added new signal type 'chirp'
+- Improved error handling
+- Updated documentation
+</code></pre>
+<h4>❌ DON'T: Make undocumented changes</h4>
+<p>Documentation helps other developers.</p>
+<h3>Security</h3>
+<h4>✅ DO: Use API Keys</h4>
+<pre><code class="language-python">client = ScribeClient(api_key=&quot;secure-api-key&quot;)
+</code></pre>
+<h4>❌ DON'T: Expose API without authentication</h4>
+<p>Unprotected APIs are security risks.</p>
+<h4>✅ DO: Validate Input</h4>
+<pre><code class="language-python">def validate_frequency(frequency):
+    if not 20 &lt;= frequency &lt;= 20000:
+        raise ValueError(&quot;Frequency out of range&quot;)
+</code></pre>
+<h4>❌ DON'T: Trust user input</h4>
+<p>Always validate external data.</p>
+<h4>✅ DO: Use HTTPS</h4>
+<pre><code class="language-python"># Use HTTPS URLs
+client = ScribeClient(base_url=&quot;https://scribe.example.com&quot;)
+</code></pre>
+<h4>❌ DON'T: Use HTTP for sensitive data</h4>
+<p>HTTP traffic can be intercepted.</p>
+<h3>Data Management</h3>
+<h4>✅ DO: Backup Regularly</h4>
+<pre><code class="language-bash"># Backup database
+cp scribe_learning.db backup/scribe_$(date +%Y%m%d).db
+</code></pre>
+<h4>❌ DON'T: Lose data</h4>
+<p>Regular backups prevent data loss.</p>
+<h4>✅ DO: Clean Old Data</h4>
+<pre><code class="language-python"># Clean old scan history
+if len(scan_history) &gt; max_history:
+    scan_history = scan_history[-max_history:]
+</code></pre>
+<h4>❌ DON'T: Let data grow indefinitely</h4>
+<p>Unlimited growth causes performance issues.</p>
+<h4>✅ DO: Monitor Storage</h4>
+<pre><code class="language-bash"># Check disk usage
+df -h
+du -sh scribe_learning.db
+</code></pre>
+<h4>❌ DON'T: Ignore storage limits</h4>
+<p>Running out of space causes failures.</p>
+<h2> Advanced Tips</h2>
+<h3>Performance Optimization</h3>
+<h4>Use Appropriate Buffer Sizes</h4>
+<pre><code class="language-json">{
+  &quot;audio&quot;: {
+    &quot;chunk_size&quot;: 1024,
+    &quot;buffer_size&quot;: 4096
+  }
+}
+</code></pre>
+<h4>Optimize FFT Parameters</h4>
+<pre><code class="language-json">{
+  &quot;processing&quot;: {
+    &quot;window_size&quot;: 2048,
+    &quot;n_fft&quot;: 2048
+  }
+}
+</code></pre>
+<h4>Enable Caching</h4>
+<pre><code class="language-python">from functools import lru_cache
+
+@lru_cache(maxsize=1000)
+def cached_interpretation(features_hash):
+    return interpret_features(features_hash)
+</code></pre>
+<h3>Accuracy Improvement</h3>
+<h4>Use Multiple Frequencies</h4>
+<pre><code class="language-python">frequencies = [220, 440, 880, 1760]
+results = []
+for freq in frequencies:
+    result = client.perform_scan(ScanConfig(frequency=freq))
+    results.append(result)
+</code></pre>
+<h4>Provide Consistent Feedback</h4>
+<pre><code class="language-python"># Always provide feedback
+for scan in scans:
+    if scan.confidence &lt; 0.7:
+        client.add_feedback(scan.scan_id, &quot;rating&quot;, 3)
+</code></pre>
+<h4>Train for Specific Environments</h4>
+<pre><code class="language-python"># Specialize for room acoustics
+config = {
+    &quot;ai&quot;: {
+        &quot;confidence_threshold&quot;: 0.8,
+        &quot;pattern_adaptation&quot;: True
+    }
+}
+</code></pre>
+<h3>Integration Patterns</h3>
+<h4>Circuit Breaker Pattern</h4>
+<pre><code class="language-python">class CircuitBreaker:
+    def __init__(self, failure_threshold=5):
+        self.failure_threshold = failure_threshold
+        self.failure_count = 0
+    
+    def call(self, func, *args, **kwargs):
+        if self.failure_count &gt;= self.failure_threshold:
+            raise Exception(&quot;Circuit breaker open&quot;)
+        
+        try:
+            return func(*args, **kwargs)
+        except:
+            self.failure_count += 1
+            raise
+</code></pre>
+<h4>Retry Pattern</h4>
+<pre><code class="language-python">import time
+
+def retry_call(func, max_attempts=3):
+    for attempt in range(max_attempts):
+        try:
+            return func()
+        except Exception as e:
+            if attempt == max_attempts - 1:
+                raise
+            time.sleep(2 ** attempt)
+</code></pre>
+<h2> Common Scenarios</h2>
+<h3>Material Identification</h3>
+<pre><code class="language-bash"># Best practices for material analysis
+ SCRIBE&gt; /scan --type=sine --frequency=440 --duration=2
+ SCRIBE&gt; /scan --type=sine --frequency=880 --duration=2
+ SCRIBE&gt; Compare these scans
+ SCRIBE&gt; /feedback material oak
+</code></pre>
+<h3>Room Acoustics</h3>
+<pre><code class="language-bash"># Best practices for room analysis
+ SCRIBE&gt; /scan --type=sweep --duration=5
+ SCRIBE&gt; How reverberant is this room?
+ SCRIBE&gt; What are the room modes?
+</code></pre>
+<h3>Quality Control</h3>
+<pre><code class="language-bash"># Best practices for quality control
+ SCRIBE&gt; /scan --type=pulse --duration=1
+ SCRIBE&gt; Detect any anomalies
+ SCRIBE&gt; /feedback rating 5
+</code></pre>
+<h3>Continuous Monitoring</h3>
+<pre><code class="language-python"># Best practices for monitoring
+import asyncio
+
+async def monitor_continuously():
+    client = ScribeClient()
+    
+    while True:
+        result = client.perform_scan(ScanConfig(frequency=440, duration=2))
+        
+        if result['interpretation']['confidence_scores']['overall'] &lt; 0.7:
+            # Send alert
+            await send_alert(result)
+        
+        await asyncio.sleep(60)  # Check every minute
+</code></pre>
+<h2> Troubleshooting Checklist</h2>
+<h3>Before Contacting Support</h3>
+<ul>
+<li>[ ] Check system status: <code>/status</code></li>
+<li>[ ] Run validation: <code>python3 validate_system.py</code></li>
+<li>[ ] Check logs: <code>tail -f scribe.log</code></li>
+<li>[ ] Verify configuration: Review config.json</li>
+<li>[ ] Test with simple scan: <code>/scan --type=sine --frequency=440</code></li>
+<li>[ ] Check system resources: <code>top</code>, <code>df -h</code></li>
+</ul>
+<h3>Common Issues and Solutions</h3>
+<p>| Issue | Solution |
+|-------|----------|
+| Low confidence | Reduce noise, adjust parameters, provide feedback |
+| Slow performance | Optimize configuration, check resources |
+| API errors | Check connectivity, verify API key |
+| Audio issues | Use mock audio, check hardware |
+| Memory issues | Reduce history, restart system |</p>
+<h3>Getting Help</h3>
+<ol>
+<li><strong>Check this FAQ</strong> - Most issues are covered here</li>
+<li><strong>Review documentation</strong> - Check relevant sections</li>
+<li><strong>Search issues</strong> - Look for similar problems</li>
+<li><strong>Provide details</strong> - Include error messages and configuration</li>
+<li><strong>Describe environment</strong> - OS, Python version, hardware specs</li>
+</ol>
+<hr />
+<p><strong>Last Updated</strong>: 2026-05-06<br />
+<strong>FAQ Version</strong>: 1.0.0<br />
+<strong>Status</strong>: Production Ready</p>
+
+    </div>
+</section>
+
+</main>
+
+<footer>
+
+    <div class="float">
+        <h3>SCRIBE Resonance AI System</h3>
+        <p>Advanced Acoustic Intelligence Platform</p>
+        <p>© 2026 Robert Trenaman | Software Customs (Auto Bot Solution) | All Rights Reserved</p>
+        <p>autobotsolution@gmail.com | Flushing, MI</p>
+    </div>
+    <div class="rotate">
+        <p class="pulse">Official Documentation Portal</p>
+    </div>
+
+</footer>
+</body>
+</html>

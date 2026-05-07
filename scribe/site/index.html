@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SCRIBE Resonance AI System // Official Documentation Portal</title>
+<style>
+    body {
+        margin: 0;
+        font-family: "Courier New", monospace;
+        background: radial-gradient(circle at center, #0a0f1f, #000000);
+        color: #00ffe1;
+        overflow-x: hidden;
+        min-height: 100vh;
+    }
+
+    header {
+        text-align: center;
+        padding: 40px;
+        border-bottom: 1px solid rgba(0,255,225,0.2);
+        position: relative;
+    }
+
+    h1 {
+        font-size: 48px;
+        letter-spacing: 4px;
+        text-shadow: 0 0 15px #00ffe1;
+        background: linear-gradient(45deg, #00ffe1, #7df9ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 0;
+    }
+
+    h2 {
+        color: #7df9ff;
+        margin-top: 40px;
+        font-size: 28px;
+        text-shadow: 0 0 5px #7df9ff;
+    }
+
+    h3 {
+        color: #00ff88;
+        margin-top: 30px;
+        font-size: 22px;
+    }
+
+    h4 {
+        color: #ffaa00;
+        margin-top: 20px;
+        font-size: 18px;
+    }
+
+    section {
+        padding: 40px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .panel {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 25px;
+        margin-top: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,255,225,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .panel:hover {
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+        transform: translateY(-2px);
+    }
+
+    .pulse {
+        animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 0.6; }
+        50% { opacity: 1; }
+        100% { opacity: 0.6; }
+    }
+
+    .highlight {
+        background: rgba(0, 255, 225, 0.1);
+        border-left: 4px solid #00ffe1;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+    }
+
+    .metric {
+        display: inline-block;
+        background: rgba(0, 255, 225, 0.15);
+        padding: 8px 15px;
+        margin: 5px;
+        border-radius: 20px;
+        font-size: 14px;
+        border: 1px solid rgba(0,255,225,0.3);
+    }
+
+    .success {
+        color: #00ff88;
+        font-weight: bold;
+    }
+
+    .warning {
+        color: #ffaa00;
+        font-weight: bold;
+    }
+
+    .critical {
+        color: #ff4444;
+        font-weight: bold;
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px;
+        border-top: 1px solid rgba(0,255,225,0.2);
+        font-size: 14px;
+        color: #888;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .timeline {
+        position: relative;
+        padding-left: 30px;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #00ffe1;
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 20px;
+        padding-left: 20px;
+    }
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -25px;
+        top: 5px;
+        width: 10px;
+        height: 10px;
+        background: #00ffe1;
+        border-radius: 50%;
+    }
+
+    .chart {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 20px;
+        background: rgba(0, 255, 225, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 10px 0;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #00ffe1, #7df9ff);
+        border-radius: 10px;
+        transition: width 1s ease;
+    }
+
+    .interactive {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: #00ffe1;
+        display: block;
+    }
+
+    .interactive:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(0,255,225,0.3);
+        color: #7df9ff;
+    }
+
+    .glow {
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #00ffe1, 0 0 20px #00ffe1; }
+        to { text-shadow: 0 0 20px #00ffe1, 0 0 30px #00ffe1; }
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(10, 15, 31, 0.95);
+        border-bottom: 1px solid rgba(0,255,225,0.2);
+        padding: 15px 30px;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+    }
+
+    .nav-menu ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-menu li {
+        margin: 0 15px;
+    }
+
+    .nav-menu a {
+        color: #00ffe1;
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .nav-menu a:hover {
+        color: #7df9ff;
+        background: rgba(0,255,225,0.1);
+        transform: translateY(-2px);
+    }
+
+    .doc-card {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 20px;
+        margin: 15px 0;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .doc-card:hover {
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+        transform: translateY(-3px);
+        border-color: rgba(0,255,225,0.4);
+    }
+
+    .doc-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #00ffe1, #7df9ff);
+    }
+
+    .doc-title {
+        font-size: 20px;
+        color: #7df9ff;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .doc-description {
+        color: #00ffe1;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+    .doc-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(0,255,225,0.1);
+    }
+
+    .doc-type {
+        background: rgba(0, 255, 225, 0.15);
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        color: #00ff88;
+    }
+
+    .doc-size {
+        font-size: 12px;
+        color: #888;
+    }
+
+    .hero-section {
+        text-align: center;
+        padding: 80px 40px;
+        background: linear-gradient(135deg, rgba(0,255,225,0.05), rgba(125,249,255,0.05));
+        border-radius: 20px;
+        margin: 40px 0;
+    }
+
+    .hero-title {
+        font-size: 36px;
+        color: #7df9ff;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px #7df9ff;
+    }
+
+    .hero-subtitle {
+        font-size: 18px;
+        color: #00ffe1;
+        margin-bottom: 30px;
+        opacity: 0.9;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background: linear-gradient(45deg, #00ffe1, #7df9ff);
+        color: #0a0f1f;
+        padding: 12px 30px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        margin: 10px;
+    }
+
+    .cta-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(0,255,225,0.5);
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin: 40px 0;
+    }
+
+    .stat-card {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+    }
+
+    .stat-number {
+        font-size: 32px;
+        font-weight: bold;
+        color: #00ff88;
+        margin-bottom: 10px;
+    }
+
+    .stat-label {
+        font-size: 14px;
+        color: #00ffe1;
+        opacity: 0.8;
+    }
+
+    main {
+        padding-top: 80px;
+    }
+</style>
+</head>
+<body>
+
+<nav class="nav-menu">
+    <ul>
+        <li><a href="directory.html">Directory</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="README.html">Documentation</a></li>
+        <li><a href="api.html">Technical</a></li>
+        <li><a href="Investors-Thesis.html">Business</a></li>
+        <li><a href="community.html">About</a></li>
+        <li><a href="faq.html">Contact</a></li>
+    </ul>
+</nav>
+
+<main>
+<header>
+    <h1 class="glow">SCRIBE Resonance AI System</h1>
+    <p class="pulse">Advanced Acoustic Intelligence Platform - Official Documentation Portal</p>
+    <div class="metric success">Production Ready</div>
+    <div class="metric success">Enterprise Grade</div>
+    <div class="metric success">Open Source</div>
+</header>
+
+<section id="home">
+    <div class="hero-section">
+        <h2 class="hero-title">Welcome to SCRIBE Documentation</h2>
+        <p class="hero-subtitle">Comprehensive documentation for the revolutionary acoustic intelligence platform</p>
+        <a href="#documentation" class="cta-button">Explore Documentation</a>
+        <a href="#technical" class="cta-button">Technical Details</a>
+        <a href="#business" class="cta-button">Business Info</a>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">100,000+</div>
+            <div class="stat-label">Words of Documentation</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">25+</div>
+            <div class="stat-label">Document Files</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Code Examples</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">18</div>
+            <div class="stat-label">Main Sections</div>
+        </div>
+    </div>
+</section>
+
+<section id="documentation">
+    <h2> Complete Documentation</h2>
+    
+    <div class="panel">
+        <h3>System Wiki</h3>
+        <p>Comprehensive documentation covering all aspects of the SCRIBE system</p>
+        
+        <div class="grid">
+            <div class="doc-card">
+                <div class="doc-title"> Main Wiki</div>
+                <div class="doc-description">Complete system overview and navigation hub</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Wiki</span>
+                    <span class="doc-size">README.html</span>
+                </div>
+                <a href="README.html" class="interactive">View Documentation →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title"> Quick Reference</div>
+                <div class="doc-description">Fast access to common commands and configurations</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Reference</span>
+                    <span class="doc-size">quick_refrance.html</span>
+                </div>
+                <a href="quick_refrance.html" class="interactive">View Reference →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title"> Comprehensive Index</div>
+                <div class="doc-description">Complete index of all documentation topics</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Index</span>
+                    <span class="doc-size">INDEX.html</span>
+                </div>
+                <a href="index.html" class="interactive">Browse Index →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">️ System Architecture</div>
+                <div class="doc-description">Detailed system design and component architecture</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Technical</span>
+                    <span class="doc-size">architecture.html</span>
+                </div>
+                <a href="architecture.html" class="interactive">View Architecture →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title"> Components</div>
+                <div class="doc-description">Individual component documentation and APIs</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Technical</span>
+                    <span class="doc-size">components.html</span>
+                </div>
+                <a href="components.html" class="interactive">View Components →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title"> API Documentation</div>
+                <div class="doc-description">Complete API reference and examples</div>
+                <div class="doc-meta">
+                    <span class="doc-type">API</span>
+                    <span class="doc-size">api.html</span>
+                </div>
+                <a href="api.html" class="interactive">View API Docs →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title"> User Guide</div>
+                <div class="doc-description">Complete user manual and tutorials</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Guide</span>
+                    <span class="doc-size">user-guide.html</span>
+                </div>
+                <a href="user-guide.html" class="interactive">View User Guide →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title"> Developer Guide</div>
+                <div class="doc-description">Development setup and contribution guidelines</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Development</span>
+                    <span class="doc-size">developer.html</span>
+                </div>
+                <a href="developer.html" class="interactive">View Developer Guide →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title"> Deployment Guide</div>
+                <div class="doc-description">Installation, setup, and deployment instructions</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Operations</span>
+                    <span class="doc-size">deployment.html</span>
+                </div>
+                <a href="deployment.html" class="interactive">View Deployment →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title"> Security Guide</div>
+                <div class="doc-description">Security best practices and compliance</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Security</span>
+                    <span class="doc-size">security.html</span>
+                </div>
+                <a href="security.html" class="interactive">View Security →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title"> Performance Guide</div>
+                <div class="doc-description">Optimization and performance tuning</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Performance</span>
+                    <span class="doc-size">performance.html</span>
+                </div>
+                <a href="performance.html" class="interactive">View Performance →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title"> Integrations</div>
+                <div class="doc-description">Integration examples and third-party connections</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Integration</span>
+                    <span class="doc-size">integrations.html</span>
+                </div>
+                <a href="integrations.html" class="interactive">View Integrations →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title"> Tutorials</div>
+                <div class="doc-description">Step-by-step tutorials and examples</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Tutorial</span>
+                    <span class="doc-size">tutorials.html</span>
+                </div>
+                <a href="tutorials.html" class="interactive">View Tutorials →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title">❓ FAQ</div>
+                <div class="doc-description">Frequently asked questions and best practices</div>
+                <div class="doc-meta">
+                    <span class="doc-type">FAQ</span>
+                    <span class="doc-size">faq.html</span>
+                </div>
+                <a href="faq.html" class="interactive">View FAQ →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title"> Changelog</div>
+                <div class="doc-description">Version history and release notes</div>
+                <div class="doc-meta">
+                    <span class="doc-type">History</span>
+                    <span class="doc-size">changelog.html</span>
+                </div>
+                <a href="changelog.html" class="interactive">View Changelog →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title"> Glossary</div>
+                <div class="doc-description">Technical terminology and definitions</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Reference</span>
+                    <span class="doc-size">glossary.html</span>
+                </div>
+                <a href="glossary.html" class="interactive">View Glossary →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title"> Community</div>
+                <div class="doc-description">Community guidelines and contribution</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Community</span>
+                    <span class="doc-size">community.html</span>
+                </div>
+                <a href="community.html" class="interactive">View Community →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="technical">
+    <h2>️ Technical Documentation</h2>
+    
+    <div class="panel">
+        <h3>Advanced Technical Resources</h3>
+        <p>In-depth technical documentation for developers and engineers</p>
+        
+        <div class="grid">
+            <div class="doc-card">
+                <div class="doc-title"> Developer Thesis</div>
+                <div class="doc-description">Complete technical architecture and implementation details</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Technical</span>
+                    <span class="doc-size">HTML</span>
+                </div>
+                <a href="Developer-Thesis.html" class="interactive">View Developer Thesis →</a>
+            </div>
+
+            <div class="doc-card">
+                <div class="doc-title"> Long-Term Vision</div>
+                <div class="doc-description">Strategic vision and future development roadmap</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Strategic</span>
+                    <span class="doc-size">HTML</span>
+                </div>
+                <a href="Long-Term Vision.html" class="interactive">View Vision →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>License Information</h3>
+        <p>Complete licensing and legal documentation</p>
+        
+        <div class="grid">
+        </div>
+    </div>
+</section>
+
+<section id="business">
+    <h2> Business & Investment</h2>
+    
+    <div class="panel">
+        <h3>Investment and Business Information</h3>
+        <p>Comprehensive business documentation for investors and partners</p>
+        
+        <div class="doc-card">
+            <div class="doc-title"> Investment Thesis</div>
+
+            <div class="doc-card">
+                <div class="doc-title">Developer Thesis</div>
+                <div class="doc-description">Technical documentation for developers</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Thesis</span>
+                    <span class="doc-size">Developer-Thesis.html</span>
+                </div>
+                <a href="Developer-Thesis.html" class="interactive">View Developer Thesis →</a>
+            </div>
+            <div class="doc-card">
+                <div class="doc-title">Investor Thesis</div>
+                <div class="doc-description">Business documentation for investors</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Thesis</span>
+                    <span class="doc-size">Investors-Thesis.html</span>
+                </div>
+                <a href="Investors-Thesis.html" class="interactive">View Investor Thesis →</a>
+            </div>
+            <div class="doc-card">
+                <div class="doc-title">Long-Term Vision</div>
+                <div class="doc-description">Strategic vision and roadmap</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Documentation</span>
+                    <span class="doc-size">Long-Term Vision.html</span>
+                </div>
+                <a href="Long-Term Vision.html" class="interactive">View Long-Term Vision →</a>
+            </div>
+            <div class="doc-card">
+                <div class="doc-title">Configuration</div>
+                <div class="doc-description">System configuration guide</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Config</span>
+                    <span class="doc-size">configuration.html</span>
+                </div>
+                <a href="configuration.html" class="interactive">View Configuration →</a>
+            </div>
+            <div class="doc-card">
+                <div class="doc-title">Documentation Index</div>
+                <div class="doc-description">Main documentation index</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Index</span>
+                    <span class="doc-size">index.html</span>
+                </div>
+                <a href="index.html" class="interactive">View Documentation Index →</a>
+            </div>
+            <div class="doc-card">
+                <div class="doc-title">Site Map</div>
+                <div class="doc-description">Complete site navigation</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Navigation</span>
+                    <span class="doc-size">site_map.html</span>
+                </div>
+                <a href="site_map.html" class="interactive">View Site Map →</a>
+            </div>
+            <div class="doc-card">
+                <div class="doc-title">Troubleshooting</div>
+                <div class="doc-description">Common issues and solutions</div>
+                <div class="doc-meta">
+                    <span class="doc-type">Support</span>
+                    <span class="doc-size">troubleshooting.html</span>
+                </div>
+                <a href="troubleshooting.html" class="interactive">View Troubleshooting →</a>
+            </div>
+            <div class="doc-description">Complete investment opportunity analysis and market potential</div>
+            <div class="doc-meta">
+                <span class="doc-type">Business</span>
+                <span class="doc-size">HTML</span>
+            </div>
+            <a href="Investors-Thesis.html" class="interactive">View Investment Thesis →</a>
+        </div>
+    </div>
+</section>
+
+<section id="about">
+    <h2> About SCRIBE</h2>
+    
+    <div class="panel">
+        <h3>Project Overview</h3>
+        <p>SCRIBE (Sonic Resonance Intelligence and Behavioral Exploration) is a revolutionary acoustic intelligence platform that actively explores and understands environments through sophisticated signal-response analysis.</p>
+        
+        <div class="highlight">
+            <h4>Key Features</h4>
+            <ul>
+                <li><strong>Active Resonance Sensing:</strong> Unlike passive systems, SCRIBE actively sends signals and analyzes responses</li>
+                <li><strong>Machine Learning Integration:</strong> Advanced AI for pattern recognition and prediction</li>
+                <li><strong>Real-time Processing:</strong> Sub-second analysis with 85-95% accuracy</li>
+                <li><strong>Enterprise Grade:</strong> Scalable architecture for production deployment</li>
+                <li><strong>Multi-industry Applications:</strong> Manufacturing, healthcare, construction, aerospace</li>
+            </ul>
+        </div>
+        
+        <div class="grid">
+            <div class="panel">
+                <h4>️ Technology Stack</h4>
+                <ul>
+                    <li>Python 3.13+</li>
+                    <li>NumPy & SciPy</li>
+                    <li>Machine Learning</li>
+                    <li>FastAPI</li>
+                    <li>Docker</li>
+                </ul>
+            </div>
+            <div class="panel">
+                <h4> Performance</h4>
+                <ul>
+                    <li>2-8 second processing</li>
+                    <li>85-95% accuracy</li>
+                    <li>100-200MB RAM usage</li>
+                    <li>20-30 scans/minute</li>
+                    <li>99.98% uptime</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2> Contact Information</h2>
+    
+    <div class="panel">
+        <h3>Get in Touch</h3>
+        
+        <div class="grid">
+            <div class="panel">
+                <h4> Founder & Developer</h4>
+                <p><strong>Name:</strong> Robert Trenaman</p>
+                <p><strong>Company:</strong> Software Customs (Auto Bot Solution)</p>
+                <p><strong>Email:</strong> autobotsolution@gmail.com</p>
+                <p><strong>Location:</strong> Flushing, MI</p>
+            </div>
+            <div class="panel">
+                <h4> Support</h4>
+                <p><strong>Technical Support:</strong> Available through documentation</p>
+                <p><strong>Business Inquiries:</strong> Contact via email</p>
+                <p><strong>Investment Info:</strong> See Investment Thesis</p>
+                <p><strong>License Info:</strong> See License Documentation</p>
+            </div>
+        </div>
+        
+        <div class="highlight">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><strong>Documentation:</strong> Complete wiki system available</li>
+                <li><strong>Development:</strong> Open source with commercial license</li>
+                <li><strong>Investment:</strong> Series A opportunity available</li>
+                <li><strong>Partnership:</strong> Enterprise partnerships welcome</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div class="float">
+        <h3>SCRIBE Resonance AI System</h3>
+        <p>Advanced Acoustic Intelligence Platform</p>
+        <p>© 2026 Robert Trenaman | Software Customs (Auto Bot Solution) | All Rights Reserved</p>
+        <p>autobotsolution@gmail.com | Flushing, MI</p>
+    </div>
+    <div class="rotate">
+        <p class="pulse">Official Documentation Portal</p>
+    </div>
+</footer>
+</body>
+</html>

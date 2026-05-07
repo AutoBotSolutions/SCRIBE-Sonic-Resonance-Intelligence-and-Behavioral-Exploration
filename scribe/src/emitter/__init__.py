@@ -1,0 +1,3 @@
+"""
+SCRIBE Resonance Emission Components
+"""

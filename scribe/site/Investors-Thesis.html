@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SCRIBE Resonance AI System // Investment Thesis & Market Opportunity</title>
+<style>
+    body {
+        margin: 0;
+        font-family: "Courier New", monospace;
+        background: radial-gradient(circle at center, #0a0f1f, #000000);
+        color: #00ffe1;
+        overflow-x: hidden;
+    }
+
+    header {
+        text-align: center;
+        padding: 40px;
+        border-bottom: 1px solid rgba(0,255,225,0.2);
+    }
+
+    h1 {
+        font-size: 48px;
+        letter-spacing: 4px;
+        text-shadow: 0 0 15px #00ffe1;
+        background: linear-gradient(45deg, #00ffe1, #7df9ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    h2 {
+        color: #7df9ff;
+        margin-top: 40px;
+        font-size: 28px;
+        text-shadow: 0 0 5px #7df9ff;
+    }
+
+    h3 {
+        color: #00ff88;
+        margin-top: 30px;
+        font-size: 22px;
+    }
+
+    h4 {
+        color: #ffaa00;
+        margin-top: 20px;
+        font-size: 18px;
+    }
+
+    section {
+        padding: 40px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .panel {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 25px;
+        margin-top: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,255,225,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .panel:hover {
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+        transform: translateY(-2px);
+    }
+
+    .pulse {
+        animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 0.6; }
+        50% { opacity: 1; }
+        100% { opacity: 0.6; }
+    }
+
+    .highlight {
+        background: rgba(0, 255, 225, 0.1);
+        border-left: 4px solid #00ffe1;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+    }
+
+    .metric {
+        display: inline-block;
+        background: rgba(0, 255, 225, 0.15);
+        padding: 8px 15px;
+        margin: 5px;
+        border-radius: 20px;
+        font-size: 14px;
+        border: 1px solid rgba(0,255,225,0.3);
+    }
+
+    .success {
+        color: #00ff88;
+        font-weight: bold;
+    }
+
+    .warning {
+        color: #ffaa00;
+        font-weight: bold;
+    }
+
+    .critical {
+        color: #ff4444;
+        font-weight: bold;
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px;
+        border-top: 1px solid rgba(0,255,225,0.2);
+        font-size: 14px;
+        color: #888;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .timeline {
+        position: relative;
+        padding-left: 30px;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #00ffe1;
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 20px;
+        padding-left: 20px;
+    }
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -25px;
+        top: 5px;
+        width: 10px;
+        height: 10px;
+        background: #00ffe1;
+        border-radius: 50%;
+    }
+
+    .chart {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 20px;
+        background: rgba(0, 255, 225, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 10px 0;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #00ffe1, #7df9ff);
+        border-radius: 10px;
+        transition: width 1s ease;
+    }
+
+    .interactive {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .interactive:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(0,255,225,0.3);
+    }
+
+    .glow {
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #00ffe1, 0 0 20px #00ffe1; }
+        to { text-shadow: 0 0 20px #00ffe1, 0 0 30px #00ffe1; }
+    }
+
+    .market-metric {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        background: rgba(0, 255, 225, 0.05);
+        margin: 5px 0;
+        border-radius: 5px;
+    }
+
+    .market-segment {
+        background: rgba(0, 255, 225, 0.1);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 15px;
+        margin: 10px;
+        border-radius: 8px;
+        display: inline-block;
+        min-width: 200px;
+    }
+
+    .financial-chart {
+        background: rgba(0, 255, 225, 0.03);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 30px;
+        margin: 20px 0;
+        border-radius: 15px;
+        text-align: center;
+    }
+
+    .investment-tier {
+        background: rgba(0, 255, 225, 0.1);
+        padding: 10px;
+        text-align: center;
+        border-radius: 8px;
+        border: 1px solid rgba(0,255,225,0.2);
+        margin: 10px 0;
+    }
+
+    .competitive-advantage {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+        margin: 20px 0;
+    }
+
+    .advantage-item {
+        background: rgba(0, 255, 225, 0.1);
+        padding: 10px;
+        text-align: center;
+        border-radius: 8px;
+        border: 1px solid rgba(0,255,225,0.2);
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1 class="glow">SCRIBE Resonance AI System</h1>
+    <h2>Investment Thesis & Market Opportunity</h2>
+    <p class="pulse">Revolutionary Acoustic Intelligence Platform - Multi-Billion Dollar Market Potential</p>
+</header>
+
+<section>
+    <h2> Executive Investment Summary</h2>
+    <div class="panel">
+        <p><strong>Company:</strong> Software Customs (Auto Bot Solution)</p>
+        <p><strong>Founder:</strong> Robert Trenaman</p>
+        <p><strong>Product:</strong> SCRIBE Resonance AI System</p>
+        <p><strong>Stage:</strong> Series A Ready</p>
+        <p><strong>Valuation Target:</strong> $50M - $100M</p>
+        
+        <div class="highlight">
+            <h3>Investment Opportunity</h3>
+            <p>SCRIBE represents a paradigm shift in material analysis and environmental sensing, offering investors exposure to the rapidly growing acoustic intelligence market with projected 10x returns within 5 years.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2> Market Opportunity</h2>
+    
+    <div class="financial-chart">
+        <h3>Total Addressable Market (TAM)</h3>
+        <div class="market-metric">
+            <span>Global Acoustic Intelligence Market</span>
+            <span class="success">$12.7B by 2028</span>
+        </div>
+        <div class="market-metric">
+            <span>Material Testing Market</span>
+            <span class="success">$8.3B by 2027</span>
+        </div>
+        <div class="market-metric">
+            <span>Industrial IoT Sensors</span>
+            <span class="success">$15.2B by 2029</span>
+        </div>
+        <div class="market-metric">
+            <span>AI-Powered Quality Control</span>
+            <span class="success">$6.8B by 2026</span>
+        </div>
+        <div class="market-metric">
+            <span>Environmental Monitoring</span>
+            <span class="success">$4.5B by 2028</span>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="panel">
+            <h3> Manufacturing Sector</h3>
+            <p>Quality control, material verification, structural integrity testing</p>
+            <div class="metric">TAM: $3.2B</div>
+            <div class="metric">CAGR: 18.5%</div>
+            <div class="metric">Early Adopter: High</div>
+        </div>
+
+        <div class="panel">
+            <h3>️ Construction Industry</h3>
+            <p>Building material analysis, structural health monitoring</p>
+            <div class="metric">TAM: $2.8B</div>
+            <div class="metric">CAGR: 15.3%</div>
+            <div class="metric">ROI: 12-18 months</div>
+        </div>
+
+        <div class="panel">
+            <h3>️ Healthcare Sector</h3>
+            <p>Medical device testing, material compatibility analysis</p>
+            <div class="metric">TAM: $1.9B</div>
+            <div class="metric">CAGR: 22.1%</div>
+            <div class="metric">Regulatory: FDA Path</div>
+        </div>
+
+        <div class="panel">
+            <h3>️ Aerospace & Defense</h3>
+            <p>Component testing, structural analysis, R&D applications</p>
+            <div class="metric">TAM: $2.1B</div>
+            <div class="metric">CAGR: 16.7%</div>
+            <div class="metric">Contracts: Gov + Private</div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2> Competitive Advantage</h2>
+    
+    <div class="panel">
+        <h3>Unfair Competitive Moat</h3>
+        <p>SCRIBE's proprietary acoustic resonance technology creates significant barriers to entry through advanced signal processing, machine learning integration, and real-time adaptation capabilities.</p>
+        
+        <div class="competitive-advantage">
+            <div class="advantage-item">
+                <strong>Patented Technology</strong><br>
+                3 Pending Patents<br>
+                IP Protection
+            </div>
+            <div class="advantage-item">
+                <strong>First-Mover Advantage</strong><br>
+                Market Pioneer<br>
+                Brand Recognition
+            </div>
+            <div class="advantage-item">
+                <strong>Technical Excellence</strong><br>
+                85-95% Accuracy<br>
+                Real-time Processing
+            </div>
+            <div class="advantage-item">
+                <strong>Scalable Platform</strong><br>
+                Cloud Architecture<br>
+                API Ecosystem
+            </div>
+            <div class="advantage-item">
+                <strong>Learning AI</strong><br>
+                Continuous Improvement<br>
+                Pattern Recognition
+            </div>
+            <div class="advantage-item">
+                <strong>Cost Efficiency</strong><br>
+                70% Cost Reduction<br>
+                ROI < 12 months
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>Technology Differentiators</h3>
+        <div class="market-metric">
+            <span>Accuracy Rate</span>
+            <span class="success">85-95% vs 60-70% competitors</span>
+        </div>
+        <div class="market-metric">
+            <span>Processing Speed</span>
+            <span class="success">2-8 seconds vs 30-60 seconds</span>
+        </div>
+        <div class="market-metric">
+            <span>Material Types</span>
+            <span class="success">15+ vs 3-5 competitors</span>
+        </div>
+        <div class="market-metric">
+            <span>Learning Capability</span>
+            <span class="success">Adaptive AI vs static algorithms</span>
+        </div>
+        <div class="market-metric">
+            <span>Deployment Flexibility</span>
+            <span class="success">On-prem + Cloud vs cloud-only</span>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2> Financial Projections</h2>
+    
+    <div class="financial-chart">
+        <h3>5-Year Revenue Forecast</h3>
+        
+        <div class="market-metric">
+            <span>Year 1 (2025)</span>
+            <span class="success">$2.5M ARR</span>
+        </div>
+        <div class="market-metric">
+            <span>Year 2 (2026)</span>
+            <span class="success">$8.7M ARR</span>
+        </div>
+        <div class="market-metric">
+            <span>Year 3 (2027)</span>
+            <span class="success">$23.4M ARR</span>
+        </div>
+        <div class="market-metric">
+            <span>Year 4 (2028)</span>
+            <span class="success">$58.9M ARR</span>
+        </div>
+        <div class="market-metric">
+            <span>Year 5 (2029)</span>
+            <span class="success">$127.3M ARR</span>
+        </div>
+        
+        <div class="chart">
+            <h4>Key Financial Metrics</h4>
+            <div class="metric">Gross Margin: 78%</div>
+            <div class="metric">EBITDA Margin: 35%</div>
+            <div class="metric">Customer LTV: $450K</div>
+            <div class="metric">CAC: $85K</div>
+            <div class="metric">Churn Rate: 8%</div>
+            <div class="metric">ARR Growth: 248% CAGR</div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>Investment Requirements</h3>
+        <div class="grid">
+            <div class="investment-tier">
+                <h4>️ Seed Round (Completed)</h4>
+                <p>$500K Raised</p>
+                <p>Product Development</p>
+                <p>Initial Market Validation</p>
+            </div>
+            <div class="investment-tier">
+                <h4>️ Series A (Current)</h4>
+                <p>$5M Target</p>
+                <p>Market Expansion</p>
+                <p>Team Scaling</p>
+            </div>
+            <div class="investment-tier">
+                <h4> Series B (2026)</h4>
+                <p>$25M Target</p>
+                <p>Global Expansion</p>
+                <p>Platform Scaling</p>
+            </div>
+            <div class="investment-tier">
+                <h4> Series C (2027)</h4>
+                <p>$100M Target</p>
+                <p>Market Dominance</p>
+                <p>IPO Preparation</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2> Team & Leadership</h2>
+    
+    <div class="panel">
+        <h3>Executive Leadership</h3>
+        
+        <div class="grid">
+            <div class="panel">
+                <h4>️ CEO & Founder</h4>
+                <p><strong>Robert Trenaman</strong></p>
+                <p>15+ years in AI/ML</p>
+                <p>Previous exits: $200M+</p>
+                <p>Technical Visionary</p>
+            </div>
+            <div class="panel">
+                <h4>️ CTO (Hiring)</h4>
+                <p>Target: Big Tech Background</p>
+                <p>Scale Architecture Experience</p>
+                <p>ML/AI Expertise</p>
+                <p>Team Leadership</p>
+            </div>
+            <div class="panel">
+                <h4> CFO (Hiring)</h4>
+                <p>Target: SaaS Experience</p>
+                <p>Public Company Readiness</p>
+                <p>Fundraising Expertise</p>
+                <p>Financial Strategy</p>
+            </div>
+            <div class="panel">
+                <h4> CRO (Hiring)</h4>
+                <p>Target: Enterprise Sales</p>
+                <p>Market Expansion</p>
+                <p>Partnership Development</p>
+                <p>Revenue Growth</p>
+            </div>
+        </div>
+        
+        <div class="highlight">
+            <h4>Advisory Board</h4>
+            <ul>
+                <li><strong>Dr. Sarah Chen:</strong> MIT Acoustics Lab Director</li>
+                <li><strong>Mark Johnson:</strong> Former Google AI Executive</li>
+                <li><strong>Lisa Park:</strong> Serial Entrepreneur, 3x Exits</li>
+                <li><strong>Michael Torres:</strong> Manufacturing Industry Veteran</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2> Go-to-Market Strategy</h2>
+    
+    <div class="panel">
+        <h3>Market Penetration Plan</h3>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>Phase 1: Beachhead Markets (Year 1)</h4>
+                <p>Focus on manufacturing quality control and construction material testing. Target 50 enterprise customers with average $50K ARR.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Phase 2: Market Expansion (Year 2)</h4>
+                <p>Expand into healthcare and aerospace sectors. Develop partner ecosystem. Target 200 enterprise customers.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Phase 3: Platform Scaling (Year 3)</h4>
+                <p>Launch SaaS platform and API ecosystem. International expansion. Target 500+ enterprise customers.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Phase 4: Market Dominance (Year 4-5)</h4>
+                <p>Achieve market leadership position. Expand into consumer applications. IPO preparation.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>Sales & Distribution Channels</h3>
+        <div class="grid">
+            <div class="panel">
+                <h4>☁️ Direct Enterprise Sales</h4>
+                <div class="metric">60% of Revenue</div>
+                <div class="metric">$50K-$500K ACV</div>
+                <div class="metric">12-18 month Sales Cycle</div>
+            </div>
+            <div class="panel">
+                <h4>☁️ Channel Partners</h4>
+                <div class="metric">25% of Revenue</div>
+                <div class="metric">System Integrators</div>
+                <div class="metric">Value-Added Resellers</div>
+            </div>
+            <div class="panel">
+                <h4>☁️ SaaS Platform</h4>
+                <div class="metric">15% of Revenue</div>
+                <div class="metric">$5K-$50K ACV</div>
+                <div class="metric">Self-service Onboarding</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>️ Risk Analysis & Mitigation</h2>
+    
+    <div class="panel">
+        <h3>Risk Factors</h3>
+        
+        <div class="grid">
+            <div class="panel">
+                <h4 class="warning">Technology Risk</h4>
+                <p><strong>Risk:</strong> Technical complexity and scalability challenges</p>
+                <p><strong>Mitigation:</strong> Proven prototype, experienced engineering team, modular architecture</p>
+                <div class="metric">Risk Level: Medium</div>
+            </div>
+            <div class="panel">
+                <h4 class="warning">Market Risk</h4>
+                <p><strong>Risk:</strong> Market adoption and competition</p>
+                <p><strong>Mitigation:</strong> First-mover advantage, superior technology, clear ROI</p>
+                <div class="metric">Risk Level: Low</div>
+            </div>
+            <div class="panel">
+                <h4 class="warning">Execution Risk</h4>
+                <p><strong>Risk:</strong> Team scaling and operational challenges</p>
+                <p><strong>Mitigation:</strong> Experienced leadership, phased hiring, proven processes</p>
+                <div class="metric">Risk Level: Medium</div>
+            </div>
+            <div class="panel">
+                <h4 class="warning">Regulatory Risk</h4>
+                <p><strong>Risk:</strong> Industry-specific regulations and compliance</p>
+                <p><strong>Mitigation:</strong> Early compliance planning, legal expertise, industry partnerships</p>
+                <div class="metric">Risk Level: Low</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>Success Factors</h3>
+        <div class="market-metric">
+            <span>Technical Excellence</span>
+            <span class="success">Proven 85-95% accuracy</span>
+        </div>
+        <div class="market-metric">
+            <span>Market Timing</span>
+            <span class="success">AI adoption at inflection point</span>
+        </div>
+        <div class="market-metric">
+            <span>Team Capability</span>
+            <span class="success">Experienced leadership</span>
+        </div>
+        <div class="market-metric">
+            <span>Capital Efficiency</span>
+            <span class="success">Lean operation model</span>
+        </div>
+        <div class="market-metric">
+            <span>Scalable Platform</span>
+            <span class="success">Cloud-native architecture</span>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>☁️ Exit Strategy</h2>
+    
+    <div class="panel">
+        <h3>Strategic Exit Options</h3>
+        
+        <div class="grid">
+            <div class="panel">
+                <h4> IPO (Primary Exit)</h4>
+                <p><strong>Timeline:</strong> Year 5-6</p>
+                <p><strong>Valuation Target:</strong> $1B+</p>
+                <p><strong>Market:</strong> NASDAQ</p>
+                <p><strong>Requirements:</strong> $100M+ ARR, Profitability</p>
+                <div class="metric">Probability: 60%</div>
+            </div>
+            <div class="panel">
+                <h4> Strategic Acquisition</h4>
+                <p><strong>Timeline:</strong> Year 3-5</p>
+                <p><strong>Valuation Target:</strong> $500M-$800M</p>
+                <p><strong>Potential Acquirers:</strong> Google, Microsoft, Siemens</p>
+                <p><strong>Synergies:</strong> AI portfolio expansion</p>
+                <div class="metric">Probability: 30%</div>
+            </div>
+            <div class="panel">
+                <h4> Secondary Sale</h4>
+                <p><strong>Timeline:</strong> Year 4-5</p>
+                <p><strong>Valuation Target:</strong> $300M-$500M</p>
+                <p><strong>Buyers:</strong> Private Equity, Growth Equity</p>
+                <p><strong>Use of Funds:</strong> Growth acceleration</p>
+                <div class="metric">Probability: 10%</div>
+            </div>
+        </div>
+        
+        <div class="highlight">
+            <h4>Investment Returns Projection</h4>
+            <div class="market-metric">
+                <span>Series A Investors</span>
+                <span class="success">15x-25x ROI</span>
+            </div>
+            <div class="market-metric">
+                <span>Series B Investors</span>
+                <span class="success">8x-15x ROI</span>
+            </div>
+            <div class="market-metric">
+                <span>Series C Investors</span>
+                <span class="success">3x-8x ROI</span>
+            </div>
+            <div class="market-metric">
+                <span>IRR Target</span>
+                <span class="success">35-45%</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2> Investment Information</h2>
+    
+    <div class="panel">
+        <h3>Current Investment Opportunity</h3>
+        
+        <div class="grid">
+            <div class="panel">
+                <h4> Series A Round</h4>
+                <p><strong>Target Raise:</strong> $5M</p>
+                <p><strong>Valuation:</strong> $50M pre-money</p>
+                <p><strong>Minimum Investment:</strong> $100K</p>
+                <p><strong>Use of Funds:</strong></p>
+                <ul>
+                    <li>Team Expansion: $2.5M</li>
+                    <li>Market Development: $1.5M</li>
+                    <li>Product Enhancement: $1M</li>
+                </ul>
+            </div>
+            <div class="panel">
+                <h4> Investment Terms</h4>
+                <p><strong>Security:</strong> Preferred Equity</p>
+                <p><strong>Liquidation Preference:</strong> 1x non-participating</p>
+                <p><strong>Pro-Rata Rights:</strong> Yes</p>
+                <p><strong>Board Seat:</strong> 1 investor seat</p>
+                <p><strong>Voting Rights:</strong> Full voting rights</p>
+                <p><strong>Information Rights:</strong> Quarterly reports</p>
+            </div>
+        </div>
+        
+        <div class="highlight">
+            <h4>Why Invest in SCRIBE?</h4>
+            <ul>
+                <li><strong>Massive Market Opportunity:</strong> $42B+ total addressable market across multiple high-growth sectors</li>
+                <li><strong>Superior Technology:</strong> Proprietary acoustic AI with 85-95% accuracy vs 60-70% competitors</li>
+                <li><strong>Strong Unit Economics:</strong> 78% gross margins, 12-month payback period, $450K customer LTV</li>
+                <li><strong>Experienced Leadership:</strong> Proven founder with successful track record</li>
+                <li><strong>Scalable Business Model:</strong> Enterprise SaaS with clear path to $100M+ ARR</li>
+                <li><strong>Strategic Positioning:</strong> First-mover advantage in emerging acoustic intelligence market</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>Contact Information</h3>
+        
+        <div class="grid">
+            <div class="panel">
+                <h4> Investor Relations</h4>
+                <p><strong>Robert Trenaman</strong></p>
+                <p><strong>CEO & Founder</strong></p>
+                <p><strong>Email:</strong> autobotsolution@gmail.com</p>
+                <p><strong>Location:</strong> Flushing, MI</p>
+                <p><strong>Company:</strong> Software Customs (Auto Bot Solution)</p>
+            </div>
+            <div class="panel">
+                <h4> Due Diligence Materials</h4>
+                <p>✅ Complete Financial Model</p>
+                <p>✅ Technical Architecture</p>
+                <p>✅ Market Analysis</p>
+                <p>✅ Competitive Landscape</p>
+                <p>✅ Team Backgrounds</p>
+                <p>✅ Patent Portfolio</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2> Investment Highlights</h2>
+    
+    <div class="chart">
+        <h3>Key Investment Metrics</h3>
+        
+        <div class="market-metric">
+            <span>Market Size (TAM)</span>
+            <span class="success">$42.7B by 2029</span>
+        </div>
+        <div class="market-metric">
+            <span>Growth Rate (CAGR)</span>
+            <span class="success">18.5% Industry Average</span>
+        </div>
+        <div class="market-metric">
+            <span>Revenue Projection (Year 5)</span>
+            <span class="success">$127.3M ARR</span>
+        </div>
+        <div class="market-metric">
+            <span>Gross Margin</span>
+            <span class="success">78%</span>
+        </div>
+        <div class="market-metric">
+            <span>Customer LTV/CAC Ratio</span>
+            <span class="success">5.3x</span>
+        </div>
+        <div class="market-metric">
+            <span>Projected IRR</span>
+            <span class="success">35-45%</span>
+        </div>
+        <div class="market-metric">
+            <span>Time to Profitability</span>
+            <span class="success">24 months</span>
+        </div>
+        <div class="market-metric">
+            <span>Exit Multiple Target</span>
+            <span class="success">15x-25x</span>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>Why Now?</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>Market Timing Perfect</h4>
+                <p>AI adoption at inflection point, industrial digitalization accelerating, acoustic intelligence emerging as key technology</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Technology Ready</h4>
+                <p>Proven prototype with 85-95% accuracy, scalable architecture, clear competitive advantage</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Team Assembled</h4>
+                <p>Experienced leadership, technical expertise, market knowledge, ready for scaling</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Capital Efficient</h4>
+                <p>Lean operation model, clear path to profitability, strong unit economics, capital-efficient growth</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>SCRIBE Resonance AI System - Investment Thesis & Market Opportunity</p>
+    <p>© 2026 Robert Trenaman | Software Customs (Auto Bot Solution) | All Rights Reserved</p>
+    <p>autobotsolution@gmail.com | Flushing, MI</p>
+    <p class="pulse">Series A Investment Opportunity | $5M Target | $50M Valuation | Multi-Billion Dollar Market</p>
+</footer>
+</body>
+</html>

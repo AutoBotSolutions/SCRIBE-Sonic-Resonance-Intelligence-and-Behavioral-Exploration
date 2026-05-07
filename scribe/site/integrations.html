@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SCRIBE Integration Examples and Patterns - SCRIBE Resonance AI System Documentation</title>
+<style>
+
+    body {
+        margin: 0;
+        font-family: "Courier New", monospace;
+        background: radial-gradient(circle at center, #0a0f1f, #000000);
+        color: #00ffe1;
+        overflow-x: hidden;
+        min-height: 100vh;
+    }
+
+    header {
+        text-align: center;
+        padding: 40px;
+        border-bottom: 1px solid rgba(0,255,225,0.2);
+        position: relative;
+    }
+
+    h1 {
+        font-size: 48px;
+        letter-spacing: 4px;
+        text-shadow: 0 0 15px #00ffe1;
+        background: linear-gradient(45deg, #00ffe1, #7df9ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 0;
+    }
+
+    h2 {
+        color: #7df9ff;
+        margin-top: 40px;
+        font-size: 28px;
+        text-shadow: 0 0 5px #7df9ff;
+    }
+
+    h3 {
+        color: #00ff88;
+        margin-top: 30px;
+        font-size: 22px;
+    }
+
+    h4 {
+        color: #ffaa00;
+        margin-top: 20px;
+        font-size: 18px;
+    }
+
+    section {
+        padding: 40px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .panel {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 25px;
+        margin-top: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,255,225,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .panel:hover {
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+        transform: translateY(-2px);
+    }
+
+    .pulse {
+        animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 0.6; }
+        50% { opacity: 1; }
+        100% { opacity: 0.6; }
+    }
+
+    .highlight {
+        background: rgba(0, 255, 225, 0.1);
+        border-left: 4px solid #00ffe1;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+    }
+
+    .metric {
+        display: inline-block;
+        background: rgba(0, 255, 225, 0.15);
+        padding: 8px 15px;
+        margin: 5px;
+        border-radius: 20px;
+        font-size: 14px;
+        border: 1px solid rgba(0,255,225,0.3);
+    }
+
+    .success {
+        color: #00ff88;
+        font-weight: bold;
+    }
+
+    .warning {
+        color: #ffaa00;
+        font-weight: bold;
+    }
+
+    .critical {
+        color: #ff4444;
+        font-weight: bold;
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px;
+        border-top: 1px solid rgba(0,255,225,0.2);
+        font-size: 14px;
+        color: #888;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .timeline {
+        position: relative;
+        padding-left: 30px;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #00ffe1;
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 20px;
+        padding-left: 20px;
+    }
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -25px;
+        top: 5px;
+        width: 10px;
+        height: 10px;
+        background: #00ffe1;
+        border-radius: 50%;
+    }
+
+    .chart {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 20px;
+        background: rgba(0, 255, 225, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 10px 0;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #00ffe1, #7df9ff);
+        border-radius: 10px;
+        transition: width 1s ease;
+    }
+
+    .interactive {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: #00ffe1;
+        display: block;
+    }
+
+    .interactive:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(0,255,225,0.3);
+        color: #7df9ff;
+    }
+
+    .glow {
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #00ffe1, 0 0 20px #00ffe1; }
+        to { text-shadow: 0 0 20px #00ffe1, 0 0 30px #00ffe1; }
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(10, 15, 31, 0.95);
+        border-bottom: 1px solid rgba(0,255,225,0.2);
+        padding: 15px 30px;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+    }
+
+    .nav-menu ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-menu li {
+        margin: 0 15px;
+    }
+
+    .nav-menu a {
+        color: #00ffe1;
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .nav-menu a:hover {
+        color: #7df9ff;
+        background: rgba(0,255,225,0.1);
+        transform: translateY(-2px);
+    }
+
+    .doc-card {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 20px;
+        margin: 15px 0;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .doc-card:hover {
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+        transform: translateY(-3px);
+        border-color: rgba(0,255,225,0.4);
+    }
+
+    .doc-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #00ffe1, #7df9ff);
+    }
+
+    .doc-title {
+        font-size: 20px;
+        color: #7df9ff;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .doc-description {
+        color: #00ffe1;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+    .doc-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(0,255,225,0.1);
+    }
+
+    .doc-type {
+        background: rgba(0, 255, 225, 0.15);
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        color: #00ff88;
+    }
+
+    .doc-size {
+        font-size: 12px;
+        color: #888;
+    }
+
+    .hero-section {
+        text-align: center;
+        padding: 80px 40px;
+        background: linear-gradient(135deg, rgba(0,255,225,0.05), rgba(125,249,255,0.05));
+        border-radius: 20px;
+        margin: 40px 0;
+    }
+
+    .hero-title {
+        font-size: 36px;
+        color: #7df9ff;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px #7df9ff;
+    }
+
+    .hero-subtitle {
+        font-size: 18px;
+        color: #00ffe1;
+        margin-bottom: 30px;
+        opacity: 0.9;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background: linear-gradient(45deg, #00ffe1, #7df9ff);
+        color: #0a0f1f;
+        padding: 12px 30px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        margin: 10px;
+    }
+
+    .cta-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(0,255,225,0.5);
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin: 40px 0;
+    }
+
+    .stat-card {
+        background: rgba(0, 255, 225, 0.05);
+        border: 1px solid rgba(0,255,225,0.2);
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 30px rgba(0,255,225,0.2);
+    }
+
+    .stat-number {
+        font-size: 32px;
+        font-weight: bold;
+        color: #00ff88;
+        margin-bottom: 10px;
+    }
+
+    .stat-label {
+        font-size: 14px;
+        color: #00ffe1;
+        opacity: 0.8;
+    }
+
+    main {
+        padding-top: 80px;
+    }
+
+</style>
+</head>
+<body>
+
+<nav class="nav-menu">
+
+    <ul>
+        <li><a href="directory.html">Directory</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="integrations.html">Documentation</a></li>
+        <li><a href="api.html">Technical</a></li>
+        <li><a href="Investors-Thesis.html">Business</a></li>
+        <li><a href="community.html">About</a></li>
+        <li><a href="faq.html">Contact</a></li>
+    </ul>
+
+</nav>
+
+<main>
+<header>
+    <h1 class="glow">SCRIBE Integration Examples and Patterns</h1>
+    <p class="pulse">SCRIBE Resonance AI System - Documentation</p>
+    <div class="metric success">Documentation</div>
+    <div class="metric success">Technical Reference</div>
+</header>
+
+<section>
+    <div class="panel">
+        <h1>SCRIBE Integration Examples and Patterns</h1>
+<h2> Integration Overview</h2>
+<p>This guide provides comprehensive integration examples and patterns for connecting the SCRIBE Resonance AI System with external systems, APIs, and services. Learn how to build robust integrations for various use cases.</p>
+<h2>️ Integration Architecture</h2>
+<h3>Integration Patterns</h3>
+<pre><code>┌┐
+│                    Client Applications                        │
+├┤
+│                    Integration Layer                          │
+├┤
+│                    SCRIBE API Layer                           │
+├┤
+│                    SCRIBE Core System                         │
+└┘
+</code></pre>
+<h3>Integration Types</h3>
+<ul>
+<li><strong>Direct API Integration</strong>: REST API calls</li>
+<li><strong>WebSocket Integration</strong>: Real-time communication</li>
+<li><strong>Message Queue Integration</strong>: Asynchronous processing</li>
+<li><strong>Database Integration</strong>: Direct data access</li>
+<li><strong>Cloud Service Integration</strong>: External platform connections</li>
+</ul>
+<h2> Direct API Integration</h2>
+<h3>Python Client Library</h3>
+<pre><code class="language-python">import requests
+import asyncio
+import aiohttp
+from typing import Dict, List, Optional
+from dataclasses import dataclass
+
+@dataclass
+class ScanConfig:
+    signal_type: str = &quot;sine&quot;
+    frequency: float = 440.0
+    duration: float = 2.0
+    amplitude: float = 0.5
+
+class ScribeClient:
+    def __init__(self, base_url: str = &quot;http://localhost:8000&quot;, api_key: Optional[str] = None):
+        self.base_url = base_url
+        self.api_key = api_key
+        self.session = requests.Session()
+        
+        if api_key:
+            self.session.headers.update({&quot;X-API-Key&quot;: api_key})
+    
+    def health_check(self) -&gt; bool:
+        &quot;&quot;&quot;Check if SCRIBE API is healthy&quot;&quot;&quot;
+        try:
+            response = self.session.get(f&quot;{self.base_url}/health&quot;)
+            return response.status_code == 200
+        except requests.RequestException:
+            return False
+    
+    def perform_scan(self, config: ScanConfig) -&gt; Dict:
+        &quot;&quot;&quot;Perform a resonance scan&quot;&quot;&quot;
+        payload = {
+            &quot;signal_type&quot;: config.signal_type,
+            &quot;frequency&quot;: config.frequency,
+            &quot;duration&quot;: config.duration,
+            &quot;amplitude&quot;: config.amplitude
+        }
+        
+        response = self.session.post(f&quot;{self.base_url}/scan&quot;, json=payload)
+        response.raise_for_status()
+        
+        return response.json()
+    
+    def get_scan_history(self, limit: int = 10) -&gt; List[Dict]:
+        &quot;&quot;&quot;Get scan history&quot;&quot;&quot;
+        response = self.session.get(f&quot;{self.base_url}/scans&quot;, params={&quot;limit&quot;: limit})
+        response.raise_for_status()
+        
+        return response.json().get(&quot;scans&quot;, [])
+    
+    def get_scan_details(self, scan_id: int) -&gt; Dict:
+        &quot;&quot;&quot;Get detailed scan information&quot;&quot;&quot;
+        response = self.session.get(f&quot;{self.base_url}/scans/{scan_id}&quot;)
+        response.raise_for_status()
+        
+        return response.json()
+    
+    def add_feedback(self, scan_id: int, feedback_type: str, feedback_data: Dict) -&gt; Dict:
+        &quot;&quot;&quot;Add feedback to scan&quot;&quot;&quot;
+        payload = {
+            &quot;scan_id&quot;: scan_id,
+            &quot;feedback_type&quot;: feedback_type,
+            &quot;feedback_data&quot;: feedback_data
+        }
+        
+        response = self.session.post(f&quot;{self.base_url}/feedback&quot;, json=payload)
+        response.raise_for_status()
+        
+        return response.json()
+    
+    def compare_scans(self, scan_ids: List[int]) -&gt; Dict:
+        &quot;&quot;&quot;Compare multiple scans&quot;&quot;&quot;
+        response = self.session.post(f&quot;{self.base_url}/compare&quot;, json=scan_ids)
+        response.raise_for_status()
+        
+        return response.json()
+
+# Usage Example
+def main():
+    client = ScribeClient(api_key=&quot;your-api-key&quot;)
+    
+    if not client.health_check():
+        print(&quot;SCRIBE API is not available&quot;)
+        return
+    
+    # Perform scan
+    config = ScanConfig(frequency=440, duration=2.0)
+    result = client.perform_scan(config)
+    
+    print(f&quot;Scan completed with {result['interpretation']['confidence_scores']['overall']:.1%} confidence&quot;)
+    print(f&quot;Material detected: {result['interpretation'].get('pattern_matches', {}).get('materials', [{}])[0].get('material', 'Unknown')}&quot;)
+    
+    # Add feedback
+    client.add_feedback(result['scan_id'], &quot;material_correction&quot;, {&quot;correct_material&quot;: &quot;oak&quot;})
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h3>Async Python Client</h3>
+<pre><code class="language-python">import aiohttp
+import asyncio
+from typing import Dict, List, Optional
+
+class AsyncScribeClient:
+    def __init__(self, base_url: str = &quot;http://localhost:8000&quot;, api_key: Optional[str] = None):
+        self.base_url = base_url
+        self.api_key = api_key
+        self.headers = {}
+        
+        if api_key:
+            self.headers[&quot;X-API-Key&quot;] = api_key
+    
+    async def __aenter__(self):
+        self.session = aiohttp.ClientSession(headers=self.headers)
+        return self
+    
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        await self.session.close()
+    
+    async def health_check(self) -&gt; bool:
+        &quot;&quot;&quot;Check if SCRIBE API is healthy&quot;&quot;&quot;
+        try:
+            async with self.session.get(f&quot;{self.base_url}/health&quot;) as response:
+                return response.status == 200
+        except aiohttp.ClientError:
+            return False
+    
+    async def perform_scan(self, config: ScanConfig) -&gt; Dict:
+        &quot;&quot;&quot;Perform a resonance scan&quot;&quot;&quot;
+        payload = {
+            &quot;signal_type&quot;: config.signal_type,
+            &quot;frequency&quot;: config.frequency,
+            &quot;duration&quot;: config.duration,
+            &quot;amplitude&quot;: config.amplitude
+        }
+        
+        async with self.session.post(f&quot;{self.base_url}/scan&quot;, json=payload) as response:
+            response.raise_for_status()
+            return await response.json()
+    
+    async def batch_scans(self, configs: List[ScanConfig]) -&gt; List[Dict]:
+        &quot;&quot;&quot;Perform multiple scans concurrently&quot;&quot;&quot;
+        tasks = [self.perform_scan(config) for config in configs]
+        results = await asyncio.gather(*tasks)
+        return results
+
+# Usage Example
+async def main():
+    async with AsyncScribeClient(api_key=&quot;your-api-key&quot;) as client:
+        if not await client.health_check():
+            print(&quot;SCRIBE API is not available&quot;)
+            return
+        
+        # Perform multiple scans
+        configs = [
+            ScanConfig(frequency=220, duration=2.0),
+            ScanConfig(frequency=440, duration=2.0),
+            ScanConfig(frequency=880, duration=2.0)
+        ]
+        
+        results = await client.batch_scans(configs)
+        
+        for i, result in enumerate(results):
+            confidence = result['interpretation']['confidence_scores']['overall']
+            print(f&quot;Scan {i+1}: {confidence:.1%} confidence&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    asyncio.run(main())
+</code></pre>
+<h2> WebSocket Integration</h2>
+<h3>Real-time Monitoring</h3>
+<pre><code class="language-python">import asyncio
+import websockets
+import json
+from typing import Dict, Any
+
+class ScribeWebSocketClient:
+    def __init__(self, ws_url: str = &quot;ws://localhost:8000/ws&quot;):
+        self.ws_url = ws_url
+        self.websocket = None
+    
+    async def connect(self):
+        &quot;&quot;&quot;Connect to WebSocket&quot;&quot;&quot;
+        self.websocket = await websockets.connect(self.ws_url)
+        print(&quot;Connected to SCRIBE WebSocket&quot;)
+    
+    async def subscribe_to_scans(self):
+        &quot;&quot;&quot;Subscribe to real-time scan updates&quot;&quot;&quot;
+        if not self.websocket:
+            await self.connect()
+        
+        subscribe_message = {
+            &quot;type&quot;: &quot;subscribe&quot;,
+            &quot;channel&quot;: &quot;scans&quot;
+        }
+        
+        await self.websocket.send(json.dumps(subscribe_message))
+        print(&quot;Subscribed to scan updates&quot;)
+    
+    async def listen_for_updates(self):
+        &quot;&quot;&quot;Listen for real-time updates&quot;&quot;&quot;
+        if not self.websocket:
+            await self.connect()
+        
+        try:
+            async for message in self.websocket:
+                data = json.loads(message)
+                await self.handle_message(data)
+        except websockets.exceptions.ConnectionClosed:
+            print(&quot;WebSocket connection closed&quot;)
+    
+    async def handle_message(self, data: Dict[str, Any]):
+        &quot;&quot;&quot;Handle incoming WebSocket messages&quot;&quot;&quot;
+        message_type = data.get(&quot;type&quot;)
+        
+        if message_type == &quot;scan_completed&quot;:
+            await self.handle_scan_completed(data)
+        elif message_type == &quot;system_status&quot;:
+            await self.handle_system_status(data)
+        elif message_type == &quot;alert&quot;:
+            await self.handle_alert(data)
+    
+    async def handle_scan_completed(self, data: Dict[str, Any]):
+        &quot;&quot;&quot;Handle scan completion notification&quot;&quot;&quot;
+        scan_id = data.get(&quot;scan_id&quot;)
+        confidence = data.get(&quot;confidence&quot;)
+        material = data.get(&quot;material&quot;)
+        
+        print(f&quot;Scan {scan_id} completed:&quot;)
+        print(f&quot;  Confidence: {confidence:.1%}&quot;)
+        print(f&quot;  Material: {material}&quot;)
+    
+    async def handle_system_status(self, data: Dict[str, Any]):
+        &quot;&quot;&quot;Handle system status update&quot;&quot;&quot;
+        status = data.get(&quot;status&quot;)
+        load = data.get(&quot;load&quot;)
+        
+        print(f&quot;System status: {status}, Load: {load:.1%}&quot;)
+    
+    async def handle_alert(self, data: Dict[str, Any]):
+        &quot;&quot;&quot;Handle system alert&quot;&quot;&quot;
+        alert_type = data.get(&quot;type&quot;)
+        message = data.get(&quot;message&quot;)
+        
+        print(f&quot;ALERT [{alert_type}]: {message}&quot;)
+
+# Usage Example
+async def main():
+    client = ScribeWebSocketClient()
+    
+    try:
+        await client.connect()
+        await client.subscribe_to_scans()
+        await client.listen_for_updates()
+    except KeyboardInterrupt:
+        print(&quot;Disconnecting...&quot;)
+        if client.websocket:
+            await client.websocket.close()
+
+if __name__ == &quot;__main__&quot;:
+    asyncio.run(main())
+</code></pre>
+<h2> Message Queue Integration</h2>
+<h3>Redis Queue Integration</h3>
+<pre><code class="language-python">import redis
+import json
+import asyncio
+from typing import Dict, Any, Optional
+
+class ScribeRedisIntegration:
+    def __init__(self, redis_host: str = &quot;localhost&quot;, redis_port: int = 6379):
+        self.redis_client = redis.Redis(host=redis_host, port=redis_port, decode_responses=True)
+        self.scan_queue = &quot;scribe:scan_requests&quot;
+        self.result_queue = &quot;scribe:scan_results&quot;
+        self.status_queue = &quot;scribe:system_status&quot;
+    
+    def enqueue_scan_request(self, config: ScanConfig, request_id: str) -&gt; str:
+        &quot;&quot;&quot;Enqueue a scan request&quot;&quot;&quot;
+        message = {
+            &quot;request_id&quot;: request_id,
+            &quot;config&quot;: {
+                &quot;signal_type&quot;: config.signal_type,
+                &quot;frequency&quot;: config.frequency,
+                &quot;duration&quot;: config.duration,
+                &quot;amplitude&quot;: config.amplitude
+            },
+            &quot;timestamp&quot;: asyncio.get_event_loop().time()
+        }
+        
+        # Push to queue
+        self.redis_client.lpush(self.scan_queue, json.dumps(message))
+        
+        return request_id
+    
+    def dequeue_scan_request(self) -&gt; Optional[Dict[str, Any]]:
+        &quot;&quot;&quot;Dequeue a scan request&quot;&quot;&quot;
+        message = self.redis_client.brpop(self.scan_queue, timeout=1)
+        
+        if message:
+            return json.loads(message[1])
+        
+        return None
+    
+    def publish_scan_result(self, request_id: str, result: Dict[str, Any]):
+        &quot;&quot;&quot;Publish scan result&quot;&quot;&quot;
+        message = {
+            &quot;request_id&quot;: request_id,
+            &quot;result&quot;: result,
+            &quot;timestamp&quot;: asyncio.get_event_loop().time()
+        }
+        
+        self.redis_client.lpush(self.result_queue, json.dumps(message))
+    
+    def get_scan_result(self, request_id: str, timeout: int = 30) -&gt; Optional[Dict[str, Any]]:
+        &quot;&quot;&quot;Get scan result by request ID&quot;&quot;&quot;
+        end_time = asyncio.get_event_loop().time() + timeout
+        
+        while asyncio.get_event_loop().time() &lt; end_time:
+            # Check result queue
+            messages = self.redis_client.lrange(self.result_queue, 0, -1)
+            
+            for msg in messages:
+                data = json.loads(msg)
+                if data.get(&quot;request_id&quot;) == request_id:
+                    # Remove from queue
+                    self.redis_client.lrem(self.result_queue, 1, msg)
+                    return data.get(&quot;result&quot;)
+            
+            asyncio.sleep(0.1)
+        
+        return None
+    
+    def publish_system_status(self, status: Dict[str, Any]):
+        &quot;&quot;&quot;Publish system status&quot;&quot;&quot;
+        self.redis_client.publish(self.status_queue, json.dumps(status))
+    
+    def subscribe_to_status(self, callback):
+        &quot;&quot;&quot;Subscribe to system status updates&quot;&quot;&quot;
+        pubsub = self.redis_client.pubsub()
+        pubsub.subscribe(self.status_queue)
+        
+        for message in pubsub.listen():
+            if message[&quot;type&quot;] == &quot;message&quot;:
+                status_data = json.loads(message[&quot;data&quot;])
+                callback(status_data)
+
+# Usage Example
+def status_callback(status_data):
+    &quot;&quot;&quot;Handle status updates&quot;&quot;&quot;
+    status = status_data.get(&quot;status&quot;)
+    load = status_data.get(&quot;load&quot;)
+    print(f&quot;Status update: {status}, Load: {load:.1%}&quot;)
+
+def main():
+    integration = ScribeRedisIntegration()
+    
+    # Subscribe to status updates
+    import threading
+    status_thread = threading.Thread(
+        target=integration.subscribe_to_status,
+        args=(status_callback,)
+    )
+    status_thread.daemon = True
+    status_thread.start()
+    
+    # Enqueue scan request
+    config = ScanConfig(frequency=440, duration=2.0)
+    request_id = &quot;scan-001&quot;
+    
+    integration.enqueue_scan_request(config, request_id)
+    print(f&quot;Enqueued scan request: {request_id}&quot;)
+    
+    # Wait for result
+    result = integration.get_scan_result(request_id, timeout=30)
+    
+    if result:
+        confidence = result['interpretation']['confidence_scores']['overall']
+        print(f&quot;Scan completed: {confidence:.1%} confidence&quot;)
+    else:
+        print(&quot;Scan timed out&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h3>RabbitMQ Integration</h3>
+<pre><code class="language-python">import pika
+import json
+import asyncio
+from typing import Dict, Any, Callable
+
+class ScribeRabbitMQIntegration:
+    def __init__(self, host: str = &quot;localhost&quot;):
+        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host=host))
+        self.channel = self.connection.channel()
+        
+        # Declare queues
+        self.channel.queue_declare(queue=&quot;scribe.scan.requests&quot;, durable=True)
+        self.channel.queue_declare(queue=&quot;scribe.scan.results&quot;, durable=True)
+        self.channel.queue_declare(queue=&quot;scribe.system.status&quot;, durable=True)
+        
+        # Declare exchange for fanout
+        self.channel.exchange_declare(exchange=&quot;scribe.events&quot;, exchange_type=&quot;fanout&quot;)
+    
+    def publish_scan_request(self, config: ScanConfig, request_id: str):
+        &quot;&quot;&quot;Publish scan request&quot;&quot;&quot;
+        message = {
+            &quot;request_id&quot;: request_id,
+            &quot;config&quot;: {
+                &quot;signal_type&quot;: config.signal_type,
+                &quot;frequency&quot;: config.frequency,
+                &quot;duration&quot;: config.duration,
+                &quot;amplitude&quot;: config.amplitude
+            },
+            &quot;timestamp&quot;: asyncio.get_event_loop().time()
+        }
+        
+        self.channel.basic_publish(
+            exchange=&quot;&quot;,
+            routing_key=&quot;scribe.scan.requests&quot;,
+            body=json.dumps(message),
+            properties=pika.BasicProperties(delivery_mode=2)  # Persistent
+        )
+    
+    def consume_scan_requests(self, callback: Callable):
+        &quot;&quot;&quot;Consume scan requests&quot;&quot;&quot;
+        def wrapper(ch, method, properties, body):
+            message = json.loads(body)
+            callback(message)
+            ch.basic_ack(delivery_tag=method.delivery_tag)
+        
+        self.channel.basic_consume(
+            queue=&quot;scribe.scan.requests&quot;,
+            on_message_callback=wrapper
+        )
+        
+        print(&quot;Waiting for scan requests...&quot;)
+        self.channel.start_consuming()
+    
+    def publish_scan_result(self, request_id: str, result: Dict[str, Any]):
+        &quot;&quot;&quot;Publish scan result&quot;&quot;&quot;
+        message = {
+            &quot;request_id&quot;: request_id,
+            &quot;result&quot;: result,
+            &quot;timestamp&quot;: asyncio.get_event_loop().time()
+        }
+        
+        self.channel.basic_publish(
+            exchange=&quot;&quot;,
+            routing_key=&quot;scribe.scan.results&quot;,
+            body=json.dumps(message),
+            properties=pika.BasicProperties(delivery_mode=2)
+        )
+    
+    def publish_system_event(self, event_type: str, data: Dict[str, Any]):
+        &quot;&quot;&quot;Publish system event&quot;&quot;&quot;
+        message = {
+            &quot;event_type&quot;: event_type,
+            &quot;data&quot;: data,
+            &quot;timestamp&quot;: asyncio.get_event_loop().time()
+        }
+        
+        self.channel.basic_publish(
+            exchange=&quot;scribe.events&quot;,
+            routing_key=&quot;&quot;,
+            body=json.dumps(message)
+        )
+    
+    def close(self):
+        &quot;&quot;&quot;Close connection&quot;&quot;&quot;
+        self.connection.close()
+
+# Usage Example
+def handle_scan_request(message):
+    &quot;&quot;&quot;Handle incoming scan request&quot;&quot;&quot;
+    request_id = message.get(&quot;request_id&quot;)
+    config_data = message.get(&quot;config&quot;)
+    
+    print(f&quot;Processing scan request: {request_id}&quot;)
+    
+    # Process scan (implementation would call SCRIBE API)
+    # result = process_scan(config_data)
+    
+    # For demo, create mock result
+    result = {
+        &quot;scan_id&quot;: 123,
+        &quot;interpretation&quot;: {
+            &quot;confidence_scores&quot;: {&quot;overall&quot;: 0.85},
+            &quot;insights&quot;: [&quot;Mock scan completed&quot;]
+        }
+    }
+    
+    # Publish result
+    integration.publish_scan_result(request_id, result)
+
+def main():
+    global integration
+    integration = ScribeRabbitMQIntegration()
+    
+    try:
+        # Publish scan request
+        config = ScanConfig(frequency=440, duration=2.0)
+        integration.publish_scan_request(config, &quot;req-001&quot;)
+        
+        # Consume requests (in production, this would run in a separate process)
+        # integration.consume_scan_requests(handle_scan_request)
+        
+        # Publish system event
+        integration.publish_system_event(&quot;system_started&quot;, {&quot;version&quot;: &quot;1.0.0&quot;})
+        
+    finally:
+        integration.close()
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h2>️ Database Integration</h2>
+<h3>Direct Database Access</h3>
+<pre><code class="language-python">import sqlite3
+import json
+from datetime import datetime
+from typing import Dict, List, Optional
+from contextlib import contextmanager
+
+class ScribeDatabaseIntegration:
+    def __init__(self, db_path: str = &quot;scribe_learning.db&quot;):
+        self.db_path = db_path
+    
+    @contextmanager
+    def get_connection(self):
+        &quot;&quot;&quot;Get database connection&quot;&quot;&quot;
+        conn = sqlite3.connect(self.db_path)
+        conn.row_factory = sqlite3.Row
+        try:
+            yield conn
+        finally:
+            conn.close()
+    
+    def get_scan_results(self, limit: int = 100, offset: int = 0) -&gt; List[Dict]:
+        &quot;&quot;&quot;Get scan results directly from database&quot;&quot;&quot;
+        with self.get_connection() as conn:
+            cursor = conn.execute(&quot;&quot;&quot;
+                SELECT id, timestamp, signals, response, features, interpretation, config
+                FROM scan_results
+                ORDER BY timestamp DESC
+                LIMIT ? OFFSET ?
+            &quot;&quot;&quot;, (limit, offset))
+            
+            results = []
+            for row in cursor.fetchall():
+                result = {
+                    &quot;scan_id&quot;: row[&quot;id&quot;],
+                    &quot;timestamp&quot;: row[&quot;timestamp&quot;],
+                    &quot;signals&quot;: json.loads(row[&quot;signals&quot;]),
+                    &quot;response&quot;: json.loads(row[&quot;response&quot;]),
+                    &quot;features&quot;: json.loads(row[&quot;features&quot;]),
+                    &quot;interpretation&quot;: json.loads(row[&quot;interpretation&quot;]),
+                    &quot;config&quot;: json.loads(row[&quot;config&quot;])
+                }
+                results.append(result)
+            
+            return results
+    
+    def get_scan_by_id(self, scan_id: int) -&gt; Optional[Dict]:
+        &quot;&quot;&quot;Get specific scan by ID&quot;&quot;&quot;
+        with self.get_connection() as conn:
+            cursor = conn.execute(&quot;&quot;&quot;
+                SELECT id, timestamp, signals, response, features, interpretation, config
+                FROM scan_results
+                WHERE id = ?
+            &quot;&quot;&quot;, (scan_id,))
+            
+            row = cursor.fetchone()
+            if row:
+                return {
+                    &quot;scan_id&quot;: row[&quot;id&quot;],
+                    &quot;timestamp&quot;: row[&quot;timestamp&quot;],
+                    &quot;signals&quot;: json.loads(row[&quot;signals&quot;]),
+                    &quot;response&quot;: json.loads(row[&quot;response&quot;]),
+                    &quot;features&quot;: json.loads(row[&quot;features&quot;]),
+                    &quot;interpretation&quot;: json.loads(row[&quot;interpretation&quot;]),
+                    &quot;config&quot;: json.loads(row[&quot;config&quot;])
+                }
+            
+            return None
+    
+    def get_learning_insights(self) -&gt; Dict:
+        &quot;&quot;&quot;Get learning insights from database&quot;&quot;&quot;
+        with self.get_connection() as conn:
+            # Get total scans
+            cursor = conn.execute(&quot;SELECT COUNT(*) as count FROM scan_results&quot;)
+            total_scans = cursor.fetchone()[&quot;count&quot;]
+            
+            # Get feedback count
+            cursor = conn.execute(&quot;SELECT COUNT(*) as count FROM user_feedback&quot;)
+            total_feedback = cursor.fetchone()[&quot;count&quot;]
+            
+            # Get pattern adaptations
+            cursor = conn.execute(&quot;SELECT COUNT(*) as count FROM pattern_adaptations&quot;)
+            total_adaptations = cursor.fetchone()[&quot;count&quot;]
+            
+            # Get recent performance
+            cursor = conn.execute(&quot;&quot;&quot;
+                SELECT AVG(
+                    json_extract(interpretation, '$.confidence_scores.overall')
+                ) as avg_confidence
+                FROM scan_results
+                WHERE timestamp &gt; datetime('now', '-24 hours')
+            &quot;&quot;&quot;)
+            recent_confidence = cursor.fetchone()[&quot;avg_confidence&quot;] or 0
+            
+            return {
+                &quot;total_scans&quot;: total_scans,
+                &quot;total_feedback&quot;: total_feedback,
+                &quot;total_adaptations&quot;: total_adaptations,
+                &quot;recent_confidence&quot;: recent_confidence
+            }
+    
+    def add_external_scan_data(self, scan_data: Dict) -&gt; int:
+        &quot;&quot;&quot;Add external scan data to database&quot;&quot;&quot;
+        with self.get_connection() as conn:
+            cursor = conn.execute(&quot;&quot;&quot;
+                INSERT INTO scan_results 
+                (timestamp, signals, response, features, interpretation, config)
+                VALUES (?, ?, ?, ?, ?, ?)
+            &quot;&quot;&quot;, (
+                datetime.now().isoformat(),
+                json.dumps(scan_data[&quot;signals&quot;]),
+                json.dumps(scan_data[&quot;response&quot;]),
+                json.dumps(scan_data[&quot;features&quot;]),
+                json.dumps(scan_data[&quot;interpretation&quot;]),
+                json.dumps(scan_data[&quot;config&quot;])
+            ))
+            
+            scan_id = cursor.lastrowid
+            conn.commit()
+            
+            return scan_id
+
+# Usage Example
+def main():
+    db_integration = ScribeDatabaseIntegration()
+    
+    # Get recent scans
+    recent_scans = db_integration.get_scan_results(limit=10)
+    print(f&quot;Found {len(recent_scans)} recent scans&quot;)
+    
+    # Get learning insights
+    insights = db_integration.get_learning_insights()
+    print(f&quot;Learning insights: {insights}&quot;)
+    
+    # Add external scan data
+    external_scan = {
+        &quot;signals&quot;: [{&quot;type&quot;: &quot;sine&quot;, &quot;frequency&quot;: 440}],
+        &quot;response&quot;: {&quot;audio_data&quot;: [0.1, 0.2, 0.3]},
+        &quot;features&quot;: {&quot;time_domain&quot;: {&quot;rms&quot;: 0.2}},
+        &quot;interpretation&quot;: {&quot;confidence_scores&quot;: {&quot;overall&quot;: 0.8}},
+        &quot;config&quot;: {&quot;signal_type&quot;: &quot;sine&quot;}
+    }
+    
+    scan_id = db_integration.add_external_scan_data(external_scan)
+    print(f&quot;Added external scan with ID: {scan_id}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h2>☁️ Cloud Service Integration</h2>
+<h3>AWS Integration</h3>
+<pre><code class="language-python">import boto3
+import json
+import asyncio
+from typing import Dict, Any
+
+class ScribeAWSIntegration:
+    def __init__(self, region: str = &quot;us-west-2&quot;):
+        self.region = region
+        self.s3_client = boto3.client(&quot;s3&quot;, region_name=region)
+        self.lambda_client = boto3.client(&quot;lambda&quot;, region_name=region)
+        self.sqs_client = boto3.client(&quot;sqs&quot;, region_name=region)
+        self.dynamodb_client = boto3.resource(&quot;dynamodb&quot;, region_name=region)
+    
+    def upload_scan_to_s3(self, scan_data: Dict, bucket: str, key: str):
+        &quot;&quot;&quot;Upload scan data to S3&quot;&quot;&quot;
+        scan_json = json.dumps(scan_data)
+        
+        self.s3_client.put_object(
+            Bucket=bucket,
+            Key=key,
+            Body=scan_json,
+            ContentType=&quot;application/json&quot;
+        )
+        
+        print(f&quot;Uploaded scan to S3: s3://{bucket}/{key}&quot;)
+    
+    def invoke_scribe_lambda(self, scan_config: ScanConfig) -&gt; Dict:
+        &quot;&quot;&quot;Invoke SCRIBE Lambda function&quot;&quot;&quot;
+        payload = {
+            &quot;signal_type&quot;: scan_config.signal_type,
+            &quot;frequency&quot;: scan_config.frequency,
+            &quot;duration&quot;: scan_config.duration,
+            &quot;amplitude&quot;: scan_config.amplitude
+        }
+        
+        response = self.lambda_client.invoke(
+            FunctionName=&quot;scribe-scan-function&quot;,
+            InvocationType=&quot;RequestResponse&quot;,
+            Payload=json.dumps(payload)
+        )
+        
+        result = json.loads(response[&quot;Payload&quot;].read())
+        return result
+    
+    def send_scan_request_to_sqs(self, scan_config: ScanConfig, queue_url: str):
+        &quot;&quot;&quot;Send scan request to SQS queue&quot;&quot;&quot;
+        message = {
+            &quot;config&quot;: {
+                &quot;signal_type&quot;: scan_config.signal_type,
+                &quot;frequency&quot;: scan_config.frequency,
+                &quot;duration&quot;: scan_config.duration,
+                &quot;amplitude&quot;: scan_config.amplitude
+            },
+            &quot;timestamp&quot;: asyncio.get_event_loop().time()
+        }
+        
+        self.sqs_client.send_message(
+            QueueUrl=queue_url,
+            MessageBody=json.dumps(message)
+        )
+    
+    def store_scan_in_dynamodb(self, scan_data: Dict, table_name: str):
+        &quot;&quot;&quot;Store scan data in DynamoDB&quot;&quot;&quot;
+        table = self.dynamodb_client.Table(table_name)
+        
+        item = {
+            &quot;scan_id&quot;: scan_data[&quot;scan_id&quot;],
+            &quot;timestamp&quot;: scan_data[&quot;timestamp&quot;],
+            &quot;confidence&quot;: scan_data[&quot;interpretation&quot;][&quot;confidence_scores&quot;][&quot;overall&quot;],
+            &quot;material&quot;: scan_data[&quot;interpretation&quot;].get(&quot;pattern_matches&quot;, {}).get(&quot;materials&quot;, [{}])[0].get(&quot;material&quot;, &quot;unknown&quot;),
+            &quot;features&quot;: scan_data[&quot;features&quot;],
+            &quot;interpretation&quot;: scan_data[&quot;interpretation&quot;]
+        }
+        
+        table.put_item(Item=item)
+        print(f&quot;Stored scan {scan_data['scan_id']} in DynamoDB&quot;)
+
+# Usage Example
+def main():
+    aws_integration = ScribeAWSIntegration()
+    
+    # Upload scan to S3
+    scan_data = {
+        &quot;scan_id&quot;: 123,
+        &quot;timestamp&quot;: &quot;2026-05-06T19:00:00Z&quot;,
+        &quot;interpretation&quot;: {&quot;confidence_scores&quot;: {&quot;overall&quot;: 0.85}}
+    }
+    
+    aws_integration.upload_scan_to_s3(
+        scan_data, 
+        &quot;scribe-scans&quot;, 
+        f&quot;scans/2026/05/06/scan-{scan_data['scan_id']}.json&quot;
+    )
+    
+    # Invoke Lambda function
+    config = ScanConfig(frequency=440, duration=2.0)
+    result = aws_integration.invoke_scribe_lambda(config)
+    print(f&quot;Lambda result: {result}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h3>Google Cloud Integration</h3>
+<pre><code class="language-python">from google.cloud import storage
+from google.cloud import pubsub_v1
+from google.cloud import bigquery
+import json
+import asyncio
+
+class ScribeGCPIntegration:
+    def __init__(self, project_id: str):
+        self.project_id = project_id
+        self.storage_client = storage.Client(project=project_id)
+        self.publisher = pubsub_v1.PublisherClient()
+        self.bigquery_client = bigquery.Client(project=project_id)
+    
+    def upload_scan_to_gcs(self, scan_data: Dict, bucket_name: str, blob_name: str):
+        &quot;&quot;&quot;Upload scan data to Google Cloud Storage&quot;&quot;&quot;
+        bucket = self.storage_client.bucket(bucket_name)
+        blob = bucket.blob(blob_name)
+        
+        scan_json = json.dumps(scan_data)
+        blob.upload_from_string(scan_json, content_type=&quot;application/json&quot;)
+        
+        print(f&quot;Uploaded scan to GCS: gs://{bucket_name}/{blob_name}&quot;)
+    
+    def publish_scan_request(self, scan_config: ScanConfig, topic_name: str):
+        &quot;&quot;&quot;Publish scan request to Pub/Sub&quot;&quot;&quot;
+        topic_path = self.publisher.topic_path(self.project_id, topic_name)
+        
+        message = {
+            &quot;config&quot;: {
+                &quot;signal_type&quot;: scan_config.signal_type,
+                &quot;frequency&quot;: scan_config.frequency,
+                &quot;duration&quot;: scan_config.duration,
+                &quot;amplitude&quot;: scan_config.amplitude
+            },
+            &quot;timestamp&quot;: asyncio.get_event_loop().time()
+        }
+        
+        data = json.dumps(message).encode(&quot;utf-8&quot;)
+        future = self.publisher.publish(topic_path, data)
+        
+        print(f&quot;Published scan request: {future.result()}&quot;)
+    
+    def store_scan_in_bigquery(self, scan_data: Dict, dataset_id: str, table_id: str):
+        &quot;&quot;&quot;Store scan data in BigQuery&quot;&quot;&quot;
+        table_ref = self.bigquery_client.dataset(dataset_id).table(table_id)
+        
+        rows_to_insert = [
+            {
+                &quot;scan_id&quot;: scan_data[&quot;scan_id&quot;],
+                &quot;timestamp&quot;: scan_data[&quot;timestamp&quot;],
+                &quot;confidence&quot;: scan_data[&quot;interpretation&quot;][&quot;confidence_scores&quot;][&quot;overall&quot;],
+                &quot;material&quot;: scan_data[&quot;interpretation&quot;].get(&quot;pattern_matches&quot;, {}).get(&quot;materials&quot;, [{}])[0].get(&quot;material&quot;, &quot;unknown&quot;),
+                &quot;features_json&quot;: json.dumps(scan_data[&quot;features&quot;]),
+                &quot;interpretation_json&quot;: json.dumps(scan_data[&quot;interpretation&quot;])
+            }
+        ]
+        
+        errors = self.bigquery_client.insert_rows_json(table_ref, rows_to_insert)
+        
+        if errors:
+            print(f&quot;BigQuery insert errors: {errors}&quot;)
+        else:
+            print(f&quot;Stored scan {scan_data['scan_id']} in BigQuery&quot;)
+
+# Usage Example
+def main():
+    gcp_integration = ScribeGCPIntegration(&quot;your-project-id&quot;)
+    
+    # Upload to GCS
+    scan_data = {
+        &quot;scan_id&quot;: 123,
+        &quot;timestamp&quot;: &quot;2026-05-06T19:00:00Z&quot;,
+        &quot;interpretation&quot;: {&quot;confidence_scores&quot;: {&quot;overall&quot;: 0.85}}
+    }
+    
+    gcp_integration.upload_scan_to_gcs(
+        scan_data,
+        &quot;scribe-scans&quot;,
+        f&quot;scans/2026/05/06/scan-{scan_data['scan_id']}.json&quot;
+    )
+    
+    # Publish to Pub/Sub
+    config = ScanConfig(frequency=440, duration=2.0)
+    gcp_integration.publish_scan_request(config, &quot;scan-requests&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h2> Integration Patterns</h2>
+<h3>Circuit Breaker Pattern</h3>
+<pre><code class="language-python">import time
+from typing import Callable, Any
+from enum import Enum
+
+class CircuitState(Enum):
+    CLOSED = &quot;closed&quot;
+    OPEN = &quot;open&quot;
+    HALF_OPEN = &quot;half_open&quot;
+
+class CircuitBreaker:
+    def __init__(self, failure_threshold: int = 5, timeout: int = 60):
+        self.failure_threshold = failure_threshold
+        self.timeout = timeout
+        self.failure_count = 0
+        self.last_failure_time = None
+        self.state = CircuitState.CLOSED
+    
+    def call(self, func: Callable, *args, **kwargs) -&gt; Any:
+        &quot;&quot;&quot;Call function with circuit breaker protection&quot;&quot;&quot;
+        if self.state == CircuitState.OPEN:
+            if time.time() - self.last_failure_time &gt; self.timeout:
+                self.state = CircuitState.HALF_OPEN
+            else:
+                raise Exception(&quot;Circuit breaker is OPEN&quot;)
+        
+        try:
+            result = func(*args, **kwargs)
+            
+            if self.state == CircuitState.HALF_OPEN:
+                self.state = CircuitState.CLOSED
+                self.failure_count = 0
+            
+            return result
+        
+        except Exception as e:
+            self.failure_count += 1
+            self.last_failure_time = time.time()
+            
+            if self.failure_count &gt;= self.failure_threshold:
+                self.state = CircuitState.OPEN
+            
+            raise e
+
+# Usage Example
+def resilient_scribe_call(client: ScribeClient, config: ScanConfig):
+    &quot;&quot;&quot;Make resilient SCRIBE API call&quot;&quot;&quot;
+    circuit_breaker = CircuitBreaker(failure_threshold=3, timeout=30)
+    
+    try:
+        result = circuit_breaker.call(client.perform_scan, config)
+        return result
+    except Exception as e:
+        print(f&quot;SCRIBE call failed: {e}&quot;)
+        return None
+</code></pre>
+<h3>Retry Pattern</h3>
+<pre><code class="language-python">import time
+import random
+from typing import Callable, Any
+
+class RetryPolicy:
+    def __init__(self, max_attempts: int = 3, base_delay: float = 1.0, max_delay: float = 60.0):
+        self.max_attempts = max_attempts
+        self.base_delay = base_delay
+        self.max_delay = max_delay
+    
+    def execute(self, func: Callable, *args, **kwargs) -&gt; Any:
+        &quot;&quot;&quot;Execute function with retry logic&quot;&quot;&quot;
+        last_exception = None
+        
+        for attempt in range(self.max_attempts):
+            try:
+                return func(*args, **kwargs)
+            except Exception as e:
+                last_exception = e
+                
+                if attempt &lt; self.max_attempts - 1:
+                    delay = min(self.base_delay * (2 ** attempt) + random.uniform(0, 1), self.max_delay)
+                    time.sleep(delay)
+        
+        raise last_exception
+
+# Usage Example
+def retry_scribe_call(client: ScribeClient, config: ScanConfig):
+    &quot;&quot;&quot;Make SCRIBE API call with retry&quot;&quot;&quot;
+    retry_policy = RetryPolicy(max_attempts=3, base_delay=1.0)
+    
+    try:
+        result = retry_policy.execute(client.perform_scan, config)
+        return result
+    except Exception as e:
+        print(f&quot;SCRIBE call failed after retries: {e}&quot;)
+        return None
+</code></pre>
+<h3>Cache-Aside Pattern</h3>
+<pre><code class="language-python">import time
+from typing import Dict, Any, Optional
+
+class CacheAside:
+    def __init__(self, ttl: int = 300):  # 5 minutes TTL
+        self.cache = {}
+        self.ttl = ttl
+    
+    def get(self, key: str) -&gt; Optional[Any]:
+        &quot;&quot;&quot;Get value from cache&quot;&quot;&quot;
+        if key in self.cache:
+            entry = self.cache[key]
+            
+            if time.time() - entry[&quot;timestamp&quot;] &lt; self.ttl:
+                return entry[&quot;value&quot;]
+            else:
+                del self.cache[key]
+        
+        return None
+    
+    def set(self, key: str, value: Any):
+        &quot;&quot;&quot;Set value in cache&quot;&quot;&quot;
+        self.cache[key] = {
+            &quot;value&quot;: value,
+            &quot;timestamp&quot;: time.time()
+        }
+    
+    def invalidate(self, key: str):
+        &quot;&quot;&quot;Invalidate cache entry&quot;&quot;&quot;
+        if key in self.cache:
+            del self.cache[key]
+
+# Usage Example
+def cached_scribe_call(client: ScribeClient, config: ScanConfig):
+    &quot;&quot;&quot;Make cached SCRIBE API call&quot;&quot;&quot;
+    cache = CacheAside(ttl=300)  # 5 minutes
+    cache_key = f&quot;scan_{config.frequency}_{config.duration}&quot;
+    
+    # Try cache first
+    cached_result = cache.get(cache_key)
+    if cached_result:
+        print(&quot;Returning cached result&quot;)
+        return cached_result
+    
+    # Make API call
+    result = client.perform_scan(config)
+    
+    # Cache result
+    cache.set(cache_key, result)
+    
+    return result
+</code></pre>
+<h2> Integration Monitoring</h2>
+<h3>Integration Health Check</h3>
+<pre><code class="language-python">import asyncio
+from typing import Dict, List
+
+class IntegrationHealthMonitor:
+    def __init__(self):
+        self.integrations = {}
+        self.health_status = {}
+    
+    def register_integration(self, name: str, health_check_func: Callable):
+        &quot;&quot;&quot;Register integration with health check function&quot;&quot;&quot;
+        self.integrations[name] = health_check_func
+    
+    async def check_all_health(self) -&gt; Dict[str, bool]:
+        &quot;&quot;&quot;Check health of all integrations&quot;&quot;&quot;
+        results = {}
+        
+        for name, health_check in self.integrations.items():
+            try:
+                is_healthy = await health_check()
+                results[name] = is_healthy
+            except Exception as e:
+                results[name] = False
+                print(f&quot;Health check failed for {name}: {e}&quot;)
+        
+        self.health_status = results
+        return results
+    
+    async def monitor_continuously(self, interval: int = 60):
+        &quot;&quot;&quot;Monitor integrations continuously&quot;&quot;&quot;
+        while True:
+            await self.check_all_health()
+            await asyncio.sleep(interval)
+    
+    def get_unhealthy_integrations(self) -&gt; List[str]:
+        &quot;&quot;&quot;Get list of unhealthy integrations&quot;&quot;&quot;
+        return [name for name, healthy in self.health_status.items() if not healthy]
+
+# Usage Example
+async def scribe_health_check():
+    &quot;&quot;&quot;Health check for SCRIBE API&quot;&quot;&quot;
+    client = ScribeClient()
+    return client.health_check()
+
+async def redis_health_check():
+    &quot;&quot;&quot;Health check for Redis&quot;&quot;&quot;
+    try:
+        redis_client = redis.Redis()
+        redis_client.ping()
+        return True
+    except:
+        return False
+
+def main():
+    monitor = IntegrationHealthMonitor()
+    
+    # Register integrations
+    monitor.register_integration(&quot;scribe&quot;, scribe_health_check)
+    monitor.register_integration(&quot;redis&quot;, redis_health_check)
+    
+    # Check health
+    asyncio.run(monitor.check_all_health())
+    
+    # Get unhealthy integrations
+    unhealthy = monitor.get_unhealthy_integrations()
+    if unhealthy:
+        print(f&quot;Unhealthy integrations: {unhealthy}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h2> Best Practices</h2>
+<h3>Error Handling</h3>
+<ul>
+<li>Implement proper error handling for all integrations</li>
+<li>Use circuit breakers to prevent cascading failures</li>
+<li>Implement retry logic with exponential backoff</li>
+<li>Log all integration errors for debugging</li>
+</ul>
+<h3>Performance Optimization</h3>
+<ul>
+<li>Use connection pooling for database connections</li>
+<li>Implement caching for frequently accessed data</li>
+<li>Use async/await for I/O operations</li>
+<li>Monitor integration performance metrics</li>
+</ul>
+<h3>Security</h3>
+<ul>
+<li>Secure all API keys and credentials</li>
+<li>Use HTTPS for all external communications</li>
+<li>Implement proper authentication and authorization</li>
+<li>Validate all external data</li>
+</ul>
+<h3>Monitoring</h3>
+<ul>
+<li>Monitor integration health and performance</li>
+<li>Set up alerts for integration failures</li>
+<li>Track integration usage and costs</li>
+<li>Implement proper logging and auditing</li>
+</ul>
+<hr />
+<p><strong>Last Updated</strong>: 2026-05-06<br />
+<strong>Integration Guide Version</strong>: 1.0.0<br />
+<strong>Status</strong>: Production Ready</p>
+
+    </div>
+</section>
+
+</main>
+
+<footer>
+
+    <div class="float">
+        <h3>SCRIBE Resonance AI System</h3>
+        <p>Advanced Acoustic Intelligence Platform</p>
+        <p>© 2026 Robert Trenaman | Software Customs (Auto Bot Solution) | All Rights Reserved</p>
+        <p>autobotsolution@gmail.com | Flushing, MI</p>
+    </div>
+    <div class="rotate">
+        <p class="pulse">Official Documentation Portal</p>
+    </div>
+
+</footer>
+</body>
+</html>
